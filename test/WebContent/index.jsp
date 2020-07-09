@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>index.jsp</title>
+
+<style>
+	.navbar-nav > li{
+  	padding-left:75px;
+  	padding-right:75px;
+}
+</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 </head>
 <body>
@@ -23,8 +30,8 @@
 	<div class="row">
     	<div class="col-sm-9">
 			<div class="row">
-    			<div class="col">
-    				<div class="card" style="width: 15rem;">
+    			<div class="col-sm">
+    				<div class="card" style="width: 15.8rem;">
  						 <div class="card-header">
   						  유머게시판
  			 			</div>
@@ -36,8 +43,8 @@
 					</div>
     			
     			</div>
-    			<div class="col">
-    				<div class="card" style="width: 15rem;">
+    			<div class="col-sm">
+    				<div class="card" style="width: 15.8rem;">
  						 <div class="card-header">
   						  스포츠게시판
  			 			</div>
@@ -49,8 +56,8 @@
 					</div>
     			
     			</div>
-   				 <div class="col">
-    				<div class="card" style="width: 15rem;">
+   				 <div class="col-sm">
+    				<div class="card" style="width: 15.8rem;">
  						 <div class="card-header">
   						 게임게시판
  			 			</div>
@@ -66,7 +73,7 @@
 		</div>
     	<div class="col-sm-3">
     	
-    		<div class="card" style="width: 15rem;">
+    		<div class="card" style="width: 15.8rem;">
  						 <div class="card-header">
   						  회원가입
  			 			</div>
@@ -84,7 +91,7 @@
   	
   	<div class="row">
     	<div class="col-sm-9">
-			<div class="card" style="width: 50.6rem;">
+			<div class="card" ">
  						 <div class="card-header">
   						  회원가입
  			 			</div>
