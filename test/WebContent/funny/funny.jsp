@@ -23,7 +23,7 @@
    		<div>전체0건 / 1페이지</div>
    		  	<table class="table table-bordered table-hover" style="text-align:center;" >
 			  <thead class="thead-light" >
-			    <tr>
+			    <tr >
 			    	<th width=7%>번호</th>
 			      	<th width=10%>닉네임</th>
 				    <th width=62%>제목</th>
@@ -32,9 +32,9 @@
 				    <th width=7%>추천</th>
 			    </tr>
 			  </thead>
-			  <tbody id="table-td-font">
+			  <tbody style="font-size:0.8em;">
 			    <tr>
-			      <th scope="row">1</th>
+			      <th>1</th>
 			      <td>이름</td>
 			      <td>제목</td>
 			      <td>날짜</td>
@@ -42,7 +42,7 @@
 			      <td>추천</td>
 			    </tr>
 			    <tr>
-			      <th scope="row">2</th>
+			      <th>2</th>
 			      <td>이름</td>
 			      <td>제목</td>
 			      <td>날짜</td>
@@ -50,7 +50,7 @@
 			      <td>추천</td>
 			    </tr>
 			    <tr>
-			      <th scope="row">3</th>
+			      <th>3</th>
 			      <td>이름</td>
 			      <td>제목</td>
 			      <td>날짜</td>
@@ -67,6 +67,36 @@
 			
    		</div>
 	</div>	
+	
+	
+	
+	<ul class="pagination" style="text-align: center;">
+	<!-- li태그의 클래스에 disabled를 넣으면 마우스를 위에 올렸을 때 클릭 금지 마크가 나오고 클릭도 되지 않는다.-->
+	<!-- disabled의 의미는 앞의 페이지가 존재하지 않다는 뜻이다. -->
+	<li class="disabled">
+	<a href="#">
+	<span>«</span>
+	</a>
+	</li>
+	<!-- li태그의 클래스에 active를 넣으면 색이 반전되고 클릭도 되지 않는다. -->
+	<!-- active의 의미는 현재 페이지의 의미이다. -->
+	<li class="active"><a href="#">1</a></li>
+	<li><a href="#">2</a></li>
+	<li><a href="#">3</a></li>
+	<li><a href="#">4</a></li>
+	<li><a href="#">5</a></li>
+	<li>
+	<a href="#">
+	<span>»</span>
+	</a>
+	</li>
+	</ul>
+
+
+
+
+
+
 </div>
 </body>
 </html>
