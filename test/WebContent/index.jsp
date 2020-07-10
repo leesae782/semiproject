@@ -46,16 +46,14 @@
    					 <div class="col-sm">
     					  <div class="card" >
  						 	<div class="card-header">
-  								 최근 게시글
+  								<h6>최신게시글</h6> 
  			 				</div>
  							 <div class="card-body">
-                       		 	<p>운영체제가 Android 입니다.</p>
+ 							 	<p>운영체제가 Android 입니다.</p>
                       		 	<p>운영체제가 Android 입니다.</p>
                       		 	<p>운영체제가 Android 입니다.</p>
                       		 	<p>운영체제가 Android 입니다.</p>
                       		 	<p>운영체제가 Android 입니다.</p>
-                      		 	
-                      		 	 
                     		</div>
 						</div>
     				</div>
