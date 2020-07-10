@@ -20,10 +20,14 @@
 	
 	
 	<ul class="navbar-nav" id="dd">
-		<li style ="pading" class="nav-item <%if(thisPage.equals("home")){%>active<%}%>"><a class="nav-link" href="${pageContext.request.contextPath }/test6/home.jsp">유머</a></li>
-		<li class="nav-item <%if(thisPage.equals("game")){%>active<%}%>"><a class="nav-link" href="${pageContext.request.contextPath }/test6/game.jsp">게임</a></li>
-		<li class="nav-item <%if(thisPage.equals("study")){%>active<%}%>"><a class="nav-link" href="${pageContext.request.contextPath }/test6/study.jsp">스포츠</a></li>
+		
+		<li style ="padding-left:75px;padding-right:75px;" class="nav-item <%if(thisPage.equals("home")){%>active<%}%>"><a class="nav-link" href="${pageContext.request.contextPath }/test6/home.jsp">유머</a></li>
+		<li style ="padding-left:75px;padding-right:75px;"class="nav-item <%if(thisPage.equals("game")){%>active<%}%>"><a class="nav-link" href="${pageContext.request.contextPath }/test6/game.jsp">게임</a></li>
+		<li style ="padding-left:75px;padding-right:75px;"class="nav-item <%if(thisPage.equals("study")){%>active<%}%>"><a class="nav-link" href="${pageContext.request.contextPath }/test6/study.jsp">스포츠</a></li>
 	</ul>
-	
+	<form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
 </div>
 
