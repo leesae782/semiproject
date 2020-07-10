@@ -20,6 +20,7 @@
 <div class="container">
 
 
+
 	<div class="row">
     	<div class="col-sm-9">
 			<div class="row">
@@ -104,7 +105,10 @@
 
 
 </div>
-
+</div>
+<jsp:include page="/include/footer.jsp">
+	<jsp:param value="index" name="thisPage"/>
+</jsp:include>
 
 
 
