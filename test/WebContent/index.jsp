@@ -94,10 +94,7 @@
   			</div>
 		</div>
     	<div class="col-sm-3">
-<<<<<<< HEAD
- 		
- 		
- 		
+
  		<!-- 로그인 폼 시작 -->
  
  
@@ -122,20 +119,6 @@
             
         <!-- 로그인 폼 끝 -->  
         
-        
-          
-=======
-    	
-    		<div class="card" style="width: 15.8rem;">
- 						  <div class="card-header">
-  						 유머게시판
- 			 			</div>
- 						 <div class="card-body">
-                        <p>운영체제가 Android 입니다.</p>
-                        <p>운영체제가 Android 입니다.</p>
-                    	</div>
-			</div>
->>>>>>> refs/heads/master
     	</div>
   	</div>
   	
