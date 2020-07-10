@@ -40,100 +40,209 @@
   		</div>	
 	  -->
 	
-	<div class="col-sm">
-                <div class="card">
-                    <div class="card-header">
-                        <p>최근 게시물</p>
-                    </div>
-                    <div class="card-body">
-                        <p>운영체제가 Android 입니다.</p>
-                        <p>운영체제가 Android 입니다.</p>
-                    </div>
-                    
-                </div>   
-     </div>
 	<div class="row">
-    	<div class="col-sm-9">
-			<div class="row">
+    		<div class="col-sm-9">
+    		  	<div class="row">
+   					 <div class="col-sm">
+    					  <div class="card" >
+ 						 	<div class="card-header">
+  								 최근 게시글
+ 			 				</div>
+ 							 <div class="card-body">
+                       		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	
+                      		 	 
+                    		</div>
+						</div>
+    				</div>
+    				<div class="col-sm">
+    					  <div class="card" >
+ 						 	<div class="card-header">
+  								BEST 게시글
+ 			 				</div>
+ 						 	<div class="card-body">
+                       		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                    		</div>
+						</div>
+   				 	</div>
+ 				 </div>
+ 				 
+ 				 <br />  <!--  첫번째쭐 -->
+ 				 <div class="row">
     			<div class="col-sm">
-    				<div class="card" style="width: 15.8rem;">
+    				<div class="card" >
  						 <div class="card-header">
-  						 유머게시판
+  						유머
  			 			</div>
  						 <div class="card-body">
                         <p>운영체제가 Android 입니다.</p>
-                        <p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
                     	</div>
 					</div>
     			
     			</div>
     			<div class="col-sm">
-    				<div class="card" style="width: 15.8rem;">
+    				<div class="card" >
  						  <div class="card-header">
-  						 유머게시판
+  						 이슈
  			 			</div>
  						 <div class="card-body">
-                        <p>운영체제가 Android 입니다.</p>
-                        <p>운영체제가 Android 입니다.</p>
+                       			<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
                     	</div>
 					</div>
-    			
+    		
     			</div>
    				 <div class="col-sm">
-    				<div class="card" style="width: 15.8rem;">
+    				<div class="card" >
  						  <div class="card-header">
-  						 유머게시판
+  						 정보
  			 			</div>
  						 <div class="card-body">
-                        <p>운영체제가 Android 입니다.</p>
-                        <p>운영체제가 Android 입니다.</p>
+                        		<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
                     	</div>
 					</div>
     			
     			</div>
-  			</div>
-		</div>
-    	<div class="col-sm-3">
-    	
-    		<div class="card" style="width: 15.8rem;">
- 						  <div class="card-header">
-  						 유머게시판
+  			</div> 
+  			<br /><!-- 두번째줄끝 -->
+ 			<div class="row">
+    			<div class="col-sm">
+    				<div class="card" >
+ 						 <div class="card-header">
+  						LOL
  			 			</div>
  						 <div class="card-body">
                         <p>운영체제가 Android 입니다.</p>
-                        <p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
                     	</div>
-			</div>
-    	</div>
-  	</div>
-  	
-  	<br />
-  	
-  	
-  	<div class="row">
-    	<div class="col-sm-9">
-			<div class="card" >
- 						 <div class="card-header">
-  						  회원가입
+					</div>
+    			
+    			</div>
+    			<div class="col-sm">
+    				<div class="card" >
+ 						  <div class="card-header">
+  						 배틀그라운드
  			 			</div>
- 						 <ul class="list-group list-group-flush">
-    						<li class="list-group-item">Cras justo odio</li>
-   							 <li class="list-group-item">Dapibus ac facilisis in</li>
-    						<li class="list-group-item">Vestibulum at eros</li>
-  						</ul>
-			</div>
-    	<div class="col-sm-3">
-    	
+ 						 <div class="card-body">
+                       			<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                    	</div>
+					</div>
     		
-    	</div>
-  	</div>
-    
-  </div>
+    			</div>
+   				 <div class="col-sm">
+    				<div class="card" >
+ 						  <div class="card-header">
+  						 FIFA Online
+ 			 			</div>
+ 						 <div class="card-body">
+                        		<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                    	</div>
+					</div>
+    			
+    			</div>
+  			</div> 
+  			<br /><!-- 세번째줄끝 -->
+  			<div class="row">
+    			<div class="col-sm">
+    				<div class="card" >
+ 						 <div class="card-header">
+  						축구
+ 			 			</div>
+ 						 <div class="card-body">
+                        <p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                    	</div>
+					</div>
+    			
+    			</div>
+    			<div class="col-sm">
+    				<div class="card" >
+ 						  <div class="card-header">
+  						농구
+ 			 			</div>
+ 						 <div class="card-body">
+                       			<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                    	</div>
+					</div>
+    		
+    			</div>
+   				 <div class="col-sm">
+    				<div class="card" >
+ 						  <div class="card-header">
+  						 야구
+ 			 			</div>
+ 						 <div class="card-body">
+                        		<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                    	</div>
+					</div>
+    			
+    			</div>
+  			</div> 
+    		</div> <!--  col 9 영역 -->
+			
+    		<div class="col-sm-3">
+ 				<div class="card" >
+ 						 	<div class="card-header">
+  								 Login
+ 			 				</div>
+ 							 <div class="card-body">
+                       		 	<p>운영체제가 Android 입니다.</p>
+                      		 	<p>운영체제가 Android 입니다.</p>
+                      		 	
+                    		</div>
+				</div>
+    		</div><!--  col 3 영역 -->
+  	</div>	
+  	
+  	
+  	
+  	
 
 	
 
-
 </div>
+
 
 
 
