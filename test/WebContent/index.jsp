@@ -238,6 +238,25 @@
   	
   	
   	
+  	<div class="row">
+    	<div class="col-sm-9">
+			<div class="card" >
+ 						 <div class="card-header">
+  						  회원가입
+ 			 			</div>
+ 						 <ul class="list-group list-group-flush">
+    						<li class="list-group-item">Cras justo odio</li>
+   							 <li class="list-group-item">Dapibus ac facilisis in</li>
+    						<li class="list-group-item">Vestibulum at eros</li>
+  						</ul>
+			</div>
+    	<div class="col-sm-3">
+    	
+    		
+    	</div>
+  	</div>
+    
+  </div>
 
 	
 
