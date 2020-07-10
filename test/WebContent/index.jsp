@@ -72,17 +72,35 @@
   			</div>
 		</div>
     	<div class="col-sm-3">
-    	
-    		<div class="card" style="width: 15.8rem;">
- 						 <div class="card-header">
-  						  회원가입
- 			 			</div>
- 						 <ul class="list-group list-group-flush">
-    						<li class="list-group-item">Cras justo odio</li>
-   							 <li class="list-group-item">Dapibus ac facilisis in</li>
-    						<li class="list-group-item">Vestibulum at eros</li>
-  						</ul>
-			</div>
+ 		
+ 		
+ 		
+ 		<!-- 로그인 폼 시작 -->
+ 
+ 
+    		<div class="login-box well" >
+                <form accept-charset="UTF-8" role="form" method="post" action="">
+                    <legend>로그인</legend>
+                    <div class="input-group"  style="margin-bottom: 1em;"">
+                        <span class="input-group-addon" ><i class="fa fa-user"></i></span>
+                        <input type="text" id="userid" value='' placeholder="ID를 입력하세요" class="form-control" />
+                    </div>
+                    <div class="input-group" style="margin-bottom: 1em;">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" id="password" value='' placeholder="비밀번호를 입력하세요" class="form-control" />
+                    </div>
+                    <button type="submit" id="login-submit" class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>로그인</button>
+                    <div class="form-group">
+                        <a href="registerForm.php" class="btn btn-default btn-block bg-light"> 회원가입</a>
+                        <span class='text-center'><a href="" class="text-sm">비밀번호 찾기</a></span>
+                    </div>
+                </form>
+            </div>
+            
+        <!-- 로그인 폼 끝 -->  
+        
+        
+          
     	</div>
   	</div>
   	
