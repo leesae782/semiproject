@@ -12,7 +12,7 @@
 <nav style = "height:200px;"class="navbar navbar-expand-sm bg-dark navbar-dark">
 
 	<!-- Brand <--><br /></--><br />
-            <a class="navbar-brand" href="${pageContext.request.contextPath}"><strong>VIVE LA JSS</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}"><strong>VIVE LA JSSs</strong>></a>
           
             <!-- Links -->
             <ul class="navbar-nav">
