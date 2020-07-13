@@ -1,5 +1,14 @@
+<%@page import="test.memberdto.MemberDto"%>
+<%@page import="test.memberdao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+ <%
+ 	String id =(String)session.getAttribute("id");
+ 
+ 	MemberDao dao = MemberDao.getInstance() ;
+ 	MemberDto dto=dao.getData(id);
+ %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -228,15 +237,41 @@
 			
     		<div class="col-sm-3">
  				<div class="card" >
- 						 	<div class="card-header">
-    							로그인
-  							</div>
- 							 <ul class="list-group list-group-flush">
-   								 <li class="list-group-item">Cras justo odio</li>
-   								 <li class="list-group-item">Dapibus ac facilisis in</li>
-  								  <li class="list-group-item"><a href="users/signup_form.jsp">회원가입</a></li>
-  							</ul>
-				</div>
+ 						<% if(id !=null){ %> 
+ 						
+ 						<div class="card-body">
+                       		<p><%= id %></p>
+                       		<p><%=dto.getNick() %></p>
+                       		<p><%= dto.getEmail() %></p>	
+                       		<p><%= dto.getRegdate() %></p>
+                       		
+                       		<span><a href="member/update_form.jsp">회원정보수정</a></span> <span><a href="member/logout.jsp">로그아웃</a></span>
+	
+						
+                    	</div>
+ 						<% }else{%>
+ 						<div class="card-body">
+                       			
+	
+							<form action="member/login.jsp"method="post"> 
+								<div class="form-group">
+									<label for="id">아이디</label>
+									<input class="form-control"type="text" name="id" id = "id" placeholder="아이디" />
+								</div>
+								<div class="form-group">
+									<label for="pwd">비밀번호</label>
+									<input class="form-control"type="text" name ="pwd" id = "pwd" placeholder="비밀번호"/>
+								</div>
+								
+									
+								<button class ="btn btn-primary"type="submit">로그인</button>
+								
+							</form>
+							<p><a href="member/signup_form.jsp"><strong>회원가입</strong></a></p>
+                    	</div>
+ 						<%} %>
+ 						 
+					</div>
     		</div><!--  col 3 영역 -->
   	</div>	
   	
