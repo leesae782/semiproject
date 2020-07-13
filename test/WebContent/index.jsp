@@ -21,7 +21,7 @@
 	<jsp:param value="index" name="thisPage"/>
 </jsp:include>
 
-<br />
+
 
 
 <div class="container">
