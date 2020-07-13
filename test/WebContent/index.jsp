@@ -23,6 +23,7 @@
 
 
 
+ 
 
 <div class="container">
 	<!--  콘테이너안에  div 9-3 으로 나눈 양식 입니다. 들여쓰기 해주세요
@@ -248,7 +249,10 @@
 
 </div>
 
-
+<div>
+	<a href="writepage/insertform.jsp">확인</a>
+	<a href="writepage/insertform2.jsp">확인</a>
+</div>
 
 
 
