@@ -1,5 +1,11 @@
+<%@page import="java.util.List"%>
+<%@page import="test.dao.bulletin_dao"%>
+<%@page import="test.dto.bulletin_dto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	List<bulletin_dto> list = bulletin_dao.getInstance().getList();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,53 +25,64 @@
 	</jsp:include>
 <div class="container">
 	<div class="row">
-   		<div class="col-sm-9">
-   		<div>전체0건 / 1페이지</div>
+   		<div class="col-sm-9" style="margin-top:15px;">
+   			<h3>게시판 이용 안내</h3>
+   			<p style="padding:20px;">어쩌구 저쩌구<br />
+   				그래서 이렇고 저렇고
+   			</p>
+   		</div>
+		
+   		<div class="col-sm-3" style="margin-top:15px;">
+			<div class="login-box well" >
+                <form accept-charset="UTF-8" role="form" method="post" action="">
+                    <legend>로그인</legend>
+                    <div class="input-group"  style="margin-bottom: 1em;"">
+                        <span class="input-group-addon" ><i class="fa fa-user"></i></span>
+                        <input type="text" id="userid" value='' placeholder="ID를 입력하세요" class="form-control" />
+                    </div>
+                    <div class="input-group" style="margin-bottom: 1em;">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" id="password" value='' placeholder="비밀번호를 입력하세요" class="form-control" />
+                    </div>
+                    <button type="submit" id="login-submit" class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>로그인</button>
+                    <div class="form-group">
+                        <a href="registerForm.php" class="btn btn-default btn-block bg-light"> 회원가입</a>
+                        <span class='text-center'><a href="" class="text-sm">비밀번호 찾기</a></span>
+                    </div>
+                </form>
+            </div>
+   		</div>
+   		
+   		
+	</div>
+	<div class="col-sm-12">
+		<div>전체0건 / 1페이지</div>
    		  	<table class="table table-bordered table-hover" style="text-align:center;" >
 			  <thead class="thead-light" >
 			    <tr >
-			    	<th width=7%>번호</th>
-			      	<th width=10%>닉네임</th>
-				    <th width=62%>제목</th>
-				    <th width=7%>날짜</th>
-				    <th width=7%>조회</th>
+			    	<th width=6%>번호</th>
+			      	<th width=9%>닉네임</th>
+				    <th width=57%>제목</th>
+				    <th width=14%>날짜</th>
 				    <th width=7%>추천</th>
+				    <th width=7%>조회</th>
 			    </tr>
 			  </thead>
 			  <tbody style="font-size:0.8em;">
+			    <%for(bulletin_dto tmp: list){ %>
 			    <tr>
-			      <th>1</th>
-			      <td>이름</td>
-			      <td>제목</td>
-			      <td>날짜</td>
-			      <td>조회</td>
-			      <td>추천</td>
+			      <th><%=tmp.getNum() %></th>
+			      <td><%=tmp.getName() %></td>
+			      <td><%=tmp.getBulletin_title() %></td>
+			      <td><%=tmp.getRegdate() %></td>
+			      <td><%=tmp.getRecom() %></td>
+			      <td><%=tmp.getLookup() %></td>
 			    </tr>
-			    <tr>
-			      <th>2</th>
-			      <td>이름</td>
-			      <td>제목</td>
-			      <td>날짜</td>
-			      <td>조회</td>
-			      <td>추천</td>
-			    </tr>
-			    <tr>
-			      <th>3</th>
-			      <td>이름</td>
-			      <td>제목</td>
-			      <td>날짜</td>
-			      <td>조회</td>
-			      <td>추천</td>
-			    </tr>
+			    <%} %>
 			  </tbody>
+			  
 			</table>
-			
-			
-   		</div>
-		
-   		<div class="col-sm-3">
-			
-   		</div>
+			<button style="float:right;"><a href="${pageContext.request.contextPath }/board/bulletin_add.jsp">글쓰기</a></button>
 	</div>	
 	
 	
@@ -80,22 +97,17 @@
 	</li>
 	<!-- li태그의 클래스에 active를 넣으면 색이 반전되고 클릭도 되지 않는다. -->
 	<!-- active의 의미는 현재 페이지의 의미이다. -->
-	<li class="active"><a href="#">1</a></li>
-	<li><a href="#">2</a></li>
-	<li><a href="#">3</a></li>
-	<li><a href="#">4</a></li>
-	<li><a href="#">5</a></li>
+	<li class="active"><a href="">1</a></li>
+	<li><a href="">2</a></li>
+	<li><a href="">3</a></li>
+	<li><a href="">4</a></li>
+	<li><a href="">5</a></li>
 	<li>
 	<a href="#">
 	<span>»</span>
 	</a>
 	</li>
 	</ul>
-
-
-
-
-
 
 </div>
 </body>
