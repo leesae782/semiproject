@@ -21,8 +21,9 @@
 	<jsp:param value="index" name="thisPage"/>
 </jsp:include>
 
-<br />
 
+
+ 
 
 <div class="container">
 	<!--  콘테이너안에  div 9-3 으로 나눈 양식 입니다. 들여쓰기 해주세요
@@ -48,13 +49,20 @@
  						 	<div class="card-header">
   								<h6>최신게시글</h6> 
  			 				</div>
- 							 <div class="card-body">
- 							 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    		</div>
+ 							<ul class="list-group">
+  								<li class="list-group-item d-flex justify-content-between align-items-center">
+   									 Cras justo odio
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 Dapibus ac facilisis in
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+</ul>
 						</div>
     				</div>
     				<div class="col-sm">
@@ -222,13 +230,13 @@
     		<div class="col-sm-3">
  				<div class="card" >
  						 	<div class="card-header">
-  								 Login
- 			 				</div>
- 							 <div class="card-body">
-                       		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	
-                    		</div>
+    							로그인
+  							</div>
+ 							 <ul class="list-group list-group-flush">
+   								 <li class="list-group-item">Cras justo odio</li>
+   								 <li class="list-group-item">Dapibus ac facilisis in</li>
+  								  <li class="list-group-item"><a href="users/signup_form.jsp">회원가입</a></li>
+  							</ul>
 				</div>
     		</div><!--  col 3 영역 -->
   	</div>	
@@ -241,7 +249,10 @@
 
 </div>
 
-
+<div>
+	<a href="writepage/insertform.jsp">확인</a>
+	<a href="writepage/insertform2.jsp">확인</a>
+</div>
 
 
 

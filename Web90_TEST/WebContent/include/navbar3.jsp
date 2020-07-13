@@ -7,6 +7,11 @@
 %>
 
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> refs/remotes/origin/master
 <div class="navbar navbar-expand-sm navbar-dark bg-white">
 	<a class="navbar-brand text-dark" href="${pageContext.request.contextPath }"><strong>VIVE LA JSS</strong></a>
 
