@@ -20,7 +20,7 @@
 <jsp:include page="/include/navbar.jsp">
 	<jsp:param value="index" name="thisPage"/>
 </jsp:include>
-<br />
+
 <div class="container">
 	<!--  콘테이너안에  div 9-3 으로 나눈 양식 입니다. 들여쓰기 해주세요
 		

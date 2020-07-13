@@ -194,53 +194,36 @@
 					</div>
     			
     			</div>
-    			<div class="col-sm">
-    				<div class="card" >
- 						  <div class="card-header">
-  						농구
- 			 			</div>
- 						 <div class="card-body">
-                       			<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    	</div>
-					</div>
-    		
-    			</div>
-   				 <div class="col-sm">
-    				<div class="card" >
- 						  <div class="card-header">
-  						 야구
- 			 			</div>
- 						 <div class="card-body">
-                        		<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    	</div>
-					</div>
-    			
-    			</div>
-  			</div> 
-    		</div> <!--  col 9 영역 -->
-			
-    		<div class="col-sm-3">
- 				<div class="card" >
- 						 	<div class="card-header">
-    							로그인
-  							</div>
- 							 <ul class="list-group list-group-flush">
-   								 <li class="list-group-item">Cras justo odio</li>
-   								 <li class="list-group-item">Dapibus ac facilisis in</li>
-  								  <li class="list-group-item"><a href="users/signup_form.jsp">회원가입</a></li>
-  							</ul>
-				</div>
-    		</div><!--  col 3 영역 -->
-  	</div>	
-  	
+  			</div>
+		</div>
+    	<div class="col-sm-3">
+
+ 		<!-- 로그인 폼 시작 -->
+ 
+ 
+    		<div class="login-box well" >
+                <form accept-charset="UTF-8" role="form" method="post" action="">
+                    <legend>로그인</legend>
+                    <div class="input-group"  style="margin-bottom: 1em;"">
+                        <span class="input-group-addon" ><i class="fa fa-user"></i></span>
+                        <input type="text" id="userid" value='' placeholder="ID를 입력하세요" class="form-control" />
+                    </div>
+                    <div class="input-group" style="margin-bottom: 1em;">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" id="password" value='' placeholder="비밀번호를 입력하세요" class="form-control" />
+                    </div>
+                    <button type="submit" id="login-submit" class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>로그인</button>
+                    <div class="form-group">
+                        <a href="registerForm.php" class="btn btn-default btn-block bg-light"> 회원가입</a>
+                        <span class='text-center'><a href="" class="text-sm">비밀번호 찾기</a></span>
+                    </div>
+                </form>
+            </div>
+            
+        <!-- 로그인 폼 끝 -->  
+        
+    	</div>
+  	</div>
   	
   	
   	
@@ -254,13 +237,13 @@
 	<a href="writepage/insertform2.jsp">확인</a>
 </div>
 
+<p></p>
 
 
 
 <jsp:include page="/include/footer.jsp">
 	<jsp:param value="index" name="thisPage"/>
 </jsp:include>
-
 <!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★</-> -->
 
 
