@@ -10,6 +10,10 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-lite.min.js"></script>
+<script src="/summernote-master/lang/summernote-ko-KR.js"></script>
 </head>
 <body>
 
@@ -19,14 +23,11 @@
 
 
 	<div class="container">
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-lite.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.15/dist/summernote-lite.min.js"></script>
-<script src="/summernote-master/lang/summernote-ko-KR.js"></script>
+
 
 <section id="bbs_write">
 	<h3>글쓰기</h3>
-	<form method="post" id = "write" name="write" action="" onsubmit="return check_submit();" enctype=multipart/form-data>
+	<form method="post" id = "write" name="write" action="insert.jsp" onsubmit="return check_submit();" enctype=multipart/form-data >
 		<input type="hidden" name="page" value="1">
 		<input type="hidden" name="id" value="openbbs">
 		<input type="hidden" name="no" value="">
@@ -38,14 +39,17 @@
 		<input type="hidden" name="sn" value="off">
 		<input type="hidden" name="ss" value="on">
 		<input type="hidden" name="sc" value="off">
+		<input type="hidden" name="sc" value="off">
 		<input type="hidden" name="mode" value="write">
+		
+		
 
-	<div class="form">
-		<input type="text" name="subject" id="subject" placeholder="제목" class="form-control" value="" />
-		<textarea name="memo" id="memo"  cols=55.8  rows="20"></textarea>
+	<div class="form" >
+		<input style="margin-bottom: 1em;" type="text" name="subject" id="subject" placeholder="제목" class="form-control" value="" />
+		<textarea  name="memo" id="memo"  cols=55.8  rows="20"></textarea>
 	</div>
 	
-	<div class="done">
+	<div class="done"  style="margin-top: 1em;">
 		<input type="submit" value="완료" accesskey="s" class="btn btn-primary btn-lg" />
 		<!--			<input type="checkbox" class="cb" id="make_this_notice" name=notice  value=1><label for="make_this_notice"><i class="material-icons-round">check_box</i><span>공지 올리기</span></label>
 		-->		
@@ -65,7 +69,7 @@
 			['font', ['bold', 'underline', 'clear']],
 			['color', ['color']],
 			['table', ['table']],
-			['insert', ['link', 'picture', 'video']],
+			['insert', ['link', 'picture', 'video', 'image']],
 			['view', ['codeview']]
 		]
 });
