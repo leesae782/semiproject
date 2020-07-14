@@ -5,12 +5,16 @@
     
 <%
 	String id = (String)session.getAttribute("id");
+	String nick = request.getParameter("nick");
+	String email = request.getParameter("email");
 	
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto =new MemberDto();
+	dto.setId(id);
+	dto.setNick(nick);
+	dto.setEmail(email);
 	
-	
-	dao.update(dto);
+	boolean isSuccess =dao.update(dto);
 
 %>
 <!DOCTYPE html>
@@ -21,5 +25,18 @@
 </head>
 <body>
 
+
+<%if(isSuccess){%>
+	<script>
+		alert("회원정보를 수정하였습니다.")
+		location.href="${pageContext.request.contextPath}/"
+	</script>
+<%} else { %>
+	<script>
+		alert("회원정보를 수정하지 못하였습니다..")
+		location.href="${pageContext.request.contextPath}/member/update_form.jsp"
+	</script>
+		
+<%} %>
 </body>
 </html>

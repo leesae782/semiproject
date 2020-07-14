@@ -1,5 +1,13 @@
+<%@page import="test.memberdto.MemberDto"%>
+<%@page import="test.memberdao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	String id = (String)session.getAttribute("id");
+	MemberDao dao = MemberDao.getInstance();
+	MemberDto dto = dao.getData(id);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +22,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
 
 
@@ -200,27 +209,41 @@
 
  		<!-- 로그인 폼 시작 -->
  
- 
-    		<div class="login-box well" >
-                <form accept-charset="UTF-8" role="form" method="post" action="">
+ 			<%if(id == null){ %>
+ 				<div class="login-box well" >
+                <form accept-charset="UTF-8" role="form" method="post" action="member/login.jsp">
                     <legend>로그인</legend>
                     <div class="input-group"  style="margin-bottom: 1em;"">
                         <span class="input-group-addon" ><i class="fa fa-user"></i></span>
-                        <input type="text" id="userid" value='' placeholder="ID를 입력하세요" class="form-control" />
+                        <input type="text" name ="id"id="id" value='' placeholder="ID를 입력하세요" class="form-control" />
                     </div>
                     <div class="input-group" style="margin-bottom: 1em;">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" id="password" value='' placeholder="비밀번호를 입력하세요" class="form-control" />
+                        <input type="password" name ="pwd"id="pwd" value='' placeholder="비밀번호를 입력하세요" class="form-control" />
                     </div>
-                    <button type="submit" id="login-submit" class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>로그인</button>
-                    <div class="form-group">
-                        <a href="registerForm.php" class="btn btn-default btn-block bg-light"> 회원가입</a>
-                        <span class='text-center'><a href="" class="text-sm">비밀번호 찾기</a></span>
-                    </div>
+                    <button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>로그인</button>
+                    
                 </form>
+               	
+               	<form action="member/signup_form.jsp" method ="post">
+               		<button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>회원가입</button>
+               	</form>	  
+                </div>
+ 			<%} else { %>
+ 				<p><%= id %></p>
+ 				<p><%= dto.getNick() %></p>
+ 				<p><%= dto.getEmail() %></p>
+ 				<p><%= dto.getRegdate() %></p>
+ 				<p> <a href="member/logout.jsp">로그아웃</a></p>
+ 				<p><a href="member/update_form.jsp">회원정보수정</a></p>
+ 			<%} %>
+    		
+            
+            
+            
             </div>
             
-        <!-- 로그인 폼 끝 -->  
+      
         
     	</div>
   	</div>
@@ -230,7 +253,7 @@
 
 	
 
-</div>
+
 
 <div>
 	<a href="writepage/insertform.jsp">확인</a>
