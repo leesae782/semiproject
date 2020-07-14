@@ -247,20 +247,6 @@
         
     	</div>
   	</div>
-  	
-  	
-  	
-
-	
-
-
-
-<div>
-	<a href="writepage/insertform.jsp">확인</a>
-	<a href="writepage/insertform2.jsp">확인</a>
-</div>
-
-<p></p>
 
 
 
