@@ -65,9 +65,9 @@
 				<button class="btn btn-outline-danger"type="reset">취소</button>
 	</form>
     		</div>
-			
+			<p><a href=""></a></p>
     		<div class="col-sm-3">
- 				값 넣기
+ 				
     		</div>
   		</div>	
 	
