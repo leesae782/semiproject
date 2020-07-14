@@ -82,7 +82,7 @@
 			  </tbody>
 			  
 			</table>
-			<button style="float:right;"><a href="${pageContext.request.contextPath }/writepage/insertform.jsp">글쓰기</a></button>
+			<button style="float:right;"><a href="${pageContext.request.contextPath }/board/bulletin_add.jsp">글쓰기</a></button>
 	</div>	
 	
 	
