@@ -57,4 +57,38 @@ public class bulletin_dao {
 		return list;
 	}
 	
+	public boolean bulletin_insert(bulletin_dto dto) {
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 준비하기
+			String sql = "INSERT INTO bulletin_board"
+					+ " (num, name, title, content, regdate)"
+					+ " VALUES(bb_seq.NEXTVAL,'이름', ?, ?, SYSDATE)";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 값이 있으면 바인딩 한다.
+			pstmt.setString(1, dto.getBulletin_title());
+			pstmt.setString(2, dto.getBulletin_content());
+			//sql 문 수행하고 update or insert or delete 된 row 의 갯수 리턴 받기
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

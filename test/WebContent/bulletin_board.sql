@@ -1,8 +1,8 @@
 CREATE TABLE bulletin_board(
 num NUMBER PRIMARY KEY,
-name VARCHAR2(10) NOT NULL,
-title VARCHAR2(50) NOT NULL,
-content VARCHAR2(2048) NOT NULL,
+name VARCHAR2(10),
+title VARCHAR2(50),
+content VARCHAR2(2048),
 regdate DATE,
 recom NUMBER,
 lookup NUMBER
