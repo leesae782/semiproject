@@ -247,8 +247,8 @@
         
     	</div>
   	</div>
-
-
+	
+	<a href="${pageContext.request.contextPath }/board/sample2.jsp">실험..</a>
 
 <jsp:include page="/include/footer.jsp">
 	<jsp:param value="index" name="thisPage"/>
