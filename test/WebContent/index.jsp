@@ -206,11 +206,12 @@
   			</div>
 		</div>
     	<div class="col-sm-3">
-
- 		<!-- 로그인 폼 시작 -->
- 
- 			<%if(id == null){ %>
- 				<div class="login-box well" >
+    	
+    		
+			
+			
+			<!-- 
+			<div class="login-box well" >
                 <form accept-charset="UTF-8" role="form" method="post" action="member/login.jsp">
                     <legend>로그인</legend>
                     <div class="input-group"  style="margin-bottom: 1em;"">
@@ -229,13 +230,18 @@
                		<button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>회원가입</button>
                	</form>	  
                 </div>
+			 -->
+ 		<!-- 로그인 폼 시작 -->
+ 
+ 			<%if(id == null){ %>
+ 				<p><a href="${pageContext.request.contextPath}/member/login_form.jsp">로그인 하러가기</a></p>
  			<%} else { %>
  				<p><%= id %></p>
  				<p><%= dto.getNick() %></p>
  				<p><%= dto.getEmail() %></p>
  				<p><%= dto.getRegdate() %></p>
- 				<p> <a href="member/logout.jsp">로그아웃</a></p>
- 				<p><a href="member/update_form.jsp">회원정보수정</a></p>
+ 				<p> <a href="${pageContext.request.contextPath}/member/logout.jsp">로그아웃</a></p>
+ 				<p><a href="${pageContext.request.contextPath}/member/private/info.jsp">회원정보</a></p>
  			<%} %>
     		
             
@@ -245,7 +251,7 @@
             
       
         
-    	</div>
+    		</div>
   	</div>
   	
   	
@@ -253,7 +259,28 @@
 
 	
 
+<!--  기존 로그인 폼
+<div class="login-box well" >
+                <form accept-charset="UTF-8" role="form" method="post" action="member/login.jsp">
+                    <legend>로그인</legend>
+                    <div class="input-group"  style="margin-bottom: 1em;"">
+                        <span class="input-group-addon" ><i class="fa fa-user"></i></span>
+                        <input type="text" name ="id"id="id" value='' placeholder="ID를 입력하세요" class="form-control" />
+                    </div>
+                    <div class="input-group" style="margin-bottom: 1em;">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" name ="pwd"id="pwd" value='' placeholder="비밀번호를 입력하세요" class="form-control" />
+                    </div>
+                    <button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>로그인</button>
+                    
+                </form>
+               	
+               	<form action="member/signup_form.jsp" method ="post">
+               		<button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>회원가입</button>
+               	</form>	  
+                </div>
 
+ -->
 
 <div>
 	<a href="writepage/insertform.jsp">확인</a>
@@ -264,7 +291,7 @@
 
 
 
-<jsp:include page="/include/footer.jsp">
+<jsp:include page="/include/footer.jsp">	
 	<jsp:param value="index" name="thisPage"/>
 </jsp:include>
 <!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★</-> -->

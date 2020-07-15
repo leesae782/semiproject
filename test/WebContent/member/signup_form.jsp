@@ -41,33 +41,61 @@
 	  -->
 	
 	<h1>회원 가입 폼 입니다.</h1>
-	<form action="signup.jsp" method="post">
-		<div class="form-group">
-			<label for="id">아이디</label>
-			<input class="form-control" type="text" name="id" id="id"/>
-		</div>
-		<div class="form-group">
-			<label for="pwd">비밀번호</label>
-			<input class="form-control"type="password" name="pwd" id="pwd"/>
-		</div>
-		<div class="form-group">
-			<label for="pwdcheck">비밀번호확인</label>
-			<input class="form-control"type="password" name="pwdcheck" id="pwdcheck"/>
-		</div>
-		<div class="form-group">
-			<label for="nick">닉네임</label>
-			<input class="form-control"type="text" name="nick" id="nick"/>
-		</div>
-		<div class="form-group">
-			<label for="email">이메일</label>
-			<input class="form-control"type="text" name="email" id="email"/>
-		</div>
-		
-		<button class="btn btn-outline-success"type="submit">가입</button>
-		<button class="btn btn-outline-danger"type="reset">취소</button>
 	
   	
-
+				<form action="signup.jsp" method = "post"class="needs-validation" id="myForm">
+          			 <div class="form-group">
+               			 <label for="name">아이디</label>
+                		<input class = "form-control"type="text" placeholder="4~12 글자 입력하세요."name="id" id="id"/>  <!-- is-invalid-->
+             
+           			  <div class="invalid-feedback">
+                   		 영문자 숫자 혼합하여 4~12 글자 입력하세요.
+                	</div>
+            		</div>
+            		
+            		<div id = "pwd-group">
+            		<div class="form-group">
+               			 <label for="name">비밀번호</label>
+                		<input class = "form-control"type="password"placeholder="8글자 이상 입력하세요" name="pwd" id="pwd"/>  <!-- is-invalid-->
+             
+           			  <div class="invalid-feedback">
+                   		 8글자 이상 입력하세요
+                	</div>
+            		</div>
+            		<div class="form-group">
+               			 <label for="name">비밀번호 확인</label>
+                		<input class = "form-control"type="password"placeholder="8글자 이상 입력하세요" name="pwd1" id="pwd1"/>  <!-- is-invalid-->
+             
+           			  <div class="invalid-feedback">
+                   		 8글자 이상 입력하세요
+                	</div>
+            		</div>
+            		
+            		</div>
+            		
+            		
+            		
+            		
+            		<div class="form-group">
+               			 <label for="name">닉네임</label>
+                		<input class = "form-control"type="text" placeholder="3~8글자 입력하세요"name="nick" id="nick"/>  <!-- is-invalid-->
+             
+           			  <div class="invalid-feedback">
+                   		 3~8글자 입력하세요
+                	</div>
+            		</div>
+            		
+            		<div class="form-group">
+               			 <label for="name">이메일</label>
+                		<input class = "form-control"type="text" placeholder="이메일형식에 맞게 입력하세요"name="email" id="email"/>  <!-- is-invalid-->
+             
+           			  <div class="invalid-feedback">
+                   		 이메일형식에 맞게 입력해주세요.
+                	</div>
+            		</div>
+           			 <button type="submit" class="btn btn-outline-primary">가입</button>
+           			 <button type="reset" class="btn btn-outline-primary">취소</button>
+       			 </form>
 	
 
 </div>

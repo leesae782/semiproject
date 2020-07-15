@@ -17,6 +17,71 @@ public class MemberDao {
 		}
 		return dao;
 	}
+	public boolean updatePwd (MemberDto dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			//실행할 sql문 준비하기
+			String sql = "update member set pwd = ? where id=? and pwd=?";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 값이 있으면 바인딩한다.
+			pstmt.setString(1, dto.getNewPwd());
+			pstmt.setString(2, dto.getId());
+			pstmt.setString(3, dto.getPwd());
+			// sql문 수행하고 update or insert or delete 된 row 의 개수 리턴받기
+			flag = pstmt.executeUpdate();  //수정된 row의개수가리턴
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					pstmt.close();
+			} catch (Exception e) {
+			}
+
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public boolean delete(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			//실행할 sql문 준비하기
+			String sql = "DELETE FROM MEMBER"
+					+" WHERE ID = ?";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 값이 있으면 바인딩한다.
+			pstmt.setString(1, id);
+			// sql문 수행하고 update or insert or delete 된 row 의 개수 리턴받기
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					pstmt.close();
+			} catch (Exception e) {
+			}
+
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	public boolean update(MemberDto dto){
 		Connection conn = null;
