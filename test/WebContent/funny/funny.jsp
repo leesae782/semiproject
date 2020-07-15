@@ -41,16 +41,9 @@
    		</div>
 		
    		<div class="col-sm-3" style="margin-top:15px;">
-			<%if(id == null){ %>
- 				<p><a href="${pageContext.request.contextPath}/member/login_form.jsp">로그인 하러가기</a></p>
- 			<%} else { %>
- 				<p><%= id %></p>
- 				<p><%= dto.getNick() %></p>
- 				<p><%= dto.getEmail() %></p>
- 				<p><%= dto.getRegdate() %></p>
- 				<p> <a href="${pageContext.request.contextPath}/member/logout.jsp">로그아웃</a></p>
- 				<p><a href="${pageContext.request.contextPath}/member/private/info.jsp">회원정보</a></p>
- 			<%} %>
+			<jsp:include page="../include/loginstatus.jsp">
+ 					<jsp:param value="${pageContext.request.contextPath}/funny/funny.jsp" name="go"/>
+ 				</jsp:include>
    		</div>
    		
    		
