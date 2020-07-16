@@ -12,7 +12,7 @@
 	String id = (String)session.getAttribute("id");
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.getData(id);
-
+	String url= request.getRequestURI();
 %>
 <!DOCTYPE html>
 <html>
@@ -42,7 +42,7 @@
 		
    		<div class="col-sm-3" style="margin-top:15px;">
 			<jsp:include page="../include/loginstatus.jsp">
- 					<jsp:param value="${pageContext.request.contextPath}/funny/funny.jsp" name="go"/>
+ 					<jsp:param value="<%=url %>" name="url"/>
  				</jsp:include>
    		</div>
    		

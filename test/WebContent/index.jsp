@@ -8,6 +8,8 @@
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.getData(id);
 	
+	
+	String url= request.getRequestURI();  // 현재 url 을  저장함
 %>
 <!DOCTYPE html>
 <html>
@@ -235,7 +237,7 @@
  		<!-- 로그인 폼 시작 -->
  
  				<jsp:include page="include/loginstatus.jsp">
- 					<jsp:param value="${pageContext.request.contextPath}/" name="go"/>
+ 					<jsp:param value="<%=url %>" name="url"/>
  				</jsp:include>
     		
             

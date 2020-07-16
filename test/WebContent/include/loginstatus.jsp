@@ -10,16 +10,16 @@
 	MemberDto dto = dao.getData(id);
 	
 	
-	String go = request.getParameter("go");
+	String url = request.getParameter("url");
 %>    
 <%if(id == null){ %>
-				<p><%=go %></p>
- 				<p><a href="${pageContext.request.contextPath}/member/login_form.jsp?url=<%=go%>">로그인 하러가기</a></p>
+				<p><%=url %></p>
+ 				<p><a href="${pageContext.request.contextPath}/member/login_form.jsp?url=<%=url%>">로그인 하러가기</a></p>
  			<%} else { %>
  				<p><%= id %></p>
  				<p><%= dto.getNick() %></p>
  				<p><%= dto.getEmail() %></p>
  				<p><%= dto.getRegdate() %></p>
- 				<p> <a href="${pageContext.request.contextPath}/member/logout.jsp">로그아웃</a></p>
+ 				<p> <a href="${pageContext.request.contextPath}/member/logout.jsp?url=<%=url%>">로그아웃</a></p>
  				<p><a href="${pageContext.request.contextPath}/member/private/info.jsp">회원정보</a></p>
 <%} %>
