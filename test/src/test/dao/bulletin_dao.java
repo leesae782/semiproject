@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import test.dto.bulletin_dto;
 import test.util.DbcpBean;
 
@@ -18,8 +17,76 @@ public class bulletin_dao {
 		}
 		return dao;
 	}
+	//글 하나의 정보를 삭제하는 메소드
+	public boolean bulletin_delete(int num){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 준비하기 
+			String sql = "DELETE FROM bulletin_board"
+					+ " WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 값이 있으면 바인딩한다.
+			pstmt.setInt(1, num);
+			//sql  문 수행하고 update or insert or delete 된 row 의 갯수 리턴받기 
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//글 하나의 정보를 수정하는 메소드
+	public boolean bulletin_update(bulletin_dto dto) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			int flag = 0;
+			try {
+				conn = new DbcpBean().getConn();
+				//실행할 sql 문 준비하기 
+				String sql = "UPDATE bulletin_board"
+						+ " SET name=?, title=?, content=?"
+						+ " WHERE num=?";
+				pstmt = conn.prepareStatement(sql);
+				//? 에 바인딩 할 값이 있으면 바인딩한다.
+				pstmt.setString(1, dto.getName());
+				pstmt.setString(2, dto.getBulletin_title());
+				pstmt.setString(3, dto.getBulletin_content());
+				pstmt.setInt(4, dto.getNum());
+				//sql  문 수행하고 update or insert or delete 된 row 의 갯수 리턴받기 
+				flag = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (Exception e) {
+				}
+			}
+			if (flag > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	//글 하나의 정보를 리턴하는 메소드
-		public bulletin_dto bulletin_getData(int num) {
+	public bulletin_dto bulletin_getData(int num) {
 			//글하나의 정보를 담을 BoardDto 
 			bulletin_dto dto=null;
 			//필요한 객체의 참조값을 담을 지역변수 만들기 

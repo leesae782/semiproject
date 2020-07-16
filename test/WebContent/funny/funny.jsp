@@ -73,7 +73,7 @@
 			    <tr>
 			      <th><%=tmp.getNum() %></th>
 			      <td><%=tmp.getName() %></td>
-			      <td><a href="${pageContext.request.contextPath }/funny/funny2.jsp?num=<%=tmp.getNum()%>"><%=tmp.getBulletin_title() %></td>
+			      <td><a href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getBulletin_title() %></td>
 			      <td><%=tmp.getRegdate() %></td>
 			      <td><%=tmp.getRecom() %></td>
 			      <td><%=tmp.getLookup() %></td>

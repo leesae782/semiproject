@@ -16,15 +16,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.css" />
 </head>	
 <body>
-<jsp:include page="../include/navbar.jsp">
-	<jsp:param value="funny" name="thisPage"/>
-</jsp:include>
+	<jsp:include page="../include/navbar.jsp">
+		<jsp:param value="funny" name="thisPage"/>
+	</jsp:include>
 	<div class="container">
 		<p><%=dto.getNum() %></p>
 		<p><%=dto.getName() %></p>
 		<p><%=dto.getBulletin_title() %></p>
 		<p><%=dto.getBulletin_content() %></p>
-		<button><a href="updateform.jsp?num=<%=dto.getNum() %>">수정</a></button>
+		<button><a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>">수정</a></button>
 		<button><a href="javascript:deleteConfirm(<%=dto.getNum()%>)">삭제</a></button>
 	</div>
 
@@ -33,7 +33,7 @@
 	function deleteConfirm(num){
 		var isDelete=confirm(num+" 번 글을 삭제 하시겠습니까?");
 		if(isDelete){
-			location.href="delete.jsp?num="+num;
+			location.href="${pageContext.request.contextPath }/writepage/delete.jsp?num="+num;
 		}
 	}
 </script>
