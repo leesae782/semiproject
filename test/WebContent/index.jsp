@@ -24,51 +24,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-<style>
-
-
-.login-find{
-	font-size : 12px;
-	color : black;
-}
-
-.login-p {
-	font-size :12px;
-}
-.login-a:link{
-	text-decoration:none; color:white;
-}
-.login-a:visited{
-	text-decoration:none; color:white;
-}
-.login-a:active{
-	text-decoration:none; color:white;
-}
-.login-a:hover{
-	text-decoration:none; color:white;
-}
-.login-a {
-
-	text-decoration:none;
-	
-        font-size: 15px;
-    font-weight: 700;
-    display: block;
-    margin-top: 11px;
-    padding: 15px 0;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 2px;
-    background-color: rgb(0, 0, 0);
-    }
-    .login-div{
-        padding: 16px 16px 12px 17px;
-        border: 1px solid #dae1e6;
-        background-color: #f7f9fa;
-    }
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
 </head>
 
 <body>
@@ -104,89 +60,391 @@
    					 <div class="col-sm">
     					  <div class="card" >
  						 	<div class="card-header">
-  								<h6>최신게시글</h6> 
+  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
  			 				</div>
  							<ul class="list-group">
   								<li class="list-group-item d-flex justify-content-between align-items-center">
+   									메가젠임플란트 대표이기도 한 대구 미르치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    에 상당히 도움이 될만한 
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
    									 Cras justo odio
    									 <span class="badge badge-primary badge-pill">14</span>
   								</li>
  								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 Dapibus ac facilisis in
+   									 에 상당히 도움이 될만한 
    									 <span class="badge badge-primary badge-pill">2</span>
   								</li>
 								  <li class="list-group-item d-flex justify-content-between align-items-center">
 								    Morbi leo risus
 								    <span class="badge badge-primary badge-pill">1</span>
 								  </li>
-</ul>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								</ul>
 						</div>
     				</div>
     				<div class="col-sm">
     					  <div class="card" >
  						 	<div class="card-header">
-  								BEST 게시글
+  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
  			 				</div>
- 						 	<div class="card-body">
-                       		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    		</div>
+ 							<ul class="list-group">
+  								<li class="list-group-item d-flex justify-content-between align-items-center">
+   									메가젠임플란트 대표이기도 한 대구 미르치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    에 상당히 도움이 될만한 
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 Cras justo odio
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 에 상당히 도움이 될만한 
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								</ul>
 						</div>
    				 	</div>
  				 </div>
  				 
- 				 <br />  <!--  첫번째쭐 -->
+ 				 
+ 				 <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">유머</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">이슈</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">정보</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+ 	<div class="row">
+ 		<div class="col-4">
+    		<div class="card" id = "card1-img">
+  				<img src="${pageContext.request.contextPath}/images/colon.png" class="card-img-top" alt="무슨파일인지설명">
+ 			 	<ul class="list-group">
+  					<li class="list-group-item d-flex justify-content-between align-items-center">
+   						메가젠임플란트 대표이기도 한 대구 미르치
+   						 <span class="badge badge-primary badge-pill">14</span>
+  					</li>
+  				</ul>
+			</div>
+    	</div>
+    	<div class="col-8">
+ <div class="card" id ="card1" >
+ 							<ul class="list-group">
+  								<li class="list-group-item d-flex justify-content-between align-items-center">
+   									메가젠임플란트 대표이기도 한 대구 미르치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    에 상당히 도움이 될만한 
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 Cras justo odio
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 에 상당히 도움이 될만한 
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								</ul>
+						</div>
+    	</div>
+  	</div>	
+  							
+  </div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  <div class="card"id ="card2" >
+ 						 	
+ 							<ul class="list-group">
+  								<li class="list-group-item d-flex justify-content-between align-items-center">
+   									메가젠임플란트 대표이기도 한 대구 미르치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    에 상당히 도움이 될만한 
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 Cras justo odio
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 에 상당히 도움이 될만한 
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								</ul>
+						</div>
+  </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+  <div class="card" id ="card3" >
+ 						 	
+ 							<ul class="list-group">
+  								<li class="list-group-item d-flex justify-content-between align-items-center">
+   									메가젠임플란트 대표이기도 한 대구 미르치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    에 상당히 도움이 될만한 
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 Cras justo odio
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 에 상당히 도움이 될만한 
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								</ul>
+						</div>
+  </div>
+</div>
  				 <div class="row">
     			<div class="col-sm">
     				<div class="card" >
- 						 <div class="card-header">
-  						유머
- 			 			</div>
- 						 <div class="card-body">
-                        <p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    	</div>
-					</div>
+ 						 	<div class="card-header">
+  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+ 			 				</div>
+ 							<ul class="list-group">
+  								<li class="list-group-item d-flex justify-content-between align-items-center">
+   									메가젠임플란트 대표이기도 한 대구 미르치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    에 상당히 도움이 될만한 
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 Cras justo odio
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 에 상당히 도움이 될만한 
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								</ul>
+						</div>
     			
     			</div>
     			<div class="col-sm">
     				<div class="card" >
- 						  <div class="card-header">
-  						 이슈
- 			 			</div>
- 						 <div class="card-body">
-                       			<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    	</div>
-					</div>
+ 						 	<div class="card-header">
+  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+ 			 				</div>
+ 							<ul class="list-group">
+  								<li class="list-group-item d-flex justify-content-between align-items-center">
+   									메가젠임플란트 대표이기도 한 대구 미르치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    에 상당히 도움이 될만한 
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 Cras justo odio
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 에 상당히 도움이 될만한 
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								</ul>
+						</div>
     		
     			</div>
    				 <div class="col-sm">
     				<div class="card" >
- 						  <div class="card-header">
-  						 정보
- 			 			</div>
- 						 <div class="card-body">
-                        		<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    	</div>
-					</div>
+ 						 	<div class="card-header">
+  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+ 			 				</div>
+ 							<ul class="list-group">
+  								<li class="list-group-item d-flex justify-content-between align-items-center">
+   									메가젠임플란트 대표이기도 한 대구 미르치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    에 상당히 도움이 될만한 
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 Cras justo odio
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 에 상당히 도움이 될만한 
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">14</span>
+  								</li>
+ 								 <li class="list-group-item d-flex justify-content-between align-items-center">
+   									 범 원장이 문자메시지를 이용, 동료치
+   									 <span class="badge badge-primary badge-pill">2</span>
+  								</li>
+								  <li class="list-group-item d-flex justify-content-between align-items-center">
+								    Morbi leo risus
+								    <span class="badge badge-primary badge-pill">1</span>
+								  </li>
+								</ul>
+						</div>
     			
     			</div>
   			</div> 
   			<br /><!-- 두번째줄끝 -->
+  			
  			<div class="row">
     			<div class="col-sm">
     				<div class="card" >
