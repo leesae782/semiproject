@@ -46,7 +46,7 @@
                 <form accept-charset="UTF-8" role="form" method="post" action="login.jsp">
                 	<input type="hidden" name="url" value="<%=url %>" />
                     <legend>로그인</legend>
-                    <div class="input-group"  style="margin-bottom: 1em;"">
+                    <div class="input-group"  style="margin-bottom: 1em;">
                         <span class="input-group-addon" ><i class="fa fa-user"></i></span>
                         <input type="text" name ="id"id="id" value='' placeholder="ID를 입력하세요" class="form-control" />
                     </div>

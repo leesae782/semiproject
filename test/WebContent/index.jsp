@@ -24,6 +24,51 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
+<style>
+
+
+.login-find{
+	font-size : 12px;
+	color : black;
+}
+
+.login-p {
+	font-size :12px;
+}
+.login-a:link{
+	text-decoration:none; color:white;
+}
+.login-a:visited{
+	text-decoration:none; color:white;
+}
+.login-a:active{
+	text-decoration:none; color:white;
+}
+.login-a:hover{
+	text-decoration:none; color:white;
+}
+.login-a {
+
+	text-decoration:none;
+	
+        font-size: 15px;
+    font-weight: 700;
+    display: block;
+    margin-top: 11px;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 2px;
+    background-color: rgb(0, 0, 0);
+    }
+    .login-div{
+        padding: 16px 16px 12px 17px;
+        border: 1px solid #dae1e6;
+        background-color: #f7f9fa;
+    }
+</style>
 </head>
 
 <body>
@@ -210,7 +255,7 @@
 		</div>
     	<div class="col-sm-3">
     	
-    		
+    	
 			
 			
 			<!-- 
@@ -236,7 +281,8 @@
 			 -->
  		<!-- 로그인 폼 시작 -->
  
- 				<jsp:include page="include/loginstatus.jsp">
+
+ 				<jsp:include page="include/loginstatus.jsp"> 
  					<jsp:param value="<%=url %>" name="url"/>
  				</jsp:include>
     		
