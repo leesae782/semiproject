@@ -7,6 +7,9 @@
 	String id = (String)session.getAttribute("id");
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.getData(id);
+	
+	
+	String url= request.getRequestURI();  // 현재 url 을  저장함
 %>
 <!DOCTYPE html>
 <html>
@@ -21,6 +24,51 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
+<style>
+
+
+.login-find{
+	font-size : 12px;
+	color : black;
+}
+
+.login-p {
+	font-size :12px;
+}
+.login-a:link{
+	text-decoration:none; color:white;
+}
+.login-a:visited{
+	text-decoration:none; color:white;
+}
+.login-a:active{
+	text-decoration:none; color:white;
+}
+.login-a:hover{
+	text-decoration:none; color:white;
+}
+.login-a {
+
+	text-decoration:none;
+	
+        font-size: 15px;
+    font-weight: 700;
+    display: block;
+    margin-top: 11px;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 2px;
+    background-color: rgb(0, 0, 0);
+    }
+    .login-div{
+        padding: 16px 16px 12px 17px;
+        border: 1px solid #dae1e6;
+        background-color: #f7f9fa;
+    }
+</style>
 </head>
 
 <body>
@@ -206,11 +254,12 @@
   			</div>
 		</div>
     	<div class="col-sm-3">
-
- 		<!-- 로그인 폼 시작 -->
- 
- 			<%if(id == null){ %>
- 				<div class="login-box well" >
+    	
+    	
+			
+			
+			<!-- 
+			<div class="login-box well" >
                 <form accept-charset="UTF-8" role="form" method="post" action="member/login.jsp">
                     <legend>로그인</legend>
                     <div class="input-group"  style="margin-bottom: 1em;"">
@@ -229,14 +278,13 @@
                		<button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>회원가입</button>
                	</form>	  
                 </div>
- 			<%} else { %>
- 				<p><%= id %></p>
- 				<p><%= dto.getNick() %></p>
- 				<p><%= dto.getEmail() %></p>
- 				<p><%= dto.getRegdate() %></p>
- 				<p> <a href="member/logout.jsp">로그아웃</a></p>
- 				<p><a href="member/update_form.jsp">회원정보수정</a></p>
- 			<%} %>
+			 -->
+ 		<!-- 로그인 폼 시작 -->
+ 
+
+ 				<jsp:include page="include/loginstatus.jsp"> 
+ 					<jsp:param value="<%=url %>" name="url"/>
+ 				</jsp:include>
     		
             
             
@@ -245,12 +293,32 @@
             
       
         
-    	</div>
+    		</div>
   	</div>
 	
 	<a href="${pageContext.request.contextPath }/board/sample2.jsp">실험..</a>
 
-<jsp:include page="/include/footer.jsp">
+<!--  기존 로그인 폼
+<div class="login-box well" >
+                <form accept-charset="UTF-8" role="form" method="post" action="member/login.jsp">
+                    <legend>로그인</legend>
+                    <div class="input-group"  style="margin-bottom: 1em;"">
+                        <span class="input-group-addon" ><i class="fa fa-user"></i></span>
+                        <input type="text" name ="id"id="id" value='' placeholder="ID를 입력하세요" class="form-control" />
+                    </div>
+                    <div class="input-group" style="margin-bottom: 1em;">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" name ="pwd"id="pwd" value='' placeholder="비밀번호를 입력하세요" class="form-control" />
+                    </div>
+                    <button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>로그인</button>
+                    
+                </form>
+               	
+               	<form action="member/signup_form.jsp" method ="post">
+               		<button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>회원가입</button>
+               	</form>	  
+                </div>
+<jsp:include page="/include/footer.jsp">	
 	<jsp:param value="index" name="thisPage"/>
 </jsp:include>
 <!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★</-> -->

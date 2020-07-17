@@ -24,6 +24,8 @@
 <div class="container">
 	<!--  콘테이너안에  div 9-3 으로 나눈 양식 입니다. 들여쓰기 해주세요
 		
+		
+		
 		<div class="row">
     		<div class="col-sm-9">
     		  	값 넣기
@@ -38,7 +40,22 @@
 	
   	
 
-	
+	<table>
+			<thead class ="text-center">
+				<tr>
+				<th>제목</th>
+				</tr>
+				
+			</thead>
+			<tbody>
+			
+			<tr>
+				<td>dddddddddddddddddddddddddddddssssddbrd<br />ddddddddddddddddddddddddddssssdddddddddd<br />dddddddddddddddddddssss</td>
+			</tr>
+			</tbody>
+			
+			
+		</table>
 
 </div>
 
