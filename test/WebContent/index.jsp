@@ -1,3 +1,6 @@
+<%@page import="test.dao.bulletin_dao"%>
+<%@page import="test.dto.bulletin_dto"%>
+<%@page import="java.util.List"%>
 <%@page import="test.memberdto.MemberDto"%>
 <%@page import="test.memberdao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,6 +10,7 @@
 	String id = (String)session.getAttribute("id");
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.getData(id);
+	List<bulletin_dto> list = bulletin_dao.getInstance().getList();
 %>
 <!DOCTYPE html>
 <html>
@@ -14,7 +18,7 @@
 <meta charset="UTF-8">
 <title>index.jsp</title>
 
-
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/font.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -71,7 +75,7 @@
 								    Morbi leo risus
 								    <span class="badge badge-primary badge-pill">1</span>
 								  </li>
-</ul>
+							</ul>
 						</div>
     				</div>
     				<div class="col-sm">
@@ -94,17 +98,24 @@
  				 <div class="row">
     			<div class="col-sm">
     				<div class="card" >
- 						 <div class="card-header">
-  						유머
- 			 			</div>
- 						 <div class="card-body">
-                        <p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    	</div>
-					</div>
+ 						 	<div class="card-header">
+  								<h6>유머게시글</h6> 
+ 			 				</div>
+ 							<ul class="list-group">
+  								<li class="list-group-item d-flex justify-content-between align-items-center">
+ 						 		.....
+   								<span class="badge badge-primary badge-pill">14</span>
+  								</li>
+  								<li class="list-group-item d-flex justify-content-between align-items-center">
+ 						 		.....
+   								<span class="badge badge-primary badge-pill">14</span>
+  								</li>
+  								<li class="list-group-item d-flex justify-content-between align-items-center">
+								안녕
+   								<span class="badge badge-primary badge-pill">14</span>
+  								</li>
+							</ul>
+						</div>
     			
     			</div>
     			<div class="col-sm">
