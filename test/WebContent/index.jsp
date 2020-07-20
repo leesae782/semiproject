@@ -11,7 +11,7 @@
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.getData(id);
 	
-	List<bulletin_dto> list=bulletin_dao.getInstance().getLine();
+	List<bulletin_dto> line=bulletin_dao.getInstance().getLine();
 	
 	
 	String url= request.getRequestURI();  // 현재 url 을  저장함
@@ -315,8 +315,8 @@
   								 <span style="color:red;"><string >유머</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
-							 	<%for(int i=0; i<list.size(); i++) {
-							 		bulletin_dto tmp = list.get(i);
+							 	<%for(int i=0; i<line.size(); i++) {
+							 		bulletin_dto tmp = line.get(i);
 							 		%>
 									
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -330,7 +330,7 @@
     			<div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+  								 <span style="color:red;"><string >HOT</string></span> 게시글 순위
  			 				</div>
  							<ul class="list-group">
   								<li class="list-group-item d-flex justify-content-between align-items-center">
