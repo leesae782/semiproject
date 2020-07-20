@@ -1,3 +1,5 @@
+<%@page import="test.memberdto.MemberDto"%>
+<%@page import="test.memberdao.MemberDao"%>
 <%@page import="java.util.List"%>
 <%@page import="test.dao.bulletin_dao"%>
 <%@page import="test.dto.bulletin_dto"%>
@@ -5,6 +7,12 @@
     pageEncoding="UTF-8"%>
 <%
 	List<bulletin_dto> list = bulletin_dao.getInstance().getList();
+	
+
+	String id = (String)session.getAttribute("id");
+	MemberDao dao = MemberDao.getInstance();
+	MemberDto dto = dao.getData(id);
+	String url= request.getRequestURI();
 %>
 <!DOCTYPE html>
 <html>
@@ -33,24 +41,9 @@
    		</div>
 		
    		<div class="col-sm-3" style="margin-top:15px;">
-			<div class="login-box well" >
-                <form accept-charset="UTF-8" role="form" method="post" action="">
-                    <legend>로그인</legend>
-                    <div class="input-group"  style="margin-bottom: 1em;"">
-                        <span class="input-group-addon" ><i class="fa fa-user"></i></span>
-                        <input type="text" id="userid" value='' placeholder="ID를 입력하세요" class="form-control" />
-                    </div>
-                    <div class="input-group" style="margin-bottom: 1em;">
-                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" id="password" value='' placeholder="비밀번호를 입력하세요" class="form-control" />
-                    </div>
-                    <button type="submit" id="login-submit" class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>로그인</button>
-                    <div class="form-group">
-                        <a href="registerForm.php" class="btn btn-default btn-block bg-light"> 회원가입</a>
-                        <span class='text-center'><a href="" class="text-sm">비밀번호 찾기</a></span>
-                    </div>
-                </form>
-            </div>
+			<jsp:include page="../include/loginstatus.jsp">
+ 					<jsp:param value="<%=url %>" name="url"/>
+ 				</jsp:include>
    		</div>
    		
    		

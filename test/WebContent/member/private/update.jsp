@@ -34,7 +34,7 @@
 <%} else { %>
 	<script>
 		alert("회원정보를 수정하지 못하였습니다..")
-		location.href="${pageContext.request.contextPath}/member/update_form.jsp"
+		location.href="${pageContext.request.contextPath}/member/private/update_form.jsp"
 	</script>
 		
 <%} %>

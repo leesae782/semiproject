@@ -131,7 +131,7 @@ public class bulletin_dao {
 		}
 	
 	//게시판 리스트 불러오기
-	public List<bulletin_dto> getList(){
+	public List<bulletin_dto> getLine(){
 		List<bulletin_dto> list = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;

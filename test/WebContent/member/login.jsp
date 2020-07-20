@@ -1,9 +1,17 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="test.memberdto.MemberDto"%>
 <%@page import="test.memberdao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+
+       
 <%
+	//로그인후 가야하는 목적지 정보
+	String url=request.getParameter("url");
+	//목적지 정보도 미리 인코딩 해 놓는다.
+	String encodedUrl=URLEncoder.encode(url);
+	
 	String id = request.getParameter("id");
 	String pwd = request.getParameter("pwd");
 	
@@ -28,13 +36,13 @@
 		%>
 		<script>
 			alert(" <%=id%> 님로그인되었습니다.");
-			location.href = "${pageContext.request.contextPath}/"
+			location.href = "<%=url %>";
 			
 		</script>
 	<%} else{%>
 		<script>
 			alert("아이디 혹은 패스워드를 확인하세요.");
-			location.href = "${pageContext.request.contextPath}/"
+			location.href = "login_form.jsp?url=<%=encodedUrl %>";
 		</script>
 		
 	
