@@ -1,11 +1,14 @@
-CREATE TABLE bulletin_board(
-num NUMBER PRIMARY KEY,
-name VARCHAR2(10),
-title VARCHAR2(50),
-content CLOB,
-regdate DATE,
-recom NUMBER,
-lookup NUMBER
-);
+CREATE TABLE bulletin_board
+(
+    num        NUMBER          NOT NULL, 
+    name       VARCHAR2(40)    NOT NULL, 
+    title      VARCHAR2(80)    NOT NULL, 
+    content    CLOB            NOT NULL, 
+    regdate    DATE            NOT NULL, 
+    recon      NUMBER          NULL, 
+    lookup     NUMBER          NULL, 
+    kinds      VARCHAR2(20)    NOT NULL, 
+    CONSTRAINT BULLETIN_BOARD_PK PRIMARY KEY (num, name)
+)
 
 CREATE SEQUENCE bulletin_board_seq;
