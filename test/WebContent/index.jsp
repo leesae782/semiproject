@@ -553,8 +553,10 @@
         
     		</div>
   	</div>
+	<jsp:include page="/include/footer.jsp">	
+	<jsp:param value="index" name="thisPage"/>
+	</jsp:include>
 	
-	<a href="${pageContext.request.contextPath }/board/sample2.jsp">실험..</a>
 
 <!--  기존 로그인 폼
 <div class="login-box well" >
@@ -576,9 +578,7 @@
                		<button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>회원가입</button>
                	</form>	  
                 </div>
-<jsp:include page="/include/footer.jsp">	
-	<jsp:param value="index" name="thisPage"/>
-</jsp:include>
+
 <!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★</-> -->
 
 
