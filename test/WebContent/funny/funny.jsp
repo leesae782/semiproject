@@ -1,24 +1,72 @@
-<%@page import="test.memberdto.MemberDto"%>
-<%@page import="test.memberdao.MemberDao"%>
 <%@page import="java.util.List"%>
 <%@page import="test.dao.bulletin_dao"%>
 <%@page import="test.dto.bulletin_dto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<bulletin_dto> list = bulletin_dao.getInstance().getList();
+//한 페이지에 나타낼 row 의 갯수
+	final int PAGE_ROW_COUNT=5;
+	//하단 디스플레이 페이지 갯수
+	final int PAGE_DISPLAY_COUNT=5;
 	
-
-	String id = (String)session.getAttribute("id");
-	MemberDao dao = MemberDao.getInstance();
-	MemberDto dto = dao.getData(id);
-	String url= request.getRequestURI();
+	//보여줄 페이지의 번호
+	int pageNum=1;
+	//보여줄 페이지의 번호가 파라미터로 전달되는지 읽어와 본다.	
+	String strPageNum=request.getParameter("pageNum");
+	if(strPageNum != null){//페이지 번호가 파라미터로 넘어온다면
+		//페이지 번호를 설정한다.
+		pageNum=Integer.parseInt(strPageNum);
+	}
+	//보여줄 페이지 데이터의 시작 ResultSet row 번호
+	int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
+	//보여줄 페이지 데이터의 끝 ResultSet row 번호
+	int endRowNum=pageNum*PAGE_ROW_COUNT;
+	
+	//전체 row 의 갯수를 읽어온다.
+	int totalRow=bulletin_dao.getInstance().getCount();
+	//전체 페이지의 갯수 구하기
+	int totalPageCount=
+			(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+	//시작 페이지 번호
+	int startPageNum=
+		1+((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
+	//끝 페이지 번호
+	int endPageNum=startPageNum+PAGE_DISPLAY_COUNT-1;
+	//끝 페이지 번호가 잘못된 값이라면 
+	if(totalPageCount < endPageNum){
+		endPageNum=totalPageCount; //보정해준다. 
+	}
+	//startRowNum 과 endRowNum을 FileDto 객체에 담고 
+	bulletin_dto dto=new bulletin_dto();
+	dto.setStartRowNum(startRowNum);
+	dto.setEndRowNum(endRowNum);
+	//FileDto 객체를 인자로 전달해서 파일 목록을 얻어온다. 
+	List<bulletin_dto> list = bulletin_dao.getInstance().getList(dto);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>/funny/funny.jsp</title>
+<style>
+	.page-display a{
+		text-decoration: none;	
+		color:#000;
+	}
+
+	.page-display ul li{
+		float:left;	/* 가로로 쌓이게 */
+		list-style-type:none; /* disc 사라지게*/
+		margin-right:10px;}	/*오른쪽 마진*/
+		
+	.page-display ul li.active{/* li 요소 이면서 active 클래스를 가지고 있는 요소*/
+		text-decoration: underline;
+		font-weight: bold;
+	}
+	.psge-display ul li.active a{
+		color:red;
+	}
+</style>
 </head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css" />
@@ -36,14 +84,30 @@
    		<div class="col-sm-9" style="margin-top:15px;">
    			<h3>게시판 이용 안내</h3>
    			<p style="padding:20px;">어쩌구 저쩌구<br />
-   				그래서 이렇고 저렇고
+   				<li>1. 욕설및 비방 금지</li>
+   				<li>2. 도배행위 금</li>
    			</p>
    		</div>
 		
    		<div class="col-sm-3" style="margin-top:15px;">
-			<jsp:include page="../include/loginstatus.jsp">
- 					<jsp:param value="<%=url %>" name="url"/>
- 				</jsp:include>
+			<div class="login-box well" >
+                <form accept-charset="UTF-8" role="form" method="post" action="">
+                    <legend>로그인</legend>
+                    <div class="input-group"  style="margin-bottom: 1em;"">
+                        <span class="input-group-addon" ><i class="fa fa-user"></i></span>
+                        <input type="text" id="userid" value='' placeholder="ID를 입력하세요" class="form-control" />
+                    </div>
+                    <div class="input-group" style="margin-bottom: 1em;">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" id="password" value='' placeholder="비밀번호를 입력하세요" class="form-control" />
+                    </div>
+                    <button type="submit" id="login-submit" class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>로그인</button>
+                    <div class="form-group">
+                        <a href="registerForm.php" class="btn btn-default btn-block bg-light"> 회원가입</a>
+                        <span class='text-center'><a href="" class="text-sm">비밀번호 찾기</a></span>
+                    </div>
+                </form>
+            </div>
    		</div>
    		
    		
@@ -76,31 +140,24 @@
 			  
 			</table>
 			<button style="float:right;"><a href="${pageContext.request.contextPath }/writepage/insertform.jsp">글쓰기</a></button>
+				<div class="page-display">
+					<ul>
+			<%if(startPageNum != 1){ %>
+				<li><a href="funny.jsp?pageNum=<%=startPageNum-1 %>">Prev</a></li>
+			<%} %>
+			<%for(int i = startPageNum; i<=endPageNum; i++){ %>
+				<%if(i==pageNum){ %>
+					<li class="active"><a href="funny.jsp?pageNum=<%=i%>"><%=i %></a></li>
+				<%}else{ %>
+					<li><a href="funny.jsp?pageNum=<%=i%>"><%=i %></a></li>
+				<%} %>
+			<%} %>
+			<%if(endPageNum < totalPageCount){ %>
+				<li><a href="funny.jsp?pageNum=<%=endPageNum+1 %>">Next</a></li>
+			<%} %>
+		</ul>
+				</div>
 	</div>	
-	
-	
-	
-	<ul class="pagination" style="text-align: center;">
-	<!-- li태그의 클래스에 disabled를 넣으면 마우스를 위에 올렸을 때 클릭 금지 마크가 나오고 클릭도 되지 않는다.-->
-	<!-- disabled의 의미는 앞의 페이지가 존재하지 않다는 뜻이다. -->
-	<li class="disabled">
-	<a href="#">
-	<span>«</span>
-	</a>
-	</li>
-	<!-- li태그의 클래스에 active를 넣으면 색이 반전되고 클릭도 되지 않는다. -->
-	<!-- active의 의미는 현재 페이지의 의미이다. -->
-	<li class="active"><a href="">1</a></li>
-	<li><a href="">2</a></li>
-	<li><a href="">3</a></li>
-	<li><a href="">4</a></li>
-	<li><a href="">5</a></li>
-	<li>
-	<a href="#">
-	<span>»</span>
-	</a>
-	</li>
-	</ul>
 </div>
 </body>
 </html>
