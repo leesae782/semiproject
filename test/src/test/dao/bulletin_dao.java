@@ -173,7 +173,7 @@ public class bulletin_dao {
 	//게시판 리스트 불러오기
 
 	public List<bulletin_dto> getLine(){
-		List<bulletin_dto> line = new ArrayList<>();
+		List<bulletin_dto> list = new ArrayList<>();
 		//필요한 객체의 참조값을 담을 지역변수 만들기 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -199,7 +199,7 @@ public class bulletin_dao {
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setRecom(rs.getInt("recom"));
 				dto.setLookup(rs.getInt("lookup"));
-				line.add(dto);
+				list.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -214,7 +214,7 @@ public class bulletin_dao {
 			} catch (Exception e) {
 				}
 		 	}
-			return line;
+			return list;
 		}
 		
 	public List<bulletin_dto> getList(bulletin_dto dto){
