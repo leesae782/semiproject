@@ -23,10 +23,24 @@
 				
  				
  			<%} else { %>
- 				<p><%= id %></p>
- 				<p><%= dto.getNick() %></p>
- 				<p><%= dto.getEmail() %></p>
- 				<p><%= dto.getRegdate() %></p>
- 				<p> <a href="${pageContext.request.contextPath}/member/logout.jsp?url=<%=url%>">로그아웃</a></p>
- 				<p><a href="${pageContext.request.contextPath}/member/private/info.jsp">회원정보</a></p>
+ 			
+ 				<div class="login-div">
+ 					<div class="row">
+ 					<div class="col-4">
+ 					<img class="text-center" id="profileImage" 
+					src="${pageContext.request.contextPath }/images/0.png"/>
+ 					</div>
+ 					<div class="col-8">
+ 					<p class = "login-nick"><%= dto.getNick() %>  <strong>님</strong></p>
+ 					<p class ="login-email"><%= dto.getEmail() %></p>
+ 					
+ 					</div>
+ 					<a class="fhrmdkdnt " href="${pageContext.request.contextPath}/member/private/info.jsp">회원정보</a></p>
+ 					 <a  class="fhrmdkdnt " href="${pageContext.request.contextPath}/member/logout.jsp?url=<%=url%>">로그아웃</a></p>
+ 					
+ 					</div>
+
+ 				
+   				</div>
+ 				
 <%} %>
