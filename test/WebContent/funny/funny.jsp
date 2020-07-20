@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+String url= request.getRequestURI();  // 현재 url 을  저장함
 //한 페이지에 나타낼 row 의 갯수
 	final int PAGE_ROW_COUNT=5;
 	//하단 디스플레이 페이지 갯수
@@ -69,12 +70,12 @@
 </style>
 </head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/css.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
 <body>
 	<jsp:include page="../include/navbar.jsp">
 		<jsp:param value="funny" name="thisPage"/>
@@ -90,24 +91,9 @@
    		</div>
 		
    		<div class="col-sm-3" style="margin-top:15px;">
-			<div class="login-box well" >
-                <form accept-charset="UTF-8" role="form" method="post" action="">
-                    <legend>로그인</legend>
-                    <div class="input-group"  style="margin-bottom: 1em;"">
-                        <span class="input-group-addon" ><i class="fa fa-user"></i></span>
-                        <input type="text" id="userid" value='' placeholder="ID를 입력하세요" class="form-control" />
-                    </div>
-                    <div class="input-group" style="margin-bottom: 1em;">
-                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                        <input type="password" id="password" value='' placeholder="비밀번호를 입력하세요" class="form-control" />
-                    </div>
-                    <button type="submit" id="login-submit" class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>로그인</button>
-                    <div class="form-group">
-                        <a href="registerForm.php" class="btn btn-default btn-block bg-light"> 회원가입</a>
-                        <span class='text-center'><a href="" class="text-sm">비밀번호 찾기</a></span>
-                    </div>
-                </form>
-            </div>
+			<jsp:include page="../include/loginstatus.jsp">
+				<jsp:param value="<%=url %>" name="url"/>
+			</jsp:include>
    		</div>
    		
    		
