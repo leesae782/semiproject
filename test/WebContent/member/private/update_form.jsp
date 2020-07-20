@@ -22,7 +22,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
 </head>
 <body>
 
@@ -44,41 +44,47 @@
     		</div>
   		</div>	
 	  -->
-	<div class="row">
-    		<div class="col-sm-9">
-    		  	<h1> 회원정보 수정 폼입니다.</h1>
 	
+    		  	<h2 style="background-color: #fbf2ffc4;"> 회원정보 수정 </h2>
 				<form action="update.jsp" method="post">
-					<div class="form-group">
-						<label for="id">아이디</label>
-						<input class="form-control"type="text" id = "id" value = "<%=id %>" disabled />
-						
-					</div>
-					
-					
-					<div class="form-group">
-						<label for="nick">닉네임</label>
-						<input class="form-control"type="text" id = "nick" name = "nick" value="<%=dto.getNick() %>" />
-					</div>
-					<div class="form-group">
-						<label for="email">이메일</label>
-						<input class="form-control"type="text" id = "email" name = "email" value="<%=dto.getEmail() %>" />
-					</div>
-				<button class="btn btn-outline-success"type="submit">수정</button>
+				<table class="table table-boardered">
+            
+            <tr>
+            	<th rowspan="2" class="text-center">프로필 사진</th>
+            	
+            	 <td ><img class="text-center" id="info-image" 
+					src="${pageContext.request.contextPath }/images/0.png"/>
+				</td>	
+				
+            </tr>
+            <tr >
+            	<td style ="border-top: 2px solid white;"><a href=""><button class="btn btn-outline-dark"> 프로필사진변경</button></a></td>	
+            </tr>
+            <tr>
+                <th class="text-center"><label for="nick">닉네임</label></th>
+                <td>
+                	<input class="form-control"type="text" id = "nick" name = "nick" value="<%=dto.getNick() %>" />
+                </td>
+
+            </tr>
+            <tr>
+                <th class="text-center"><label for="email">이메일</label></th>
+                <td>
+                	<input class="form-control"type="text" id = "email" name = "email" value="<%=dto.getEmail() %>" />
+                </td>
+
+            </tr>
+			
+        </table>
+        
+        
+        		<button class="btn btn-outline-success"type="submit">수정</button>
 				<button class="btn btn-outline-danger"type="reset">취소</button>
-	</form>
+				</form>
+				
     		</div>
-			<p><a href=""></a></p>
-    		<div class="col-sm-3">
- 				
-    		</div>
-  		</div>	
-	
+			
   	
-
-	
-
-</div>
 
 <jsp:include page="/include/footer.jsp">
 	<jsp:param value="index" name="thisPage"/>
