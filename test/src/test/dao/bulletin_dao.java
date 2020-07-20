@@ -17,6 +17,46 @@ public class bulletin_dao {
 		}
 		return dao;
 	}
+	public int getCount() {
+		//전체 row  의 갯수를 담을 지역 변수 
+		int count=0;
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//ROWNUM 중에서 가장 큰 숫자를 얻어오면 전체 row  의 갯수가 된다. 
+			//혹시 row 가 하나도 없으면 null 이 얻어와 지기때문에  null 인 경우 0 으로 
+			//바꿔 줘야 한다.
+			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
+					+ " FROM bulletin_board";
+			pstmt = conn.prepareStatement(sql);
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+
+			//select 문 수행하고 결과 받아오기 
+			rs = pstmt.executeQuery();
+			//결과 값 추출하기 
+			if (rs.next()) {
+				count=rs.getInt("num");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return count;
+	}
+	
 	//글 하나의 정보를 삭제하는 메소드
 	public boolean bulletin_delete(int num){
 		Connection conn = null;
@@ -131,20 +171,27 @@ public class bulletin_dao {
 		}
 	
 	//게시판 리스트 불러오기
-	public List<bulletin_dto> getList(){
-		List<bulletin_dto> list = new ArrayList<>();
+
+	public List<bulletin_dto> getLine(){
+		List<bulletin_dto> line = new ArrayList<>();
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			conn=new DbcpBean().getConn();
-			String sql ="SELECT num,name,title,regdate,recom,lookup"
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 준비하기
+			String sql = "SELECT num,name,title,regdate,recom,lookup"
 					+ " FROM bulletin_board"
 					+ " ORDER BY num DESC";
-			
-			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
+			pstmt = conn.prepareStatement(sql);
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+
+			//select 문 수행하고 결과 받아오기 
+			rs = pstmt.executeQuery();
+			//반복문 돌면서 결과 값 추출하기 
+			while (rs.next()) {
 				bulletin_dto dto = new bulletin_dto();
 				dto.setNum(rs.getInt("num"));
 				dto.setName(rs.getString("name"));
@@ -152,6 +199,52 @@ public class bulletin_dao {
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setRecom(rs.getInt("recom"));
 				dto.setLookup(rs.getInt("lookup"));
+				line.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				}
+		 	}
+			return line;
+		}
+		
+	public List<bulletin_dto> getList(bulletin_dto dto){
+
+		List<bulletin_dto> list = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn=new DbcpBean().getConn();
+			String sql ="SELECT *"
+					+ " FROM"
+					+ " (SELECT result1.*, ROWNUM AS rnum"
+					+ " FROM (SELECT num, name, title, content, regdate, recom, lookup"
+					+ " FROM bulletin_board"
+					+ " ORDER BY num DESC) result1)"
+					+ " WHERE rnum BETWEEN ? AND ?";
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				bulletin_dto tmp = new bulletin_dto();
+				tmp.setNum(rs.getInt("num"));
+				tmp.setName(rs.getString("name"));
+				tmp.setBulletin_title(rs.getString("title"));
+				tmp.setRegdate(rs.getString("regdate"));
+				tmp.setRecom(rs.getInt("recom"));
+				tmp.setLookup(rs.getInt("lookup"));
 				list.add(dto);
 			}
 		}catch(Exception e) {

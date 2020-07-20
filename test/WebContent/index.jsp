@@ -1,3 +1,6 @@
+<%@page import="test.dao.bulletin_dao"%>
+<%@page import="test.dto.bulletin_dto"%>
+<%@page import="java.util.List"%>
 <%@page import="test.memberdto.MemberDto"%>
 <%@page import="test.memberdao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,6 +10,8 @@
 	String id = (String)session.getAttribute("id");
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.getData(id);
+	
+	List<bulletin_dto> line=bulletin_dao.getInstance().getLine();
 	
 	
 	String url= request.getRequestURI();  // 현재 url 을  저장함
@@ -62,8 +67,8 @@
  						 	<div class="card-header">
   								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
  			 				</div>
- 							<ul class="list-group">
-  								<li class="list-group-item d-flex justify-content-between align-items-center">
+ 								<ul class="list-group">
+									  								<li class="list-group-item d-flex justify-content-between align-items-center">
    									메가젠임플란트 대표이기도 한 대구 미르치
    									 <span class="badge badge-primary badge-pill">14</span>
   								</li>
@@ -307,53 +312,25 @@
     			<div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+  								 <span style="color:red;"><string >유머</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
-  								<li class="list-group-item d-flex justify-content-between align-items-center">
-   									메가젠임플란트 대표이기도 한 대구 미르치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    에 상당히 도움이 될만한 
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 Cras justo odio
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 에 상당히 도움이 될만한 
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								</ul>
+							 	<%for(int i=0; i<line.size(); i++) {
+							 		bulletin_dto tmp = line.get(i);
+							 		%>
+									
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a href="funny/funny.jsp?num=<%=tmp.getNum()%>"><%=tmp.getBulletin_title() %></a>
+								</li>	
+								<%} %>
+							</ul>
 						</div>
     			
     			</div>
     			<div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+  								 <span style="color:red;"><string >HOT</string></span> 게시글 순위
  			 				</div>
  							<ul class="list-group">
   								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -578,10 +555,8 @@
                		<button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>회원가입</button>
                	</form>	  
                 </div>
-
 <!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★</-> -->
 
 
 </body>
 </html>
-
