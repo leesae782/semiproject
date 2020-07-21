@@ -78,7 +78,7 @@ dto.setEndRowNum(endRowNum);
 //select 된 결과를 담을 List
 List<BulletinDto> list=null;
 //전체 row 의 갯수를 담을 변수 
-int totalRow=0;
+int totalRow=0; 
 if(!keyword.equals("")){ //만일 키워드가 넘어온다면 
 	if(condition.equals("title_name")){
 		//검색 키워드를 bulletin_dto 객체의 필드에 담는다. 
