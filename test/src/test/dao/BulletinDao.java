@@ -310,7 +310,7 @@ public class BulletinDao {
 			//Connection 객체의 참조값 얻어오기 
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
-			String sql = "SELECT num,name,title,regdate,recon,lookup"
+			String sql = "SELECT num,name,title,regdate,recom,lookup"
 					+ " FROM bulletin_board"
 					+ " ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
@@ -325,7 +325,7 @@ public class BulletinDao {
 				dto.setName(rs.getString("name"));
 				dto.setBulletin_title(rs.getString("title"));
 				dto.setRegdate(rs.getString("regdate"));
-				dto.setrecon(rs.getInt("recon"));
+				dto.setrecom(rs.getInt("recom"));
 				dto.setLookup(rs.getInt("lookup"));
 				list.add(dto);
 			}
@@ -359,7 +359,7 @@ public class BulletinDao {
 			String sql = "SELECT *"
 					+ " FROM"
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
-					+ "      FROM (SELECT num,name,title,content,regdate,recon,lookup"
+					+ "      FROM (SELECT num,name,title,content,regdate,recom,lookup"
 					+ "            FROM bulletin_board"
 					+ "            ORDER BY num DESC) result1)"
 					+ " WHERE rnum BETWEEN ? AND ?";
@@ -378,7 +378,7 @@ public class BulletinDao {
 				tmp.setBulletin_title(rs.getString("title"));
 				tmp.setBulletin_content(rs.getString("content"));
 				tmp.setRegdate(rs.getString("regdate"));
-				tmp.setrecon(rs.getInt("recon"));
+				tmp.setrecom(rs.getInt("recom"));
 				tmp.setLookup(rs.getInt("lookup"));
 				//ArrayList 객체에 누적 시킨다. 
 				list.add(tmp);
@@ -414,7 +414,7 @@ public class BulletinDao {
 			String sql = "SELECT *"
 					+ " FROM"
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
-					+ "      FROM (SELECT num,name,title,content,regdate,recon,lookup"
+					+ "      FROM (SELECT num,name,title,content,regdate,recom,lookup"
 					+ "            FROM bulletin_board"
 					+ "				WHERE title LIKE '%'||?||'%' OR name LIKE '%'||?||'%'"
 					+ "            ORDER BY num DESC) result1)"
@@ -436,7 +436,7 @@ public class BulletinDao {
 				tmp.setBulletin_title(rs.getString("title"));
 				tmp.setBulletin_content(rs.getString("content"));
 				tmp.setRegdate(rs.getString("regdate"));
-				tmp.setrecon(rs.getInt("recon"));
+				tmp.setrecom(rs.getInt("recom"));
 				tmp.setLookup(rs.getInt("lookup"));
 				//ArrayList 객체에 누적 시킨다. 
 				list.add(tmp);
@@ -472,7 +472,7 @@ public class BulletinDao {
 			String sql = "SELECT *"
 					+ " FROM"
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
-					+ "      FROM (SELECT num,name,title,content,regdate,recon,lookup"
+					+ "      FROM (SELECT num,name,title,content,regdate,recom,lookup"
 					+ "            FROM bulletin_board"
 					+ "				WHERE title LIKE '%'||?||'%'"
 					+ "            ORDER BY num DESC) result1)"
@@ -493,7 +493,7 @@ public class BulletinDao {
 				tmp.setBulletin_title(rs.getString("title"));
 				tmp.setBulletin_content(rs.getString("content"));
 				tmp.setRegdate(rs.getString("regdate"));
-				tmp.setrecon(rs.getInt("recon"));
+				tmp.setrecom(rs.getInt("recom"));
 				tmp.setLookup(rs.getInt("lookup"));
 				//ArrayList 객체에 누적 시킨다. 
 				list.add(tmp);
@@ -529,7 +529,7 @@ public class BulletinDao {
 			String sql = "SELECT *"
 					+ " FROM"
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
-					+ "      FROM (SELECT num,name,title,content,regdate,recon,lookup"
+					+ "      FROM (SELECT num,name,title,content,regdate,recom,lookup"
 					+ "            FROM bulletin_board"
 					+ "				WHERE name LIKE '%'||?||'%'"
 					+ "            ORDER BY num DESC) result1)"
@@ -550,7 +550,7 @@ public class BulletinDao {
 				tmp.setBulletin_title(rs.getString("title"));
 				tmp.setBulletin_content(rs.getString("content"));
 				tmp.setRegdate(rs.getString("regdate"));
-				tmp.setrecon(rs.getInt("recon"));
+				tmp.setrecom(rs.getInt("recom"));
 				tmp.setLookup(rs.getInt("lookup"));
 				//ArrayList 객체에 누적 시킨다. 
 				list.add(tmp);
@@ -583,12 +583,13 @@ public class BulletinDao {
 			//실행할 sql 문 준비하기
 			String sql = "INSERT INTO bulletin_board"
 					+ " (num, name, title, content, regdate, kinds)"
-					+ " VALUES(bb_seq.NEXTVAL,'이름', ?, ?, SYSDATE,?)";
+					+ " VALUES(bb_seq.NEXTVAL, ?, ?, ?, SYSDATE,?)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩 한다.
-			pstmt.setString(1, dto.getBulletin_title());
-			pstmt.setString(2, dto.getBulletin_content());
-			pstmt.setString(3, dto.getKinds());
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getBulletin_title());
+			pstmt.setString(3, dto.getBulletin_content());
+			pstmt.setString(4, dto.getKinds());
 			//sql 문 수행하고 update or insert or delete 된 row 의 갯수 리턴 받기
 			flag = pstmt.executeUpdate();
 		} catch (Exception e) {

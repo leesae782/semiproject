@@ -49,7 +49,7 @@ String kinds=request.getParameter("kinds");
 	<h1 style="text-align: left: ;">글쓰기</h1>
 	<form class="form-group">
 	<form action="${pageContext.request.contextPath }/writepage/insert.jsp" method="post">
-				<label for="kinds"></label>
+<!-- 				<label for="kinds"></label>
 		<select name="kinds" id="kinds">
 			<option value="funny" selected>유머</option>
 			<option value="issue" >이슈</option>
@@ -62,7 +62,7 @@ String kinds=request.getParameter("kinds");
 			<option value="fifa" >피파</option>
 			<option value="free" >자유</option>
 			<option value="question" >질문</option>
-		</select>
+		</select> -->
 		<input type="text" name="title" id="title" style="width: 60%;" placeholder="제목" />	
 		<textarea id="summernote" name="summernote"></textarea>
 		<input type="submit" value="글 작성" style="float: right;" onclick="goWrite(this.form)"/>

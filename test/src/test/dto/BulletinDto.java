@@ -6,7 +6,7 @@ public class BulletinDto {
 	private String bulletin_title;
 	private String bulletin_content;
 	private String regdate;
-	private int recon;
+	private int recom;
 	private int lookup;
 	private String kinds;
 	private int startRowNum;
@@ -14,7 +14,7 @@ public class BulletinDto {
 	
 	public BulletinDto() {}
 
-	public BulletinDto(int num, String name, String bulletin_title, String bulletin_content, String regdate, int recon,
+	public BulletinDto(int num, String name, String bulletin_title, String bulletin_content, String regdate, int recom,
 			int lookup, String kinds, int startRowNum, int endRowNum) {
 		super();
 		this.num = num;
@@ -22,7 +22,7 @@ public class BulletinDto {
 		this.bulletin_title = bulletin_title;
 		this.bulletin_content = bulletin_content;
 		this.regdate = regdate;
-		this.recon = recon;
+		this.recom = recom;
 		this.lookup = lookup;
 		this.kinds = kinds;
 		this.startRowNum = startRowNum;
@@ -69,12 +69,12 @@ public class BulletinDto {
 		this.regdate = regdate;
 	}
 
-	public int getrecon() {
-		return recon;
+	public int getrecom() {
+		return recom;
 	}
 
-	public void setrecon(int recon) {
-		this.recon = recon;
+	public void setrecom(int recom) {
+		this.recom = recom;
 	}
 
 	public int getLookup() {
