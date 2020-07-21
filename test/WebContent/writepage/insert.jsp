@@ -5,10 +5,11 @@
 <%
 	String title = request.getParameter("title");
 	String content = request.getParameter("summernote");
+	String kinds=request.getParameter("kinds");
 	bulletin_dto dto = new bulletin_dto();
 	dto.setBulletin_title(title);
 	dto.setBulletin_content(content);
-	
+	dto.setKinds(kinds);
 	bulletin_dao dao = bulletin_dao.getInstance();
 	dao.bulletin_insert(dto);
 	/*

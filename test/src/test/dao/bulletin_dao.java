@@ -187,7 +187,7 @@ public class bulletin_dao {
 					+ " ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-
+			
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
@@ -270,12 +270,13 @@ public class bulletin_dao {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
 			String sql = "INSERT INTO bulletin_board"
-					+ " (num, name, title, content, regdate)"
-					+ " VALUES(bb_seq.NEXTVAL,'이름', ?, ?, SYSDATE)";
+					+ " (num, name, title, content, regdate, kinds)"
+					+ " VALUES(bb_seq.NEXTVAL,'이름', ?, ?, SYSDATE,?)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩 한다.
 			pstmt.setString(1, dto.getBulletin_title());
 			pstmt.setString(2, dto.getBulletin_content());
+			pstmt.setString(3, dto.getKinds());
 			//sql 문 수행하고 update or insert or delete 된 row 의 갯수 리턴 받기
 			flag = pstmt.executeUpdate();
 		} catch (Exception e) {

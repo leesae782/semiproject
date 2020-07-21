@@ -8,13 +8,14 @@ public class bulletin_dto {
 	private String regdate;
 	private int recom;
 	private int lookup;
+	private String kinds;
 	private int startRowNum;
 	private int endRowNum;
 	
 	public bulletin_dto() {}
 
 	public bulletin_dto(int num, String name, String bulletin_title, String bulletin_content, String regdate, int recom,
-			int lookup, int startRowNum, int endRowNum) {
+			int lookup, String kinds, int startRowNum, int endRowNum) {
 		super();
 		this.num = num;
 		this.name = name;
@@ -23,6 +24,7 @@ public class bulletin_dto {
 		this.regdate = regdate;
 		this.recom = recom;
 		this.lookup = lookup;
+		this.kinds = kinds;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 	}
@@ -81,6 +83,14 @@ public class bulletin_dto {
 
 	public void setLookup(int lookup) {
 		this.lookup = lookup;
+	}
+
+	public String getKinds() {
+		return kinds;
+	}
+
+	public void setKinds(String kinds) {
+		this.kinds = kinds;
 	}
 
 	public int getStartRowNum() {
