@@ -1,15 +1,16 @@
-<%@page import="test.dao.BulletinDao"%>
-<%@page import="test.dto.BulletinDto"%>
+<%@page import="test.dao.bulletin_dao"%>
+<%@page import="test.dto.bulletin_dto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String title = request.getParameter("title");
 	String content = request.getParameter("summernote");
-	BulletinDto dto = new BulletinDto();
+	String kinds=request.getParameter("kinds");
+	bulletin_dto dto = new bulletin_dto();
 	dto.setBulletin_title(title);
 	dto.setBulletin_content(content);
-	
-	BulletinDao dao = BulletinDao.getInstance();
+	dto.setKinds(kinds);
+	bulletin_dao dao = bulletin_dao.getInstance();
 	dao.bulletin_insert(dto);
 	/*
 	String cPath=request.getContextPath();

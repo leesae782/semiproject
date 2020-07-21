@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>/member/login_form.jsp</title>
+<style>
+	.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-top: 250px; /* Added */
+}
+</style>
 
 <%
 	// url 파라미터가 넘어오는지 읽어와 보기 
@@ -21,12 +28,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body style="background-color:#fbf2ffc4;">
 
 
-<jsp:include page="/include/navbar.jsp">
-	<jsp:param value="index" name="thisPage"/>
-</jsp:include>
 
 <div class="container">
 	<!--  콘테이너안에  div 9-3 으로 나눈 양식 입니다. 들여쓰기 해주세요
@@ -42,10 +46,14 @@
   		</div>	
 	  -->
 	
-	<div class="login-box well" >
+
+<div class="card" style="width: 30rem;">
+  <div class="card-body">
+    <h3 class="card-title">VIVA LA JSS</h3>
+		<div class="login-box well" >
                 <form accept-charset="UTF-8" role="form" method="post" action="login.jsp">
                 	<input type="hidden" name="url" value="<%=url %>" />
-                    <legend>로그인</legend>
+                    <legend>LOG-IN</legend>
                     <div class="input-group"  style="margin-bottom: 1em;">
                         <span class="input-group-addon" ><i class="fa fa-user"></i></span>
                         <input type="text" name ="id"id="id" value='' placeholder="ID를 입력하세요" class="form-control" />
@@ -62,15 +70,10 @@
                		<button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>회원가입</button>
                	</form>	  
                 </div>
-  	
-
-	
-
+  </div>
 </div>
 
-<jsp:include page="/include/footer.jsp">
-	<jsp:param value="index" name="thisPage"/>
-</jsp:include>
+
 
 <!-- ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★</-> -->
 

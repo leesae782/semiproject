@@ -9,6 +9,6 @@ CREATE TABLE bulletin_board
     lookup     NUMBER          NULL, 
     kinds      VARCHAR2(20)    NOT NULL, 
     CONSTRAINT BULLETIN_BOARD_PK PRIMARY KEY (num, name)
-)
+);
 
 CREATE SEQUENCE bulletin_board_seq;
