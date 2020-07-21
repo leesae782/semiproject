@@ -118,7 +118,7 @@ String url= request.getRequestURI();  // 현재 url 을  저장함
 			      <td><%=tmp.getName() %></td>
 			      <td><a href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getBulletin_title() %></td>
 			      <td><%=tmp.getRegdate() %></td>
-			      <td><%=tmp.getrecon() %></td>
+			      <td><%=tmp.getrecom() %></td>
 			      <td><%=tmp.getLookup() %></td>
 			    </tr>
 			    <%} %>
