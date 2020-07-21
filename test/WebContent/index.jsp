@@ -1,5 +1,5 @@
-<%@page import="test.dao.bulletin_dao"%>
-<%@page import="test.dto.bulletin_dto"%>
+<%@page import="test.dao.BulletinDao"%>
+<%@page import="test.dto.BulletinDto"%>
 <%@page import="java.util.List"%>
 <%@page import="test.memberdto.MemberDto"%>
 <%@page import="test.memberdao.MemberDao"%>
@@ -7,15 +7,15 @@
     pageEncoding="UTF-8"%>
     
 <%
-	String id = (String)session.getAttribute("id");
-	MemberDao dao = MemberDao.getInstance();
-	MemberDto dto = dao.getData(id);
-	
-	List<bulletin_dto> list=bulletin_dao.getInstance().getLine();
-	
-	
-	String url= request.getRequestURI();  // 현재 url 을  저장함
-%>
+    	String id = (String)session.getAttribute("id");
+    	MemberDao dao = MemberDao.getInstance();
+    	MemberDto dto = dao.getData(id);
+    	
+    	List<BulletinDto> list=BulletinDao.getInstance().getLine();
+    	
+    	 
+    	String url= request.getRequestURI();  // 현재 url 을  저장함
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +25,11 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
 </head>
 
 <body>
@@ -315,9 +315,10 @@
   								 <span style="color:red;"><string >유머</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
-							 	<%for(int i=0; i<list.size(); i++) {
-							 		bulletin_dto tmp = list.get(i);
-							 		%>
+							 	<%
+							 		for(int i=0; i<list.size(); i++) {
+							 						 		BulletinDto tmp = list.get(i);
+							 	%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
 									<a class="" href="funny/funny.jsp?num=<%=tmp.getNum()%>"><%=tmp.getBulletin_title() %></a>

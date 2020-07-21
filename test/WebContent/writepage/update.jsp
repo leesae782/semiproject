@@ -1,5 +1,5 @@
-<%@page import="test.dao.bulletin_dao"%>
-<%@page import="test.dto.bulletin_dto"%>
+<%@page import="test.dao.BulletinDao"%>
+<%@page import="test.dto.BulletinDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -8,14 +8,13 @@
 	String title=request.getParameter("title");
 	String content=request.getParameter("summernote");
 	
-	bulletin_dto dto=new bulletin_dto();
+	BulletinDto dto=new BulletinDto();
 	dto.setNum(num);
 	dto.setName(name);
 	dto.setBulletin_title(title);
 	dto.setBulletin_content(content);
 	
-	boolean isSuccess=bulletin_dao.getInstance().bulletin_update(dto);
-
+	boolean isSuccess=BulletinDao.getInstance().bulletin_update(dto);
 %>
 <!DOCTYPE html>
 <html>

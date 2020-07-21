@@ -1,6 +1,6 @@
 package test.dto;
 
-public class bulletin_dto {
+public class BulletinDto {
 	private int num;
 	private String name;
 	private String bulletin_title;
@@ -11,9 +11,9 @@ public class bulletin_dto {
 	private int startRowNum;
 	private int endRowNum;
 	
-	public bulletin_dto() {}
+	public BulletinDto() {}
 
-	public bulletin_dto(int num, String name, String bulletin_title, String bulletin_content, String regdate, int recom,
+	public BulletinDto(int num, String name, String bulletin_title, String bulletin_content, String regdate, int recom,
 			int lookup, int startRowNum, int endRowNum) {
 		super();
 		this.num = num;
