@@ -1,20 +1,20 @@
 package test.dto;
 
-public class bulletin_dto {
+public class BulletinDto {
 	private int num;
 	private String name;
 	private String bulletin_title;
 	private String bulletin_content;
 	private String regdate;
-	private int recom;
+	private int recon;
 	private int lookup;
 	private String kinds;
 	private int startRowNum;
 	private int endRowNum;
 	
-	public bulletin_dto() {}
+	public BulletinDto() {}
 
-	public bulletin_dto(int num, String name, String bulletin_title, String bulletin_content, String regdate, int recom,
+	public BulletinDto(int num, String name, String bulletin_title, String bulletin_content, String regdate, int recon,
 			int lookup, String kinds, int startRowNum, int endRowNum) {
 		super();
 		this.num = num;
@@ -22,7 +22,7 @@ public class bulletin_dto {
 		this.bulletin_title = bulletin_title;
 		this.bulletin_content = bulletin_content;
 		this.regdate = regdate;
-		this.recom = recom;
+		this.recon = recon;
 		this.lookup = lookup;
 		this.kinds = kinds;
 		this.startRowNum = startRowNum;
@@ -69,12 +69,12 @@ public class bulletin_dto {
 		this.regdate = regdate;
 	}
 
-	public int getRecom() {
-		return recom;
+	public int getrecon() {
+		return recon;
 	}
 
-	public void setRecom(int recom) {
-		this.recom = recom;
+	public void setrecon(int recon) {
+		this.recon = recon;
 	}
 
 	public int getLookup() {
@@ -109,6 +109,5 @@ public class bulletin_dto {
 		this.endRowNum = endRowNum;
 	}
 
-	
 	
 }

@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
-<%@page import="test.dao.bulletin_dao"%>
-<%@page import="test.dto.bulletin_dto"%>
+<%@page import="test.dao.BulletinDao"%>
+<%@page import="test.dto.BulletinDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -24,7 +24,7 @@ String url= request.getRequestURI();  // 현재 url 을  저장함
 	int endRowNum=pageNum*PAGE_ROW_COUNT;
 	
 	//전체 row 의 갯수를 읽어온다.
-	int totalRow=bulletin_dao.getInstance().getCount();
+	int totalRow=BulletinDao.getInstance().getCount();
 	//전체 페이지의 갯수 구하기
 	int totalPageCount=
 			(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
@@ -38,11 +38,11 @@ String url= request.getRequestURI();  // 현재 url 을  저장함
 		endPageNum=totalPageCount; //보정해준다. 
 	}
 	//startRowNum 과 endRowNum을 FileDto 객체에 담고 
-	bulletin_dto dto=new bulletin_dto();
+	BulletinDto dto=new BulletinDto();
 	dto.setStartRowNum(startRowNum);
 	dto.setEndRowNum(endRowNum);
 	//FileDto 객체를 인자로 전달해서 파일 목록을 얻어온다. 
-	List<bulletin_dto> list = bulletin_dao.getInstance().getList(dto);
+	List<BulletinDto> list = BulletinDao.getInstance().getList(dto);
 %>
 <!DOCTYPE html>
 <html>
@@ -112,7 +112,7 @@ String url= request.getRequestURI();  // 현재 url 을  저장함
 			    </tr>
 			  </thead>
 			  <tbody style="font-size:0.8em;">
-			    <%for(bulletin_dto tmp: list){ %>
+			    <%for(BulletinDto tmp: list){ %>
 			    <tr>
 			      <th><%=tmp.getNum() %></th>
 			      <td><%=tmp.getName() %></td>

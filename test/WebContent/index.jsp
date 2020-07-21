@@ -1,5 +1,5 @@
-<%@page import="test.dao.bulletin_dao"%>
-<%@page import="test.dto.bulletin_dto"%>
+<%@page import="test.dao.BulletinDao"%>
+<%@page import="test.dto.BulletinDto"%>
 <%@page import="java.util.List"%>
 <%@page import="test.memberdto.MemberDto"%>
 <%@page import="test.memberdao.MemberDao"%>
@@ -11,7 +11,7 @@
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.getData(id);
 	
-	List<bulletin_dto> list=bulletin_dao.getInstance().getLine();
+	List<BulletinDto> list=BulletinDao.getInstance().getLine();
 	
 	
 	String url= request.getRequestURI();  // 현재 url 을  저장함
@@ -183,7 +183,7 @@
  <div class="card" id ="card1" >
  							<ul class="list-group">
   								<%for(int i=0; i<list.size(); i++) {
-							 	bulletin_dto tmp = list.get(i);
+							 	BulletinDto tmp = list.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -203,7 +203,7 @@
  						 	
  							<ul class="list-group">
   								<%for(int i=0; i<list.size(); i++) {
-							 	bulletin_dto tmp = list.get(i);
+							 	BulletinDto tmp = list.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -220,7 +220,7 @@
  						 	
  							<ul class="list-group">
   								<%for(int i=0; i<list.size(); i++) {
-							 	bulletin_dto tmp = list.get(i);
+							 	BulletinDto tmp = list.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -237,7 +237,7 @@
  						 	
  							<ul class="list-group">
   								<%for(int i=0; i<list.size(); i++) {
-							 	bulletin_dto tmp = list.get(i);
+							 	BulletinDto tmp = list.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -254,7 +254,7 @@
  						 	
  							<ul class="list-group">
   								<%for(int i=0; i<list.size(); i++) {
-							 	bulletin_dto tmp = list.get(i);
+							 	BulletinDto tmp = list.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -271,7 +271,7 @@
  						 	
  							<ul class="list-group">
   								<%for(int i=0; i<list.size(); i++) {
-							 	bulletin_dto tmp = list.get(i);
+							 	BulletinDto tmp = list.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -292,7 +292,7 @@
  			 				</div>
  							<ul class="list-group">
 							 	<%for(int i=0; i<list.size(); i++) {
-							 		bulletin_dto tmp = list.get(i);
+							 		BulletinDto tmp = list.get(i);
 							 		%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -312,7 +312,7 @@
  			 				</div>
  							<ul class="list-group">
   								<%for(int i=0; i<list.size(); i++) {
-							 	bulletin_dto tmp = list.get(i);
+							 	BulletinDto tmp = list.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -332,7 +332,7 @@
  			 				</div>
  							<ul class="list-group">
   								<%for(int i=0; i<list.size(); i++) {
-							 	bulletin_dto tmp = list.get(i);
+							 	BulletinDto tmp = list.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
