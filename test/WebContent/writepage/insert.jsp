@@ -9,8 +9,13 @@
 	dto.setBulletin_title(title);
 	dto.setBulletin_content(content);
 	
+<<<<<<< HEAD
 	BulletinDao dao = BulletinDao.getInstance();
 	dao.bulletin_insert(dto);
+=======
+	bulletin_dao dao = bulletin_dao.getInstance();
+	boolean isSuccess = dao.bulletin_insert(dto);
+>>>>>>> refs/heads/leesehee
 	/*
 	String cPath=request.getContextPath();
 	response.sendRedirect(cPath+"/funny/funny.jsp");
@@ -23,6 +28,11 @@
 <title>index.jsp</title>
 </head>
 <body>
+<%if(isSuccess){ %>
 <a href="${pageContext.request.contextPath }/index.jsp">이동</a>
+<% } else {%>
+ <a href="${pageContext.request.contextPath }/index.jsp">실패 다시</a>
+<%} %>
+
 </body>
 </html>

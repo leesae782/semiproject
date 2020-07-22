@@ -12,7 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
 </head>
 <style>
 	.font-size {
@@ -52,6 +52,8 @@
 	  -->
 	<h1 class="">Join</h1>
     <form action="signup.jsp" method="post" id ="myForm">
+    <input type="hidden" name="profile" id="profile" 
+				value="/images/rlqhs.png"/>
         <table class="table table-boardered">
             <tr>
                 <th class="text-center"><label for="id">아이디</label></th>
@@ -77,6 +79,16 @@
                 	<span class="font-size"></span>
                 </td>        
                 <td></td>
+            </tr>
+            <tr>
+                <th rowspan="2"class="text-center"><label for="pwd1">프로필 사진</label></th>
+                <td ><img class="text-center" id="info-image" 
+						src="${pageContext.request.contextPath }/images/rlqhs.png"/>
+					</td>      
+                <td></td>
+            </tr>
+            <tr >
+            	<td style ="border-top: 2px solid white;"><a  href="javascript:" id="profileLink">프로필사진 선택</a></td>	
             </tr>
              
             <tr>
@@ -107,9 +119,40 @@
              
         </table>
     </form>
+    
+    <form action="profile_upload.jsp" method="post" 
+					enctype="multipart/form-data" id="profileForm">
+					<input type="file" name="image" 
+					accept=".jpg, .jpeg, .png, .JPG, .JPEG" id="image"/>
+				</form>
+	
 	
 <script src="${pageContext.request.contextPath }/js/jquery-3.5.1.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery.form.min.js"></script>
 <script>
+	
+$("#profileLink").on("click", function(){
+	//input type="file" 을 강제 클릭한다.
+	$("#image").click();
+	
+});
+	
+	$("#image").on("change", function(){
+	//폼을 강제 제출한다.
+	$("#profileForm").submit();
+});
+	
+	
+	$("#profileForm").ajaxForm(function(data){
+	//프로필 이미지를 업데이트 한다. data => {imageSrc:"/upload/xxx.jpg"}
+	$("#info-image")
+	.attr("src","${pageContext.request.contextPath }"+data.imageSrc);
+	//회원정보 수정폼 전송될때 같이 전송 되도록한다.
+	$("#profile").val(data.imageSrc);// input type="hidden" 의 value값
+});
+	
+	
+	
 	//아이디 중복확인을 통과 했는지 여부
 	var canUseId=false;
 	var canUsenNick = false;

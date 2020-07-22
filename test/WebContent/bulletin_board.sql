@@ -10,5 +10,4 @@ CREATE TABLE bulletin_board
     kinds      VARCHAR2(20)    NOT NULL, 
     CONSTRAINT BULLETIN_BOARD_PK PRIMARY KEY (num, name)
 )
-
 CREATE SEQUENCE bulletin_board_seq;
