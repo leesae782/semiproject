@@ -9,5 +9,5 @@
 	
 	
 	boolean isExist = MemberDao.getInstance().isExist(inputId);
-;%>    
+%>    
 {"isExist":<%=isExist %>}

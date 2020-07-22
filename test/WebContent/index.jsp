@@ -187,7 +187,7 @@
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="sport/soccer.jsp?num=<%=tmp.getNum() %>"><%=tmp.getBulletin_title() %></a>
+									<a class="f-color" href="sport/soccer.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -207,7 +207,7 @@
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="sport/baseball.jsp?num=<%=tmp.getNum() %>"><%=tmp.getBulletin_title() %></a>
+									<a class="f-color" href="sport/baseball.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -224,7 +224,7 @@
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="sport/basketball.jsp?num=<%=tmp.getNum() %>"><%=tmp.getBulletin_title() %></a>
+									<a class="f-color" href="sport/basketball.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -241,7 +241,7 @@
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="game/lol.jsp?num=<%=tmp.getNum() %>"><%=tmp.getBulletin_title() %></a>
+									<a class="f-color" href="game/lol.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -258,7 +258,7 @@
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="game/bag.jsp?num=<%=tmp.getNum() %>"><%=tmp.getBulletin_title() %></a>
+									<a class="f-color" href="game/bag.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -275,7 +275,7 @@
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="game/fifa.jsp?num=<%=tmp.getNum() %>"><%=tmp.getBulletin_title() %></a>
+									<a class="f-color" href="game/fifa.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -288,7 +288,7 @@
     			<div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								 <span style="color:red;"><string >유머</string></span> 게시판
+  								 <span style="color:red;"><strong >유머</strong></span> 게시판
  			 				</div>
  							<ul class="list-group">
 							 	<%for(int i=0; i<list.size(); i++) {
@@ -296,7 +296,7 @@
 							 		%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="funny/funny.jsp?num=<%=tmp.getNum() %>"><%=tmp.getBulletin_title() %></a>
+									<a class="f-color" href="funny/funny.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">14</span>
 								</li>
 									<%} %>	
@@ -316,7 +316,7 @@
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="funny/issue.jsp?num=<%=tmp.getNum() %>"><%=tmp.getBulletin_title() %></a>
+									<a class="f-color" href="funny/issue.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -328,6 +328,7 @@
    				 <div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
+
   								<span style="color:red;"><string >정보</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
@@ -336,7 +337,7 @@
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="funny/infor.jsp?num=<%=tmp.getNum() %>"><%=tmp.getBulletin_title() %></a>
+									<a class="f-color" href="funny/infor.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">5</span>
 								</li>
 								<%} %>	

@@ -8,13 +8,13 @@
 	String pwd = request.getParameter("pwd");
 	String nick = request.getParameter("nick");
 	String email = request.getParameter("email");
-	
+	String profile = request.getParameter("profile");
 	MemberDto dto = new MemberDto();
 	dto.setId(id);
 	dto.setPwd(pwd);
 	dto.setNick(nick);
 	dto.setEmail(email);
-	
+	dto.setProfile(profile);
 	MemberDao dao = MemberDao.getInstance();
 	
 	boolean isSuccess = dao.insert(dto);

@@ -1,45 +1,72 @@
+<%@page import="test.memberdto.MemberDto"%>
+<%@page import="test.memberdao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="utf-8">
 <head>
-<meta charset="uft-8" />
-<title>summernote</title>
-	<style>
-	/* textarea 요소의 크기가 smart editor의 크기로 결정된다.*/
-	#content{
-		width:95%;
-		height:400px;
-	}
-	</style>
+	<meta charset="uft-8" />
+	<title>summernote</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-    
+	
+	
+	
 </head>
+
+<style>
+	#content{
+		width: 95%;
+		height: 300px;
+	}
+</style>
+	
+	
+	
+ <%
+ 	String id = (String)session.getAttribute("id");
+ 	MemberDao dao = MemberDao.getInstance();
+ 	MemberDto dto =dao.getData(id);
+ 	String name = dto.getNick();
+ 	
+ %>
+
 <body>
-<%
-String kinds=request.getParameter("kinds");
-%>
 <jsp:include page="/include/navbar.jsp">
 	<jsp:param value="index" name="thisPage"/>
 </jsp:include>
 <div class="container">
-	<h1>게시글 작성</h1>
-	<form action="insert.jsp" method=post>
-		<div class="form-group">
-			<label for="title"></label>
-			<input type="text" name="title" id="title" />
-		</div>
-		<div class="form-group">
-			<label for="content"></label>
-			<textarea name="content" id="content" cols="30" rows="10"></textarea>
-		</div>
-		<button type="submit" onclick="submitContents(this);">저장</button>
+	<h1>글쓰기</h1>
+	<form action="insert.jsp" method="post">
+	
+	<input type="hidden"  name ="name" value =" <%=name %>"/>
+	<div class="form-group">
+		<label for="title">제목</label>
+		<input type="text" name = "title" id = "title" />
+		<select name='kinds'>
+	  <option selected value='funny'>유머</option>
+	  <option value='issue'>이슈</option>
+	  <option value='infor'>정보</option>
+	  <option value='lol'>LOL</option>
+	  <option value='bag'>배틀 그라운드</option>
+	  <option value='fifa'>FIFA Online</option>
+	  <option value='soccer'>축구</option>
+	  <option value='basketball'>농구</option>
+	  <option value='baseball'>야구</option>
+	  <option value='free'>자유</option>
+	  <option value='question'>QnA</option>
+	  
+	</select>
+	</div>
+	
+	<div class="form-group">
+		<label for="content">내용</label>
+		<textarea name = "content" id = "content" cols="30" rows="10" /></textarea>
+	</div>
+	<button type="submit" onclick="submitContents(this);">글쓰기</button>
 	</form>
 </div>
-
 <%--
 	[ SmartEditor 를 사용하기 위한 설정 ]
 	
@@ -91,15 +118,14 @@ String kinds=request.getParameter("kinds");
 		var sHTML = oEditors.getById["content"].getIR();
 		alert(sHTML);
 	}
-	//폼에 저장 버튼을 누르면 호출 되는 함수
-	//<button type="submit" onclick="submitContents(this);">저장</button>
+		
 	function submitContents(elClickedObj) {
 		oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
 		
 		// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("content").value를 이용해서 처리하면 됩니다.
 		
 		try {
-			elClickedObj.form.submit();//폼 강제 제출
+			elClickedObj.form.submit();
 		} catch(e) {}
 	}
 	
@@ -109,9 +135,8 @@ String kinds=request.getParameter("kinds");
 		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 	}
 </script>
-
-<jsp:include page="/include/footer.jsp">
+ <jsp:include page="/include/footer.jsp">
 	<jsp:param value="index" name="thisPage"/>
-</jsp:include>
+  </jsp:include>
 </body>
 </html>
