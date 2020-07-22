@@ -325,6 +325,7 @@ public class BulletinDao {
 				dto.setName(rs.getString("name"));
 				dto.setBulletin_title(rs.getString("title"));
 				dto.setRegdate(rs.getString("regdate"));
+<<<<<<< HEAD
 				dto.setrecom(rs.getInt("recom"));
 				dto.setLookup(rs.getInt("lookup"));
 				list.add(dto);
@@ -590,6 +591,271 @@ public class BulletinDao {
 			pstmt.setString(2, dto.getBulletin_title());
 			pstmt.setString(3, dto.getBulletin_content());
 			pstmt.setString(4, dto.getKinds());
+=======
+				dto.setRecom(rs.getInt("recom"));
+				dto.setLookup(rs.getInt("lookup"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				}
+		 	}
+			return list;
+		}
+		
+	public List<BulletinDto> getList(BulletinDto dto){
+		//파일 목록을 담을 ArrayList  객체 생성 
+		List<BulletinDto> list=new ArrayList<>();
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 준비하기
+			String sql = "SELECT *"
+					+ " FROM"
+					+ "     (SELECT result1.*, ROWNUM AS rnum"
+					+ "      FROM (SELECT num,name,title,content,regdate,recom,lookup"
+					+ "            FROM bulletin_board"
+					+ "            ORDER BY num DESC) result1)"
+					+ " WHERE rnum BETWEEN ? AND ?";
+			pstmt = conn.prepareStatement(sql);
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
+			//select 문 수행하고 결과 받아오기 
+			rs = pstmt.executeQuery();
+			//반복문 돌면서 결과 값 추출하기 
+			while (rs.next()) {
+				//select 된 파일의 정보를 FileDto 객체에 담고 
+				BulletinDto tmp=new BulletinDto();
+				tmp.setNum(rs.getInt("num"));
+				tmp.setName(rs.getString("name"));
+				tmp.setBulletin_title(rs.getString("title"));
+				tmp.setBulletin_content(rs.getString("content"));
+				tmp.setRegdate(rs.getString("regdate"));
+				tmp.setRecom(rs.getInt("recom"));
+				tmp.setLookup(rs.getInt("lookup"));
+				//ArrayList 객체에 누적 시킨다. 
+				list.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
+	
+	
+	public List<BulletinDto> getListTF(BulletinDto dto){
+		//파일 목록을 담을 ArrayList  객체 생성 
+		List<BulletinDto> list=new ArrayList<>();
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 준비하기
+			String sql = "SELECT *"
+					+ " FROM"
+					+ "     (SELECT result1.*, ROWNUM AS rnum"
+					+ "      FROM (SELECT num,name,title,content,regdate,recom,lookup"
+					+ "            FROM bulletin_board"
+					+ "				WHERE title LIKE '%'||?||'%' OR name LIKE '%'||?||'%'"
+					+ "            ORDER BY num DESC) result1)"
+					+ " WHERE rnum BETWEEN ? AND ?";
+			pstmt = conn.prepareStatement(sql);
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
+			pstmt.setString(1, dto.getBulletin_title());
+			pstmt.setString(2, dto.getName());
+			pstmt.setInt(3, dto.getStartRowNum());
+			pstmt.setInt(4, dto.getEndRowNum());
+			//select 문 수행하고 결과 받아오기 
+			rs = pstmt.executeQuery();
+			//반복문 돌면서 결과 값 추출하기 
+			while (rs.next()) {
+				//select 된 파일의 정보를 FileDto 객체에 담고 
+				BulletinDto tmp=new BulletinDto();
+				tmp.setNum(rs.getInt("num"));
+				tmp.setName(rs.getString("name"));
+				tmp.setBulletin_title(rs.getString("title"));
+				tmp.setBulletin_content(rs.getString("content"));
+				tmp.setRegdate(rs.getString("regdate"));
+				tmp.setRecom(rs.getInt("recom"));
+				tmp.setLookup(rs.getInt("lookup"));
+				//ArrayList 객체에 누적 시킨다. 
+				list.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
+	
+	
+	public List<BulletinDto> getListT(BulletinDto dto){
+		//파일 목록을 담을 ArrayList  객체 생성 
+		List<BulletinDto> list=new ArrayList<>();
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 준비하기
+			String sql = "SELECT *"
+					+ " FROM"
+					+ "     (SELECT result1.*, ROWNUM AS rnum"
+					+ "      FROM (SELECT num,name,title,content,regdate,recom,lookup"
+					+ "            FROM bulletin_board"
+					+ "				WHERE title LIKE '%'||?||'%'"
+					+ "            ORDER BY num DESC) result1)"
+					+ " WHERE rnum BETWEEN ? AND ?";
+			pstmt = conn.prepareStatement(sql);
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
+			pstmt.setString(1, dto.getBulletin_title());
+			pstmt.setInt(2, dto.getStartRowNum());
+			pstmt.setInt(3, dto.getEndRowNum());
+			//select 문 수행하고 결과 받아오기 
+			rs = pstmt.executeQuery();
+			//반복문 돌면서 결과 값 추출하기 
+			while (rs.next()) {
+				//select 된 파일의 정보를 FileDto 객체에 담고 
+				BulletinDto tmp=new BulletinDto();
+				tmp.setNum(rs.getInt("num"));
+				tmp.setName(rs.getString("name"));
+				tmp.setBulletin_title(rs.getString("title"));
+				tmp.setBulletin_content(rs.getString("content"));
+				tmp.setRegdate(rs.getString("regdate"));
+				tmp.setRecom(rs.getInt("recom"));
+				tmp.setLookup(rs.getInt("lookup"));
+				//ArrayList 객체에 누적 시킨다. 
+				list.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
+	
+	
+	public List<BulletinDto> getListW(BulletinDto dto){
+		//파일 목록을 담을 ArrayList  객체 생성 
+		List<BulletinDto> list=new ArrayList<>();
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 준비하기
+			String sql = "SELECT *"
+					+ " FROM"
+					+ "     (SELECT result1.*, ROWNUM AS rnum"
+					+ "      FROM (SELECT num,name,title,content,regdate,recom,lookup"
+					+ "            FROM bulletin_board"
+					+ "				WHERE name LIKE '%'||?||'%'"
+					+ "            ORDER BY num DESC) result1)"
+					+ " WHERE rnum BETWEEN ? AND ?";
+			pstmt = conn.prepareStatement(sql);
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
+			pstmt.setString(1, dto.getName());
+			pstmt.setInt(2, dto.getStartRowNum());
+			pstmt.setInt(3, dto.getEndRowNum());
+			//select 문 수행하고 결과 받아오기 
+			rs = pstmt.executeQuery();
+			//반복문 돌면서 결과 값 추출하기 
+			while (rs.next()) {
+				//select 된 파일의 정보를 FileDto 객체에 담고 
+				BulletinDto tmp=new BulletinDto();
+				tmp.setNum(rs.getInt("num"));
+				tmp.setName(rs.getString("name"));
+				tmp.setBulletin_title(rs.getString("title"));
+				tmp.setBulletin_content(rs.getString("content"));
+				tmp.setRegdate(rs.getString("regdate"));
+				tmp.setRecom(rs.getInt("recom"));
+				tmp.setLookup(rs.getInt("lookup"));
+				//ArrayList 객체에 누적 시킨다. 
+				list.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {	
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return list;
+	}
+	
+	
+	
+	public boolean bulletin_insert(BulletinDto dto) {
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 준비하기
+			String sql = "INSERT INTO bulletin_board"
+					+ " (num, name, title, content, regdate)"
+					+ " VALUES(bb_seq.NEXTVAL,'이름', ?, ?, SYSDATE)";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 값이 있으면 바인딩 한다.
+			pstmt.setString(1, dto.getBulletin_title());
+			pstmt.setString(2, dto.getBulletin_content());
+>>>>>>> refs/heads/master
 			//sql 문 수행하고 update or insert or delete 된 row 의 갯수 리턴 받기
 			flag = pstmt.executeUpdate();
 		} catch (Exception e) {

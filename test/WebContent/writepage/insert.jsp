@@ -9,9 +9,12 @@
 	BulletinDto dto = new BulletinDto();
 	dto.setBulletin_title(title);
 	dto.setBulletin_content(content);
+
 	dto.setKinds(kinds);
 	BulletinDao dao = BulletinDao.getInstance();
 	boolean isSuccess =dao.bulletin_insert(dto);
+	BulletinDao dao = BulletinDao.getInstance();
+	dao.bulletin_insert(dto);
 	/*
 	String cPath=request.getContextPath();
 	response.sendRedirect(cPath+"/funny/funny.jsp");
