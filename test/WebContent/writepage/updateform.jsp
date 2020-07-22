@@ -35,7 +35,7 @@
 		<input type="text" name="title" id="title" style="width: 40%;" value="<%=dto.getTitle() %>"/>
 		<div class="form-group">
 		<label for="content">내용</label>
-		<textarea name = "content" id = "content" cols="30" rows="10" /></textarea>
+		<textarea name = "content" id = "content" cols="30" rows="10" value="" /><%=dto.getContent() %></textarea>
 		</div>
 		<button type="submit" onclick="submitContents(this);">수정</button>
 

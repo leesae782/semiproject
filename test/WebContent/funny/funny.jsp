@@ -147,7 +147,6 @@ if(totalPageCount < endPageNum){
 				      	<th width="9%">닉네임</th>
 					    <th width="57%">제목</th>
 					    <th width="14%">날짜</th>
-					   
 					    <th width="7%">조회</th>
 			    	</tr>
 				</thead>

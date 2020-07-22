@@ -14,19 +14,44 @@
 <head>
 <meta charset="UTF-8">
 <title>/board/detail.jsp</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/font.css" />
 </head>	
 <body>
 	<jsp:include page="../include/navbar.jsp">
 		<jsp:param value="funny" name="thisPage"/>
 	</jsp:include>
 	<div class="container">
-		<p><%=dto.getNum() %></p>
-		<p><%=dto.getName() %></p>
-		<p><%=dto.getTitle() %></p>
+		<table>
+			<thead class="d-font">
+			 	<tr>
+			 		<th><%=dto.getTitle() %></th>
+			 	</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><%=dto.getName() %></td>
+				</tr>
+				<tr>
+					<td><%=dto.getRegdate() %></td>
+				</tr>
+				<tr>
+					<td><%=dto.getContent() %></td>
+				</tr>
+			</tbody>
+		</table>
+		<center>
+			<p class="d-font"><%=dto.getTitle() %></p>
+		</center>
+		<hr style="clear:left;"/>
+		<p>작성자:<%=dto.getName() %></p>
+		<p><%=dto.getRegdate() %></p>
+		<hr style="clear:left;"/>
 		<p><%=dto.getContent() %></p>
-		<button><a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>">수정</a></button>
-		<button><a href="javascript:deleteConfirm(<%=dto.getNum()%>)">삭제</a></button>
+
+		<a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>"><button class="btn btn-primary">수정</button></a>
+		<a href="javascript:deleteConfirm(<%=dto.getNum()%>)"><button class="btn btn-danger">삭제</button></a>
 	</div>
 
 </body>
