@@ -7,8 +7,9 @@ public class MemberDto {
 	private String email;
 	private String regdate;
 	private String newPwd;
+	private int isStop;
 	public MemberDto() {}
-	public MemberDto(String id, String pwd, String nick, String email, String regdate, String newPwd) {
+	public MemberDto(String id, String pwd, String nick, String email, String regdate, String newPwd, int isStop) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -16,6 +17,7 @@ public class MemberDto {
 		this.email = email;
 		this.regdate = regdate;
 		this.newPwd = newPwd;
+		this.isStop = isStop;
 	}
 	public String getId() {
 		return id;
@@ -53,5 +55,12 @@ public class MemberDto {
 	public void setNewPwd(String newPwd) {
 		this.newPwd = newPwd;
 	}
+	public int getIsStop() {
+		return isStop;
+	}
+	public void setIsStop(int isStop) {
+		this.isStop = isStop;
+	}
+	
 	
 }
