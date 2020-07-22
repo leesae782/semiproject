@@ -8,14 +8,10 @@
 	BulletinDto dto = new BulletinDto();
 	dto.setBulletin_title(title);
 	dto.setBulletin_content(content);
-	
-<<<<<<< HEAD
+
 	BulletinDao dao = BulletinDao.getInstance();
-	dao.bulletin_insert(dto);
-=======
-	bulletin_dao dao = bulletin_dao.getInstance();
 	boolean isSuccess = dao.bulletin_insert(dto);
->>>>>>> refs/heads/leesehee
+
 	/*
 	String cPath=request.getContextPath();
 	response.sendRedirect(cPath+"/funny/funny.jsp");
