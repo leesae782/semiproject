@@ -6,45 +6,6 @@
     pageEncoding="UTF-8"%>
 <%
 String url= request.getRequestURI();  // 현재 url 을  저장함
-//한 페이지에 나타낼 row 의 갯수
-	final int PAGE_ROW_COUNT=5;
-	//하단 디스플레이 페이지 갯수
-	final int PAGE_DISPLAY_COUNT=5;
-	
-	//보여줄 페이지의 번호
-	int pageNum=1;
-	//보여줄 페이지의 번호가 파라미터로 전달되는지 읽어와 본다.	
-	String strPageNum=request.getParameter("pageNum");
-	if(strPageNum != null){//페이지 번호가 파라미터로 넘어온다면
-		//페이지 번호를 설정한다.
-		pageNum=Integer.parseInt(strPageNum);
-	}
-	//보여줄 페이지 데이터의 시작 ResultSet row 번호
-	int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
-	//보여줄 페이지 데이터의 끝 ResultSet row 번호
-	int endRowNum=pageNum*PAGE_ROW_COUNT;
-	
-	//전체 row 의 갯수를 읽어온다.
-	int totalRow=BulletinDao.getInstance().getCount();
-	//전체 페이지의 갯수 구하기
-	int totalPageCount=
-			(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
-	//시작 페이지 번호
-	int startPageNum=
-		1+((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
-	//끝 페이지 번호
-	int endPageNum=startPageNum+PAGE_DISPLAY_COUNT-1;
-	//끝 페이지 번호가 잘못된 값이라면 
-	if(totalPageCount < endPageNum){
-		endPageNum=totalPageCount; //보정해준다. 
-	}
-	//startRowNum 과 endRowNum을 FileDto 객체에 담고 
-	BulletinDto dto=new BulletinDto();
-	dto.setStartRowNum(startRowNum);
-	dto.setEndRowNum(endRowNum);
-	//FileDto 객체를 인자로 전달해서 파일 목록을 얻어온다. 
-	List<BulletinDto> list = BulletinDao.getInstance().getList(dto);
-
 //로그인 된 아이디 읽어오기 (로그인을 하지 않으면 null 이다)
 	String id=(String)session.getAttribute("id");
 %>
@@ -176,21 +137,6 @@ if(totalPageCount < endPageNum){
 	</div>
 	<div class="col-sm-9">
 		<div>전체0건 / 1페이지</div>
-<<<<<<< HEAD
-   		  	<table class="table table-bordered table-hover" style="text-align:center;" >
-			  <thead class="thead-light" >
-			    <tr >
-			    	<th width=6%>번호</th>
-			      	<th width=9%>닉네임</th>
-				    <th width=57%>제목</th>
-				    <th width=14%>날짜</th>
-				    <th width=7%>추천</th>
-				    <th width=7%>조회</th>
-			    </tr>
-			  </thead>
-			  <tbody style="font-size:0.8em;">
-			    <%for(BulletinDto tmp: list){ %>
-
 			<table class="table table-bordered table-hover" style="text-align:center;" >
 				<thead class="thead-light" >
 					<tr >
@@ -198,7 +144,6 @@ if(totalPageCount < endPageNum){
 				      	<th width="9%">닉네임</th>
 					    <th width="57%">제목</th>
 					    <th width="14%">날짜</th>
-					    <th width="7%">추천</th>
 					    <th width="7%">조회</th>
 			    	</tr>
 				</thead>
@@ -211,7 +156,6 @@ if(totalPageCount < endPageNum){
 			      <td><%=tmp.getName() %></td>
 			      <td><a href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getBulletin_title() %></td>
 			      <td><%=tmp.getRegdate() %></td>
-			      <td><%=tmp.getrecom() %></td>
 			      <td><%=tmp.getLookup() %></td>
 			    </tr>
 			    <%} %>

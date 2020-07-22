@@ -1,10 +1,11 @@
-<%@page import="test.dao.BulletinDao"%>
+
 <%@page import="test.dto.BulletinDto"%>
+<%@page import="test.dao.BulletinDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String title = request.getParameter("title");
-	String content = request.getParameter("summernote");
+	String content = request.getParameter("content");
 	String kinds=request.getParameter("kinds");
 	BulletinDto dto = new BulletinDto();
 	dto.setBulletin_title(title);
@@ -13,8 +14,6 @@
 	dto.setKinds(kinds);
 	BulletinDao dao = BulletinDao.getInstance();
 	boolean isSuccess =dao.bulletin_insert(dto);
-	BulletinDao dao = BulletinDao.getInstance();
-	dao.bulletin_insert(dto);
 	/*
 	String cPath=request.getContextPath();
 	response.sendRedirect(cPath+"/funny/funny.jsp");

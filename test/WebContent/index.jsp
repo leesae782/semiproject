@@ -347,11 +347,6 @@
     			</div>
   			</div> 
 
-  			<div class="row">
-    			<div class="col-sm">
-    			
-    			</div>
-  			</div>
 		</div>
     	<div class="col-sm-3">
     	
@@ -385,19 +380,22 @@
  				<jsp:include page="include/loginstatus.jsp"> 
  					<jsp:param value="<%=url %>" name="url"/>
  				</jsp:include>
-    		
-            
-            
-            
+ 				<br>
+ 				<div class="side_left">
+					<a href="${pageContext.request.contextPath }/sport/soccer.jsp"><img src="${pageContext.request.contextPath }/images/Coim-e2VIAA4NNj2.jpg" alt="" /></a>
+ 					<a href="${pageContext.request.contextPath }/sport/soccer.jsp"><img src="${pageContext.request.contextPath }/images/bo99.jpg" alt="" /></a>
+ 				</div>
             </div>
             
       
         
     		</div>
   	</div>
-	<jsp:include page="/include/footer.jsp">	
+
+  	
+<jsp:include page="/include/footer.jsp">	
 	<jsp:param value="index" name="thisPage"/>
-	</jsp:include>
+</jsp:include>
 	
 
 <!--  기존 로그인 폼
