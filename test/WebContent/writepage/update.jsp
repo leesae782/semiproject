@@ -6,13 +6,13 @@
 	int num=Integer.parseInt(request.getParameter("num"));
 	String name=request.getParameter("name");
 	String title=request.getParameter("title");
-	String content=request.getParameter("summernote");
+	String content=request.getParameter("content");
 	
 	BulletinDto dto=new BulletinDto();
 	dto.setNum(num);
 	dto.setName(name);
-	dto.setBulletin_title(title);
-	dto.setBulletin_content(content);
+	dto.setTitle(title);
+	dto.setContent(content);
 	
 	boolean isSuccess=BulletinDao.getInstance().bulletin_update(dto);
 %>
@@ -26,7 +26,7 @@
 	<%if(isSuccess){ %>
 		<script>
 			alert("<%=num%>번 글을 수정했습니다.");
-			location.herf="${pageContext.request.contextPath }/board/detail.jsp?num=<%=num%>";
+			location.href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=num%>";
 		</script>
 	<%}else{ %>
 		<script>

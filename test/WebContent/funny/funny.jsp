@@ -8,8 +8,8 @@
 String url= request.getRequestURI();  // 현재 url 을  저장함
 
 //로그인 된 아이디 읽어오기 (로그인을 하지 않으면 null 이다)
-	String id=(String)session.getAttribute("id");
-
+String id=(String)session.getAttribute("id");
+String kinds = "funny";
 %>
 <!DOCTYPE html>
 <html>
@@ -75,6 +75,8 @@ String condition=request.getParameter("condition");
 BulletinDto dto=new BulletinDto();
 dto.setStartRowNum(startRowNum);
 dto.setEndRowNum(endRowNum);
+dto.setKinds(kinds);
+
 //select 된 결과를 담을 List
 List<BulletinDto> list=null;
 //전체 row 의 갯수를 담을 변수 
@@ -82,14 +84,14 @@ int totalRow=0;
 if(!keyword.equals("")){ //만일 키워드가 넘어온다면 
 	if(condition.equals("title_name")){
 		//검색 키워드를 bulletin_dto 객체의 필드에 담는다. 
-		dto.setBulletin_title(keyword);
+		dto.setTitle(keyword);
 		dto.setName(keyword);
 		//검색 키워드에 맞는 파일 목록 중에서 pageNum 에 해당하는 목록 얻어오기
 		list=BulletinDao.getInstance().getListTF(dto);
 		//검색 키워드에 맞는 전체 글의 갯수를 얻어온다. 
 		totalRow=BulletinDao.getInstance().getCountTF(dto);
 	}else if(condition.equals("title")){
-		dto.setBulletin_title(keyword);
+		dto.setTitle(keyword);
 		list=BulletinDao.getInstance().getListT(dto);
 		totalRow=BulletinDao.getInstance().getCountT(dto);
 	}else if(condition.equals("name")){
@@ -102,6 +104,7 @@ if(!keyword.equals("")){ //만일 키워드가 넘어온다면
 	keyword="";
 	list=BulletinDao.getInstance().getList(dto);
 	totalRow=BulletinDao.getInstance().getCount();
+	
 	
 }	
 //전체 페이지의 갯수 구하기
@@ -148,7 +151,7 @@ if(totalPageCount < endPageNum){
 				      	<th width="9%">닉네임</th>
 					    <th width="57%">제목</th>
 					    <th width="14%">날짜</th>
-					    <th width="7%">추천</th>
+					   
 					    <th width="7%">조회</th>
 			    	</tr>
 				</thead>
@@ -159,10 +162,9 @@ if(totalPageCount < endPageNum){
 			    <tr>
 			      <th><%=tmp.getNum() %></th>
 			      <td><%=tmp.getName() %></td>
-			      <td><a href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getBulletin_title() %></td>
+			      <td><a href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getTitle() %></td>
 			      <td><%=tmp.getRegdate() %></td>
-			      <td><%=tmp.getRecom() %></td>
-			      <td><%=tmp.getLookup() %></td>
+			      <td>조회수</td>
 			    </tr>
 			    <%} %>
 			  </tbody>

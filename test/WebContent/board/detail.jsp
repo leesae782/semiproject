@@ -22,8 +22,8 @@
 	<div class="container">
 		<p><%=dto.getNum() %></p>
 		<p><%=dto.getName() %></p>
-		<p><%=dto.getBulletin_title() %></p>
-		<p><%=dto.getBulletin_content() %></p>
+		<p><%=dto.getTitle() %></p>
+		<p><%=dto.getContent() %></p>
 		<button><a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>">수정</a></button>
 		<button><a href="javascript:deleteConfirm(<%=dto.getNum()%>)">삭제</a></button>
 	</div>
