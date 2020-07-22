@@ -108,9 +108,13 @@
 	
 	#info-image{
 	
-	width: 100px;
-		height: 100px;
+	width: 150px;
+		height: 150px;
 		border: 1px solid #cecece;
 		border-radius: 0%;
 		background-color: white;
+	}
+	
+	#profileForm{
+		display:none;
 	}

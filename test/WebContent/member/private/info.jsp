@@ -45,7 +45,7 @@
             	<th  class="text-center">프로필 사진</th>
             	
             	 <td ><img class="text-center" id="info-image" 
-					src="${pageContext.request.contextPath }/images/0.png"/>
+					src="${pageContext.request.contextPath }<%=dto.getProfile()%>"/>
 				</td>	
 				
             </tr>

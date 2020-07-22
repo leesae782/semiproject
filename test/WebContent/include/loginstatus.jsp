@@ -28,7 +28,7 @@
  					<div class="row">
  					<div class="col-4">
  					<img class="text-center" id="profileImage" 
-					src="${pageContext.request.contextPath }/images/0.png"/>
+					src="${pageContext.request.contextPath }<%=dto.getProfile()%>"/>
  					</div>
  					<div class="col-8">
  					<p class = "login-nick"><%= dto.getNick() %>  <strong>님</strong></p>

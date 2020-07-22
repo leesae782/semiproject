@@ -312,7 +312,7 @@
     			<div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								 <span style="color:red;"><string >유머</string></span> 게시판
+  								 <span style="color:red;"><strong >유머</strong></span> 게시판
  			 				</div>
  							<ul class="list-group">
 							 	<%for(int i=0; i<line.size(); i++) {
@@ -330,7 +330,7 @@
     			<div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+  								 <span style="color:red;"><strong >HOT</strong></span> 게시글 순위
  			 				</div>
  							<ul class="list-group">
   								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -376,7 +376,7 @@
    				 <div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+  								최신 <span style="color:red;"><strong >HOT</strong></span> 게시글 순위
  			 				</div>
  							<ul class="list-group">
   								<li class="list-group-item d-flex justify-content-between align-items-center">

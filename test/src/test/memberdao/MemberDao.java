@@ -208,12 +208,13 @@ public class MemberDao {
 			conn = new DbcpBean().getConn();
 			//실행할 sql문 준비하기
 			String sql = "UPDATE MEMBER SET"
-					+" nick=?,email=? where id =?";
+					+" nick=?,email=?, profile=?where id =?";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩한다.
 			pstmt.setString(1, dto.getNick());
 			pstmt.setString(2, dto.getEmail());
-			pstmt.setString(3, dto.getId());
+			pstmt.setString(3, dto.getProfile());
+			pstmt.setString(4, dto.getId());
 			// sql문 수행하고 update or insert or delete 된 row 의 개수 리턴받기
 			flag = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -258,6 +259,7 @@ public class MemberDao {
 				dto.setPwd(rs.getString("pwd"));
 				dto.setNick(rs.getString("nick"));
 				dto.setEmail(rs.getString("email"));
+				dto.setProfile(rs.getString("profile"));
 				dto.setRegdate(rs.getString("regdate"));
 			}
 		} catch (Exception e) {
@@ -320,14 +322,15 @@ public class MemberDao {
 		try {
 			conn = new DbcpBean().getConn();
 			//실행할 sql문 준비하기
-			String sql = "INSERT INTO MEMBER(id,pwd,nick,email,regdate)"
-					+" VALUES(?,?,?,?,SYSDATE)";
+			String sql = "INSERT INTO MEMBER(id,pwd,nick,email,profile,regdate)"
+					+" VALUES(?,?,?,?,?,SYSDATE)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩한다.
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPwd());
 			pstmt.setString(3, dto.getNick());
 			pstmt.setString(4, dto.getEmail());
+			pstmt.setString(5, dto.getProfile());
 			
 			// sql문 수행하고 update or insert or delete 된 row 의 개수 리턴받기
 			flag = pstmt.executeUpdate();

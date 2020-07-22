@@ -7,12 +7,17 @@
 	String id = (String)session.getAttribute("id");
 	String nick = request.getParameter("nick");
 	String email = request.getParameter("email");
+	String profile=request.getParameter("profile");
+	if(profile.equals("null")){//프로필 이미지를 수정하지 않으면 
+		profile=null;
+	}
 	
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto =new MemberDto();
 	dto.setId(id);
 	dto.setNick(nick);
 	dto.setEmail(email);
+	dto.setProfile(profile);
 	
 	boolean isSuccess =dao.update(dto);
 
