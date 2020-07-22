@@ -72,7 +72,7 @@ public class BulletinDao {
 			//바꿔 줘야 한다.
 			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
 					+ " FROM bulletin_board"
-					+ "WHERE title LIKE '%'||?||'%' OR name LIKE '%'||?||'%'";
+					+ " WHERE title LIKE '%'||?||'%' OR name LIKE '%'||?||'%'";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
 			pstmt.setString(1, dto.getTitle());
@@ -115,7 +115,7 @@ public class BulletinDao {
 			//바꿔 줘야 한다.
 			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
 					+ " FROM bulletin_board"
-					+ "WHERE title LIKE '%'||?||'%'";
+					+ " WHERE title LIKE '%'||?||'%'";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
 			pstmt.setString(1, dto.getTitle());
@@ -157,7 +157,7 @@ public class BulletinDao {
 			//바꿔 줘야 한다.
 			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
 					+ " FROM bulletin_board"
-					+ "WHERE name LIKE '%'||?||'%'";
+					+ " WHERE name LIKE '%'||?||'%'";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
 			pstmt.setString(1, dto.getName());
@@ -417,7 +417,7 @@ public class BulletinDao {
 			String sql = "SELECT *"
 					+ " FROM"
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
-					+ "      FROM (SELECT num,name,title,content,regdate,recom,lookup"
+					+ "      FROM (SELECT num,name,title,content,regdate,lookup"
 					+ "            FROM bulletin_board"
 					+ "				WHERE title LIKE '%'||?||'%' OR name LIKE '%'||?||'%'"
 					+ "            ORDER BY num DESC) result1)"
@@ -532,7 +532,7 @@ public class BulletinDao {
 			String sql = "SELECT *"
 					+ " FROM"
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
-					+ "      FROM (SELECT num,name,title,content,regdate,recom,lookup"
+					+ "      FROM (SELECT num,name,title,content,regdate,lookup"
 					+ "            FROM bulletin_board"
 					+ "				WHERE name LIKE '%'||?||'%'"
 					+ "            ORDER BY num DESC) result1)"
