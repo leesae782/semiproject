@@ -108,7 +108,7 @@
 	</a>
 	</li>
 	</ul>
-<p>jaegeun 추가 잘됬나 보자</p>
+
 </div>
 </body>
 </html>
