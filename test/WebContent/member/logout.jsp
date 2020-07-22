@@ -4,7 +4,7 @@
  <%
 	session.invalidate(); // 세션을 초기화해서 로그아웃을 처리를한다
 
-	
+	String url = request.getParameter("url");
 %>
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
 	
 	<script>
 		alert("로그아웃되었습니다.");
-		location.href = "${pageContext.request.contextPath}/"
+		location.href = "<%=url %>";
 	</script>
 </body>
 </html>

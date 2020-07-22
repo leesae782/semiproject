@@ -6,14 +6,16 @@ public class MemberDto {
 	private String nick;
 	private String email;
 	private String regdate;
+	private String newPwd;
 	public MemberDto() {}
-	public MemberDto(String id, String pwd, String nick, String email, String regdate) {
+	public MemberDto(String id, String pwd, String nick, String email, String regdate, String newPwd) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
 		this.nick = nick;
 		this.email = email;
 		this.regdate = regdate;
+		this.newPwd = newPwd;
 	}
 	public String getId() {
 		return id;
@@ -44,6 +46,12 @@ public class MemberDto {
 	}
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
+	}
+	public String getNewPwd() {
+		return newPwd;
+	}
+	public void setNewPwd(String newPwd) {
+		this.newPwd = newPwd;
 	}
 	
 }

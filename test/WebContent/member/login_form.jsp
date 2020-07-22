@@ -1,22 +1,19 @@
-<%@page import="test.memberdto.MemberDto"%>
-<%@page import="test.memberdao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
-
-	String id = (String)session.getAttribute("id");
-
-	MemberDao dao = MemberDao.getInstance();
-	MemberDto  dto = dao.getData(id);
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>member/update_form.jsp</title>
+<title>/member/login_form.jsp</title>
 
-
+<%
+	// url 파라미터가 넘어오는지 읽어와 보기 
+	String url=request.getParameter("url");
+	if(url==null){//목적지 정보가 없다면
+		String cPath=request.getContextPath();
+		url=cPath+"/index.jsp"; //로그인후 인덱스 페이지로 가도록 하기 위해 
+	}
+%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -44,33 +41,27 @@
     		</div>
   		</div>	
 	  -->
-	<div class="row">
-    		<div class="col-sm-9">
-    		  	<h1> 회원정보 수정 폼입니다.</h1>
 	
-				<form action="update.jsp" method="post">
-					<div class="form-group">
-						<label for="id">아이디</label>
-						<input class="form-control"type="text" id = "id" value = "<%=id %>" disabled />
-					</div>
-					<div class="form-group">
-						<label for="nick">닉네임</label>
-						<input class="form-control"type="text" id = "nick" name = "nick" value="<%=dto.getNick() %>" />
-					</div>
-					<div class="form-group">
-						<label for="email">이메일</label>
-						<input class="form-control"type="text" id = "email" name = "email" value="<%=dto.getEmail() %>" />
-					</div>
-				<button class="btn btn-outline-success"type="submit">수정</button>
-				<button class="btn btn-outline-danger"type="reset">취소</button>
-	</form>
-    		</div>
-			<p><a href=""></a></p>
-    		<div class="col-sm-3">
- 				
-    		</div>
-  		</div>	
-	
+	<div class="login-box well" >
+                <form accept-charset="UTF-8" role="form" method="post" action="login.jsp">
+                	<input type="hidden" name="url" value="<%=url %>" />
+                    <legend>로그인</legend>
+                    <div class="input-group"  style="margin-bottom: 1em;">
+                        <span class="input-group-addon" ><i class="fa fa-user"></i></span>
+                        <input type="text" name ="id"id="id" value='' placeholder="ID를 입력하세요" class="form-control" />
+                    </div>
+                    <div class="input-group" style="margin-bottom: 1em;">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <input type="password" name ="pwd"id="pwd" value='' placeholder="비밀번호를 입력하세요" class="form-control" />
+                    </div>
+                    <button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>로그인</button>
+                    
+                </form>
+               	
+               	<form action="signup_form.jsp" method ="post">
+               		<button type="submit"  class="btn btn-default btn-block bg-light" style="margin-bottom: 1em;"/>회원가입</button>
+               	</form>	  
+                </div>
   	
 
 	
