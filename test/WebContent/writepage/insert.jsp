@@ -8,24 +8,20 @@
 	String content = request.getParameter("content");
 	String kinds= request.getParameter("kinds");
 	BulletinDto dto = new BulletinDto();
-<<<<<<< HEAD
+
 	dto.setName(name);
 	dto.setTitle(title);
 	dto.setContent(content);
 	dto.setKinds(kinds);
-=======
-	dto.setBulletin_title(title);
-	dto.setBulletin_content(content);
->>>>>>> refs/remotes/origin/master
+
 
 	BulletinDao dao = BulletinDao.getInstance();
 	boolean isSuccess = dao.bulletin_insert(dto);
 
-<<<<<<< HEAD
+
 	
 
-=======
->>>>>>> refs/remotes/origin/master
+
 	/*
 	String cPath=request.getContextPath();
 	response.sendRedirect(cPath+"/funny/funny.jsp");
