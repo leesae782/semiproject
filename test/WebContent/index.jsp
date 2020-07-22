@@ -312,7 +312,7 @@
     			<div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								 <span style="color:red;"><string >유머</string></span> 게시판
+  								 <span style="color:red;"><strong >유머</strong></span> 게시판
  			 				</div>
  							<ul class="list-group">
 							 	<%
@@ -321,7 +321,7 @@
 							 	%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="" href="funny/funny.jsp?num=<%=tmp.getNum()%>"><%=tmp.getBulletin_title() %></a>
+									<a class="" href="funny/funny.jsp?num=<%=tmp.getNum()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">14</span>
 								</li>
 									<%} %>	
@@ -333,7 +333,7 @@
     			<div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+  								 <span style="color:red;"><strong >HOT</strong></span> 게시글 순위
  			 				</div>
  							<ul class="list-group">
   								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -379,7 +379,7 @@
    				 <div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+  								최신 <span style="color:red;"><strong >HOT</strong></span> 게시글 순위
  			 				</div>
  							<ul class="list-group">
   								<li class="list-group-item d-flex justify-content-between align-items-center">
