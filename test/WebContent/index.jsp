@@ -11,7 +11,7 @@
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.getData(id);
 	
-	List<BulletinDto> list=BulletinDao.getInstance().getLine();
+	List<BulletinDto> funnylist=BulletinDao.getInstance().getLine("funny");
 	
 	
 	String url= request.getRequestURI();  // 현재 url 을  저장함
@@ -182,8 +182,8 @@
     	<div class="col-8">
  <div class="card" id ="card1" >
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<funnylist.size(); i++) {
+							 	BulletinDto tmp = funnylist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -202,8 +202,8 @@
   <div class="card"id ="card2" >
  						 	
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<funnylist.size(); i++) {
+							 	BulletinDto tmp = funnylist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -219,8 +219,8 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<funnylist.size(); i++) {
+							 	BulletinDto tmp = funnylist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -236,8 +236,8 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<funnylist.size(); i++) {
+							 	BulletinDto tmp = funnylist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -253,8 +253,8 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<funnylist.size(); i++) {
+							 	BulletinDto tmp = funnylist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -270,8 +270,8 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<funnylist.size(); i++) {
+							 	BulletinDto tmp = funnylist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -291,8 +291,8 @@
   								 <span style="color:red;"><strong >유머</strong></span> 게시판
  			 				</div>
  							<ul class="list-group">
-							 	<%for(int i=0; i<list.size(); i++) {
-							 		BulletinDto tmp = list.get(i);
+							 	<%for(int i=0; i<funnylist.size(); i++) {
+							 		BulletinDto tmp = funnylist.get(i);
 							 		%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -311,8 +311,8 @@
   								 <span style="color:red;"><string >이슈</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<funnylist.size(); i++) {
+							 	BulletinDto tmp = funnylist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -332,8 +332,8 @@
   								<span style="color:red;"><string >정보</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<funnylist.size(); i++) {
+							 	BulletinDto tmp = funnylist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
