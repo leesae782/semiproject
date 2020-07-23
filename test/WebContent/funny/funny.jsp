@@ -165,12 +165,8 @@ if(totalPageCount < endPageNum){
 			  </tbody>
 			  
 			</table>
-<<<<<<< HEAD
 			<button style="float:right;"><a href="${pageContext.request.contextPath }/writepage/insertform.jsp?url=<%=url%>">글쓰기</a></button>
-=======
 
-			<button style="float:right;"><a href="${pageContext.request.contextPath }/writepage/insertform.jsp">글쓰기</a></button>
->>>>>>> refs/remotes/origin/master
 			
 			
 			
@@ -191,7 +187,7 @@ if(totalPageCount < endPageNum){
 				<%} %>
 				</ul>
 			</div>
->>>>>>> refs/heads/master
+
 	</div>	
 	<hr style="clear:left;"/>
 	<form action="funny.jsp" method="get">

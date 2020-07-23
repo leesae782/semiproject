@@ -11,7 +11,7 @@
  	//BoardDao 객체를 이용해서 해당글의 정보를 얻어온다.
  	BulletinDto dto=BulletinDao.getInstance().bulletin_getData(num);
  	String url = request.getParameter("url");
- 	 	BulletinDao.getInstance().addViewCount(num);
+ 	BulletinDao.getInstance().addViewCount(num);
 %>    
 <!DOCTYPE html>
 <html>
