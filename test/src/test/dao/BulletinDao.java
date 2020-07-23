@@ -668,7 +668,11 @@ public class BulletinDao {
 			//실행할 sql 문 준비하기
 			String sql = "INSERT INTO bulletin_board"
 					+ " (num, name, title, content, regdate,lookup,kinds)"
+<<<<<<< HEAD
 					+ " VALUES(bulletin_board_seq.NEXTVAL,?, ?, ?, SYSDATE,0,?)";
+=======
+					+ " VALUES(bulletin_board_seq.NEXTVAL,?, ?, ?,0 ,SYSDATE,?)";
+>>>>>>> refs/heads/test1
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩 한다.
 			pstmt.setString(1, dto.getName());
