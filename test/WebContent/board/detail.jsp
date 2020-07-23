@@ -1,4 +1,6 @@
 
+<%@page import="test.memberdao.MemberDao"%>
+<%@page import="test.memberdto.MemberDto"%>
 <%@page import="test.dao.BulletinDao"%>
 <%@page import="test.dto.BulletinDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,7 +25,7 @@
 		<jsp:param value="funny" name="thisPage"/>
 	</jsp:include>
 	<div class="container">
-		<table>
+		<table class="table">
 			<thead class="d-font">
 			 	<tr>
 			 		<th><%=dto.getTitle() %></th>
@@ -31,24 +33,20 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td><%=dto.getName() %></td>
+					<th>작성자 : <%=dto.getName() %></td>
+					</th>
 				</tr>
 				<tr>
-					<td><%=dto.getRegdate() %></td>
+					<th>일자 : <%=dto.getRegdate() %></th>				
 				</tr>
 				<tr>
 					<td><%=dto.getContent() %></td>
 				</tr>
+				<tr>
+					<td></td>
+				</tr>
 			</tbody>
 		</table>
-		<center>
-			<p class="d-font"><%=dto.getTitle() %></p>
-		</center>
-		<hr style="clear:left;"/>
-		<p>작성자:<%=dto.getName() %></p>
-		<p><%=dto.getRegdate() %></p>
-		<hr style="clear:left;"/>
-		<p><%=dto.getContent() %></p>
 
 		<a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>"><button class="btn btn-primary">수정</button></a>
 		<a href="javascript:deleteConfirm(<%=dto.getNum()%>)"><button class="btn btn-danger">삭제</button></a>
