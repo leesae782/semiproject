@@ -301,7 +301,7 @@ public class BulletinDao {
 	
 	//게시판 리스트 불러오기
 
-	public List<BulletinDto> getLine(){
+	public List<BulletinDto> getLine(String kinds){
 		List<BulletinDto> list = new ArrayList<>();
 		//필요한 객체의 참조값을 담을 지역변수 만들기 
 		Connection conn = null;
@@ -312,11 +312,11 @@ public class BulletinDao {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
 			String sql = "SELECT num,name,title,regdate,kinds"
-					+ " FROM bulletin_board"
+					+ " FROM bulletin_board where kinds =?"
 					+ " ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-			
+			pstmt.setString(1, kinds);
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 

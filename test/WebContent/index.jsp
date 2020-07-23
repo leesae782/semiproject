@@ -11,7 +11,9 @@
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.getData(id);
 	
-	List<BulletinDto> list=BulletinDao.getInstance().getLine();
+	
+	
+	List<BulletinDto> list=BulletinDao.getInstance().getLine("funny");
 	
 	
 	String url= request.getRequestURI();  // 현재 url 을  저장함
