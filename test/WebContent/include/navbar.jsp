@@ -3,6 +3,10 @@
 <%
 	//요청 파라미터 읽어내기
 	String thisPage=request.getParameter("thisPage");
+	String id = (String)session.getAttribute("id");	
+	if(id==null){
+		id="";
+	}
 	
 %>
 
@@ -62,6 +66,9 @@
                 </div>
               </li>
             </ul>
+            <%if(id.equals("admin")){ %>
+            	<a class="btn btn-Dark" href="${pageContext.request.contextPath }/admin/admin_page.jsp">    </a>
+            <%} %>
           </nav>
 			
             

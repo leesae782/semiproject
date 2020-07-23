@@ -105,6 +105,7 @@ if(!keyword.equals("")){ //만일 키워드가 넘어온다면
 	}
 }else{//검색 키워드가 없으면 전체 목록을 얻어온다.
 	list=BulletinDao.getInstance().getList(dto);
+
 	totalRow=BulletinDao.getInstance().getCount(kinds);
 }	
 //전체 페이지의 갯수 구하기
@@ -158,13 +159,18 @@ if(totalPageCount < endPageNum){
 			      <td><%=tmp.getName() %></td>
 			      <td><a class ="acolor" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=tmp.getNum()%>&url=<%=url%>"><%=tmp.getTitle() %></td>
 			      <td><%=tmp.getRegdate() %></td>
-			      <td>조회수</td>
+			      <td><%=tmp.getLookup()%></td>
 			    </tr>
 			    <%} %>
 			  </tbody>
 			  
 			</table>
+<<<<<<< HEAD
 			<button style="float:right;"><a href="${pageContext.request.contextPath }/writepage/insertform.jsp?url=<%=url%>">글쓰기</a></button>
+=======
+
+			<button style="float:right;"><a href="${pageContext.request.contextPath }/writepage/insertform.jsp">글쓰기</a></button>
+>>>>>>> refs/remotes/origin/master
 			
 			
 			
@@ -185,6 +191,7 @@ if(totalPageCount < endPageNum){
 				<%} %>
 				</ul>
 			</div>
+>>>>>>> refs/heads/master
 	</div>	
 	<hr style="clear:left;"/>
 	<form action="funny.jsp" method="get">

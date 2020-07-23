@@ -17,6 +17,37 @@ public class BulletinDao {
 		}
 		return dao;
 	}
+	//글 조회수 1 증가 시키는 메소드
+		public boolean addViewCount(int num) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			int flag = 0;
+			try {
+				conn = new DbcpBean().getConn();
+				String sql = "UPDATE bulletin_board"
+						+ " SET lookup=lookup+1"
+						+ " WHERE num=?";
+				pstmt = conn.prepareStatement(sql);
+				// ? 에 값 바인딩 하기
+				pstmt.setInt(1, num);
+				flag = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (Exception e) {
+				}
+			}
+			if (flag > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	public int getCount(String kinds) {
 		//전체 row  의 갯수를 담을 지역 변수 
 		int count=0;
@@ -348,6 +379,50 @@ public class BulletinDao {
 		 	}
 			return list;
 		}
+		//게시판 리스트 불러오기
+
+		public List<BulletinDto> getLine2(){
+			List<BulletinDto> list = new ArrayList<>();
+			//필요한 객체의 참조값을 담을 지역변수 만들기 
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				//Connection 객체의 참조값 얻어오기 
+				conn = new DbcpBean().getConn();
+				//실행할 sql 문 준비하기
+				String sql = "SELECT num,name,title,regdate,kinds"
+						+ " FROM bulletin_board"
+						+ " ORDER BY num DESC";
+				pstmt = conn.prepareStatement(sql);
+				//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+				//select 문 수행하고 결과 받아오기 
+				rs = pstmt.executeQuery();
+				//반복문 돌면서 결과 값 추출하기 
+				while (rs.next()) {
+					BulletinDto dto = new BulletinDto();
+					dto.setNum(rs.getInt("num"));
+					dto.setName(rs.getString("name"));
+					dto.setTitle(rs.getString("title"));
+					dto.setRegdate(rs.getString("regdate"));
+					dto.setKinds(rs.getString("kinds"));
+					list.add(dto);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (rs != null)
+						rs.close();
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (Exception e) {
+					}
+			 	}
+				return list;
+			}
 		
 	public List<BulletinDto> getList(BulletinDto dto){
 		//파일 목록을 담을 ArrayList  객체 생성 
