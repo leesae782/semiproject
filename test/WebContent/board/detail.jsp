@@ -10,6 +10,7 @@
 	int num=Integer.parseInt(request.getParameter("num"));
  	//BoardDao 객체를 이용해서 해당글의 정보를 얻어온다.
  	BulletinDto dto=BulletinDao.getInstance().bulletin_getData(num);
+ 	String url = request.getParameter("url");
 %>    
 <!DOCTYPE html>
 <html>
@@ -48,8 +49,8 @@
 			</tbody>
 		</table>
 
-		<a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>"><button class="btn btn-primary">수정</button></a>
-		<a href="javascript:deleteConfirm(<%=dto.getNum()%>)"><button class="btn btn-danger">삭제</button></a>
+		<a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&url=<%=url%>"><button class="btn btn-primary">수정</button></a>
+		<a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-danger">삭제</button></a>
 	</div>
 
 </body>
@@ -57,7 +58,7 @@
 	function deleteConfirm(num){
 		var isDelete=confirm(num+" 번 글을 삭제 하시겠습니까?");
 		if(isDelete){
-			location.href="${pageContext.request.contextPath }/writepage/delete.jsp?num="+num;
+			location.href="${pageContext.request.contextPath }/writepage/delete.jsp?num="+num+"&url=<%=url%>";
 		}
 	}
 </script>

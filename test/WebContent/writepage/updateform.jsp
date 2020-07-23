@@ -7,6 +7,7 @@
 	int num=Integer.parseInt(request.getParameter("num"));
  	//BoardDao 객체를 이용해서 수정할 글 정보를 얻어온다.
  	BulletinDto dto=BulletinDao.getInstance().bulletin_getData(num);
+ 	String url = request.getParameter("url");
 %> 
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,7 @@
 <div class="container">
 	<h1>수정 글 페이지.</h1>
 	<hr style="clear:left;"/>
-		<form action="update.jsp?url=" method="post">
+		<form action="update.jsp?url=<%=url %>" method="post">
 	<div class="form-inline">
 		<input type="hidden" name="num" value="<%=dto.getNum()%>"/>
 		<input type="hidden" name="name" value="<%=dto.getName()%>"/>

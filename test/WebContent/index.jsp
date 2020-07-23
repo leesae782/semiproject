@@ -16,7 +16,7 @@
 	List<BulletinDto> list=BulletinDao.getInstance().getLine("funny");
 	
 	
-	String url= request.getRequestURI();  // 현재 url 을  저장함
+	String url= request.getRequestURI() ; // 현재 url 을  저장함
 %>
 <!DOCTYPE html>
 <html>

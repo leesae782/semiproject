@@ -71,12 +71,13 @@ public class BulletinDao {
 			//혹시 row 가 하나도 없으면 null 이 얻어와 지기때문에  null 인 경우 0 으로 
 			//바꿔 줘야 한다.
 			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
-					+ " FROM bulletin_board"
-					+ " WHERE title LIKE '%'||?||'%' OR name LIKE '%'||?||'%'";
+					+ " FROM bulletin_board "
+					+ " WHERE kinds =? and title LIKE '%'||?||'%' OR content LIKE '%'||?||'%'";
 			pstmt = conn.prepareStatement(sql);
-			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-			pstmt.setString(1, dto.getTitle());
-			pstmt.setString(2, dto.getName());
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
+			pstmt.setString(1, dto.getKinds());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getContent());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//결과 값 추출하기 
@@ -115,10 +116,11 @@ public class BulletinDao {
 			//바꿔 줘야 한다.
 			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
 					+ " FROM bulletin_board"
-					+ " WHERE title LIKE '%'||?||'%'";
+					+ " WHERE kinds = ? and title LIKE '%'||?||'%'";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(1, dto.getKinds());
+			pstmt.setString(2, dto.getTitle());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//결과 값 추출하기 
@@ -157,9 +159,10 @@ public class BulletinDao {
 			//바꿔 줘야 한다.
 			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
 					+ " FROM bulletin_board"
-					+ " WHERE name LIKE '%'||?||'%'";
+					+ " WHERE kinds =? and name LIKE '%'||?||'%'";
 			pstmt = conn.prepareStatement(sql);
-			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
+			pstmt.setString(1, dto.getKinds());
 			pstmt.setString(1, dto.getName());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
@@ -419,15 +422,16 @@ public class BulletinDao {
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
 					+ "      FROM (SELECT num,name,title,content,regdate,lookup"
 					+ "            FROM bulletin_board"
-					+ "				WHERE title LIKE '%'||?||'%' OR name LIKE '%'||?||'%'"
+					+ "				WHERE kinds =? and (title LIKE '%'||?||'%' OR content LIKE '%'||?||'%')"
 					+ "            ORDER BY num DESC) result1)"
 					+ " WHERE rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
-			pstmt.setString(1, dto.getTitle());
-			pstmt.setString(2, dto.getName());
-			pstmt.setInt(3, dto.getStartRowNum());
-			pstmt.setInt(4, dto.getEndRowNum());
+			pstmt.setString(1, dto.getKinds());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getContent());
+			pstmt.setInt(4, dto.getStartRowNum());
+			pstmt.setInt(5, dto.getEndRowNum());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
@@ -477,14 +481,15 @@ public class BulletinDao {
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
 					+ "      FROM (SELECT num,name,title,content,regdate,lookup"
 					+ "            FROM bulletin_board"
-					+ "				WHERE title LIKE '%'||?||'%'"
+					+ "				WHERE kinds = ? and title LIKE '%'||?||'%'"
 					+ "            ORDER BY num DESC) result1)"
 					+ " WHERE rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
-			pstmt.setString(1, dto.getTitle());
-			pstmt.setInt(2, dto.getStartRowNum());
-			pstmt.setInt(3, dto.getEndRowNum());
+			pstmt.setString(1, dto.getKinds());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setInt(3, dto.getStartRowNum());
+			pstmt.setInt(4, dto.getEndRowNum());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
@@ -534,14 +539,15 @@ public class BulletinDao {
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
 					+ "      FROM (SELECT num,name,title,content,regdate,lookup"
 					+ "            FROM bulletin_board"
-					+ "				WHERE name LIKE '%'||?||'%'"
+					+ "				WHERE kinds = ? and name LIKE '%'||?||'%'"
 					+ "            ORDER BY num DESC) result1)"
 					+ " WHERE rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
-			pstmt.setString(1, dto.getName());
-			pstmt.setInt(2, dto.getStartRowNum());
-			pstmt.setInt(3, dto.getEndRowNum());
+			pstmt.setString(1, dto.getKinds());
+			pstmt.setString(2, dto.getName());
+			pstmt.setInt(3, dto.getStartRowNum());
+			pstmt.setInt(4, dto.getEndRowNum());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 

@@ -35,6 +35,12 @@ String kinds = "funny";
 	.psge-display ul li.active a{
 		color:red;
 	}
+	.dkssud{
+		background-color: #fbf2ffc4;
+	}
+	.acolor{
+		color : black;
+	}
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -83,7 +89,7 @@ if(!keyword.equals("")){ //만일 키워드가 넘어온다면
 	if(condition.equals("title_name")){
 		//검색 키워드를 FileDto 객체의 필드에 담는다. 
 		dto.setTitle(keyword);
-		dto.setName(keyword);
+		dto.setContent(keyword);
 		//검색 키워드에 맞는 파일 목록 중에서 pageNum 에 해당하는 목록 얻어오기
 		list=BulletinDao.getInstance().getListTF(dto);
 		//검색 키워드에 맞는 전체 글의 갯수를 얻어온다. 
@@ -120,12 +126,7 @@ if(totalPageCount < endPageNum){
 	<div class="row">
    		<div class="col-sm-9" style="margin-top:15px;">
    			<h3>게시판 이용 안내</h3>
-   			<p style="padding:20px;">어쩌구 저쩌구<br />
-	   			<ul>
-	   				<li>1. 욕설및 비방 금지</li>
-	   				<li>2. 도배행위 금</li>
-	   			</ul>	   			
-   			</p>
+   			
    		</div>
 		
    		<div class="col-sm-3" style="margin-top:15px;">
@@ -137,9 +138,9 @@ if(totalPageCount < endPageNum){
    		
 	</div>
 	<div class="col-sm-9">
-		<div>전체0건 / 1페이지</div>
+		
 			<table class="table table-bordered table-hover" style="text-align:center;" >
-				<thead class="thead-light" >
+				<thead class="thead dkssud" >
 					<tr >
 				    	<th width="6%">번호</th>
 				      	<th width="9%">닉네임</th>
@@ -155,7 +156,7 @@ if(totalPageCount < endPageNum){
 			    <tr>
 			      <th><%=tmp.getNum() %></th>
 			      <td><%=tmp.getName() %></td>
-			      <td><a href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getTitle() %></td>
+			      <td><a class ="acolor" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=tmp.getNum()%>&url=<%=url%>"><%=tmp.getTitle() %></td>
 			      <td><%=tmp.getRegdate() %></td>
 			      <td>조회수</td>
 			    </tr>
@@ -163,7 +164,7 @@ if(totalPageCount < endPageNum){
 			  </tbody>
 			  
 			</table>
-			<button style="float:right;"><a href="${pageContext.request.contextPath }/writepage/insertform.jsp">글쓰기</a></button>
+			<button style="float:right;"><a href="${pageContext.request.contextPath }/writepage/insertform.jsp?url=<%=url%>">글쓰기</a></button>
 			
 			
 			
@@ -189,7 +190,7 @@ if(totalPageCount < endPageNum){
 	<form action="funny.jsp" method="get">
 		<label for="condition">검색조건</label>
 		<select name="condition" id="condition">
-			<option value="title_name" <%if(condition.equals("title_name")){ %>selected<%} %>>제목+닉네임</option>
+			<option value="title_name" <%if(condition.equals("title_name")){ %>selected<%} %>>제목+내용</option>
 			<option value="title" <%if(condition.equals("title")){ %>selected<%} %>>제목</option>
 			<option value="name1" <%if(condition.equals("name1")){ %>selected<%} %>>닉네임</option>
 		</select>

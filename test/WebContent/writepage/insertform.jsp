@@ -26,7 +26,7 @@
  	MemberDao dao = MemberDao.getInstance();
  	MemberDto dto =dao.getData(id);
  	String name = dto.getNick();
- 	
+ 	String url = request.getParameter("url");
  %>
 
 <body>
@@ -37,7 +37,7 @@
 	<h1>작성글 페이지.</h1>
 	<hr style="clear:left;"/>
 
-	<form action="insert.jsp" method="post">	
+	<form action="insert.jsp?url=<%=url %>" method="post">	
 	<input type="hidden"  name ="name" value =" <%=name %>"/>
 <div class="form-inline">
 	<select class="form-control" name='kinds' >

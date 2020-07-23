@@ -14,7 +14,7 @@
 	dto.setKinds(kinds);
 	BulletinDao dao = BulletinDao.getInstance();
 	boolean isSuccess = dao.bulletin_insert(dto);
-	
+	String url = request.getParameter("url");
 	/*
 	String cPath=request.getContextPath();
 	response.sendRedirect(cPath+"/funny/funny.jsp");
@@ -30,10 +30,10 @@
 <%if(isSuccess){ %>
 	<script>
 		alert("성공적으로 작성하였습니다.");
-		location.href = "${pageContext.request.contextPath }/funny/funny.jsp"
+		location.href = "<%=url%>"
 	</script>
 <% } else {%>
- <a href="${pageContext.request.contextPath }/index.jsp">실패 다시</a>
+ <a href="${pageContext.request.contextPath }/writepage/insertform.jsp">실패 다시</a>
 <%} %>
 
 </body>
