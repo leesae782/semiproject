@@ -3,14 +3,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String name = request.getParameter("name");
 	String title = request.getParameter("title");
-	String content = request.getParameter("summernote");
+	String content = request.getParameter("content");
+	String kinds= request.getParameter("kinds");
 	BulletinDto dto = new BulletinDto();
-	dto.setBulletin_title(title);
-	dto.setBulletin_content(content);
-	
+	dto.setName(name);
+	dto.setTitle(title);
+	dto.setContent(content);
+	dto.setKinds(kinds);
 	BulletinDao dao = BulletinDao.getInstance();
 	boolean isSuccess = dao.bulletin_insert(dto);
+
 	/*
 	String cPath=request.getContextPath();
 	response.sendRedirect(cPath+"/funny/funny.jsp");
@@ -23,9 +27,11 @@
 <title>index.jsp</title>
 </head>
 <body>
-
 <%if(isSuccess){ %>
-<a href="${pageContext.request.contextPath }/index.jsp">이동</a>
+	<script>
+		alert("성공적으로 작성하였습니다.");
+		location.href = "${pageContext.request.contextPath }/funny/funny.jsp"
+	</script>
 <% } else {%>
  <a href="${pageContext.request.contextPath }/index.jsp">실패 다시</a>
 <%} %>

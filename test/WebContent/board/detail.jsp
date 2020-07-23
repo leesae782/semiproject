@@ -1,3 +1,6 @@
+
+<%@page import="test.memberdao.MemberDao"%>
+<%@page import="test.memberdto.MemberDto"%>
 <%@page import="test.dao.BulletinDao"%>
 <%@page import="test.dto.BulletinDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,25 +10,47 @@
 	int num=Integer.parseInt(request.getParameter("num"));
  	//BoardDao 객체를 이용해서 해당글의 정보를 얻어온다.
  	BulletinDto dto=BulletinDao.getInstance().bulletin_getData(num);
+ 	BulletinDao.getInstance().addViewCount(num);
 %>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>/board/detail.jsp</title>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/font.css" />
 </head>	
 <body>
 	<jsp:include page="../include/navbar.jsp">
 		<jsp:param value="funny" name="thisPage"/>
 	</jsp:include>
 	<div class="container">
-		<p><%=dto.getNum() %></p>
-		<p><%=dto.getName() %></p>
-		<p><%=dto.getBulletin_title() %></p>
-		<p><%=dto.getBulletin_content() %></p>
-		<button><a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>">수정</a></button>
-		<button><a href="javascript:deleteConfirm(<%=dto.getNum()%>)">삭제</a></button>
+		<table class="table">
+			<thead class="d-font">
+			 	<tr>
+			 		<th><%=dto.getTitle() %></th>
+			 	</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>작성자 : <%=dto.getName() %></td>
+					</th>
+				</tr>
+				<tr>
+					<th>일자 : <%=dto.getRegdate() %></th>				
+				</tr>
+				<tr>
+					<td><%=dto.getContent() %></td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>"><button class="btn btn-primary">수정</button></a>
+		<a href="javascript:deleteConfirm(<%=dto.getNum()%>)"><button class="btn btn-danger">삭제</button></a>
 	</div>
 
 </body>

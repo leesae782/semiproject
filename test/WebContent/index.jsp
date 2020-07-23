@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="test.dao.BulletinDao"%>
 <%@page import="test.dto.BulletinDto"%>
 <%@page import="java.util.List"%>
@@ -7,15 +8,24 @@
     pageEncoding="UTF-8"%>
     
 <%
-    	String id = (String)session.getAttribute("id");
-    	MemberDao dao = MemberDao.getInstance();
-    	MemberDto dto = dao.getData(id);
-    	
-    	List<BulletinDto> list=BulletinDao.getInstance().getLine();
-    	
-    	 
-    	String url= request.getRequestURI();  // 현재 url 을  저장함
-    %>
+	String id = (String)session.getAttribute("id");
+	MemberDao dao = MemberDao.getInstance();
+	MemberDto dto = dao.getData(id);
+	List<BulletinDto> list=BulletinDao.getInstance().getLine2();
+	List<BulletinDto> funnylist=BulletinDao.getInstance().getLine("funny");
+	List<BulletinDto> issuelist=BulletinDao.getInstance().getLine("issue");
+	List<BulletinDto> inforlist=BulletinDao.getInstance().getLine("infor");
+	List<BulletinDto> soccerlist=BulletinDao.getInstance().getLine("soccer");
+	List<BulletinDto> baseballlist=BulletinDao.getInstance().getLine("baseball");
+	List<BulletinDto> basketballlist=BulletinDao.getInstance().getLine("basketball");
+	List<BulletinDto> lollist=BulletinDao.getInstance().getLine("lol");
+	List<BulletinDto> baglist=BulletinDao.getInstance().getLine("bag");
+	List<BulletinDto> fifalist=BulletinDao.getInstance().getLine("fifa");
+	List<BulletinDto> freelist=BulletinDao.getInstance().getLine("free");
+	List<BulletinDto> questionlist=BulletinDao.getInstance().getLine("question");
+	
+	String url= request.getRequestURI();  // 현재 url 을  저장함
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +35,11 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/font.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
 </head>
 
 <body>
@@ -65,46 +75,20 @@
    					 <div class="col-sm">
     					  <div class="card" >
  						 	<div class="card-header">
-  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+  								 <span style="color:red;"><string >최신</string></span> 게시글 순위
  			 				</div>
- 								<ul class="list-group">
-									  								<li class="list-group-item d-flex justify-content-between align-items-center">
-   									메가젠임플란트 대표이기도 한 대구 미르치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    에 상당히 도움이 될만한 
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 Cras justo odio
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 에 상당히 도움이 될만한 
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								</ul>
+ 							<ul class="list-group">
+							 	<%for(int i=0; i<list.size(); i++) {
+							 		BulletinDto tmp = list.get(i);
+							 		%>
+							 		<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">14</span>
+								</li>
+									<%} %>	
+								<%} %>
+							</ul>
 						</div>
     				</div>
     				<div class="col-sm">
@@ -157,20 +141,23 @@
  				 
  				 <nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">유머</a>
-    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">이슈</a>
-    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">정보</a>
+    <a class="nav-item nav-link active" id="nav-funny-tab" data-toggle="tab" href="#nav-funny" role="tab" aria-controls="nav-funny" aria-selected="true">축구</a>
+    <a class="nav-item nav-link" id="nav-baseball-tab" data-toggle="tab" href="#nav-baseball" role="tab" aria-controls="nav-baseball" aria-selected="false">야구</a>
+    <a class="nav-item nav-link" id="nav-basketball-tab" data-toggle="tab" href="#nav-basketball" role="tab" aria-controls="nav-basketball" aria-selected="false">농구</a>
+    <a class="nav-item nav-link" id="nav-lol-tab" data-toggle="tab" href="#nav-lol" role="tab" aria-controls="nav-lol" aria-selected="false">LOL</a>
+    <a class="nav-item nav-link" id="nav-bag-tab" data-toggle="tab" href="#nav-bag" role="tab" aria-controls="nav-bag" aria-selected="false">배틀그라운드</a>
+    <a class="nav-item nav-link" id="nav-fifa-tab" data-toggle="tab" href="#nav-fifa" role="tab" aria-controls="nav-fifa" aria-selected="false">FIFA ONLINE</a>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+  <div class="tab-pane fade show active" id="nav-funny" role="tabpanel" aria-labelledby="nav-funny-tab">
  	<div class="row">
  		<div class="col-4">
     		<div class="card" id = "card1-img">
   				<img src="${pageContext.request.contextPath}/images/colon.png" class="card-img-top" alt="무슨파일인지설명">
  			 	<ul class="list-group">
   					<li class="list-group-item d-flex justify-content-between align-items-center">
-   						메가젠임플란트 대표이기도 한 대구 미르치
+						 <a class="f-color" href="/test/board/detail.jsp?num=<%=soccerlist.get(0).getNum() %>"><%=soccerlist.get(0).getTitle() %></a>
    						 <span class="badge badge-primary badge-pill">14</span>
   					</li>
   				</ul>
@@ -179,132 +166,105 @@
     	<div class="col-8">
  <div class="card" id ="card1" >
  							<ul class="list-group">
-  								<li class="list-group-item d-flex justify-content-between align-items-center">
-   									메가젠임플란트 대표이기도 한 대구 미르치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    에 상당히 도움이 될만한 
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 Cras justo odio
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 에 상당히 도움이 될만한 
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								</ul>
+  								<%for(int i=1; i<soccerlist.size(); i++) {
+							 	BulletinDto tmp = soccerlist.get(i);
+							 	%>
+							 	<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">9</span>
+								</li>
+								<%} %>	
+								<%} %>	
+							</ul>
 						</div>
     	</div>
   	</div>	
   							
   </div>
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  <div class="tab-pane fade" id="nav-baseball" role="tabpanel" aria-labelledby="nav-baseball-tab">
   <div class="card"id ="card2" >
  						 	
  							<ul class="list-group">
-  								<li class="list-group-item d-flex justify-content-between align-items-center">
-   									메가젠임플란트 대표이기도 한 대구 미르치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    에 상당히 도움이 될만한 
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 Cras justo odio
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 에 상당히 도움이 될만한 
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								</ul>
+  								<%for(int i=0; i<baseballlist.size(); i++) {
+							 	BulletinDto tmp = baseballlist.get(i);
+							 	%>
+							 	<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">9</span>
+								</li>
+								<%} %>	
+								<%} %>	
+							</ul>
 						</div>
   </div>
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+  <div class="tab-pane fade" id="nav-basketball" role="tabpanel" aria-labelledby="nav-basketball-tab">
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
-  								<li class="list-group-item d-flex justify-content-between align-items-center">
-   									메가젠임플란트 대표이기도 한 대구 미르치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    에 상당히 도움이 될만한 
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 Cras justo odio
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 에 상당히 도움이 될만한 
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								</ul>
+  								<%for(int i=0; i<basketballlist.size(); i++) {
+							 	BulletinDto tmp = basketballlist.get(i);
+							 	%>
+							 	<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">9</span>
+								</li>
+								<%} %>	
+								<%} %>		
+							</ul>
+						</div>
+  </div>
+  <div class="tab-pane fade" id="nav-lol" role="tabpanel" aria-labelledby="nav-lol-tab">
+  <div class="card" id ="card3" >
+ 						 	
+ 							<ul class="list-group">
+  								<%for(int i=0; i<lollist.size(); i++) {
+							 	BulletinDto tmp = lollist.get(i);
+							 	%>
+							 	<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">9</span>
+								</li>
+								<%} %>	
+								<%} %>		
+							</ul>
+						</div>
+  </div>
+  <div class="tab-pane fade" id="nav-bag" role="tabpanel" aria-labelledby="nav-bag-tab">
+  <div class="card" id ="card3" >
+ 						 	
+ 							<ul class="list-group">
+  								<%for(int i=0; i<baglist.size(); i++) {
+							 	BulletinDto tmp = baglist.get(i);
+							 	%>
+							 	<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">9</span>
+								</li>
+								<%} %>	
+								<%} %>		
+							</ul>
+						</div>
+  </div>
+  <div class="tab-pane fade" id="nav-fifa" role="tabpanel" aria-labelledby="nav-fifa-tab">
+  <div class="card" id ="card3" >
+ 						 	
+ 							<ul class="list-group">
+  								<%for(int i=0; i<fifalist.size(); i++) {
+							 	BulletinDto tmp = fifalist.get(i);
+							 	%>
+							 	<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">9</span>
+								</li>
+								<%} %>	
+								<%} %>		
+							</ul>
 						</div>
   </div>
 </div>
@@ -312,16 +272,15 @@
     			<div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								 <span style="color:red;"><string >유머</string></span> 게시판
+  								 <span style="color:red;"><strong >유머</strong></span> 게시판
  			 				</div>
  							<ul class="list-group">
-							 	<%
-							 		for(int i=0; i<list.size(); i++) {
-							 						 		BulletinDto tmp = list.get(i);
-							 	%>
+							 	<%for(int i=0; i<funnylist.size(); i++) {
+							 		BulletinDto tmp = funnylist.get(i);
+							 		%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="" href="funny/funny.jsp?num=<%=tmp.getNum()%>"><%=tmp.getBulletin_title() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">14</span>
 								</li>
 									<%} %>	
@@ -333,163 +292,92 @@
     			<div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+  								 <span style="color:red;"><string >이슈</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
-  								<li class="list-group-item d-flex justify-content-between align-items-center">
-   									메가젠임플란트 대표이기도 한 대구 미르치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    에 상당히 도움이 될만한 
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 Cras justo odio
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 에 상당히 도움이 될만한 
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								</ul>
+  								<%for(int i=0; i<issuelist.size(); i++) {
+							 	BulletinDto tmp = issuelist.get(i);
+							 	%>
+							 	<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">9</span>
+								</li>
+								<%} %>	
+								<%} %>
+							</ul>
 						</div>
     		
     			</div>
    				 <div class="col-sm">
     				<div class="card" >
  						 	<div class="card-header">
-  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+
+  								<span style="color:red;"><string >정보</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
-  								<li class="list-group-item d-flex justify-content-between align-items-center">
-   									메가젠임플란트 대표이기도 한 대구 미르치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    에 상당히 도움이 될만한 
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 Cras justo odio
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 에 상당히 도움이 될만한 
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								</ul>
+  								<%for(int i=0; i<inforlist.size(); i++) {
+							 	BulletinDto tmp = inforlist.get(i);
+							 	%>
+							 	<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">5</span>
+								</li>
+								<%} %>	
+								<%} %>	
+							</ul>
+						</div>
+						
+					
+    			
+    			</div>
+    			
+  			</div> 
+  			 <div class="row">
+    			<div class="col-sm">
+    				<div class="card" >
+ 						 	<div class="card-header">
+  								 <span style="color:red;"><strong >자유</strong></span> 게시판
+ 			 				</div>
+ 							<ul class="list-group">
+							 	<%for(int i=0; i<freelist.size(); i++) {
+							 		BulletinDto tmp = freelist.get(i);
+							 		%>
+							 		<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">14</span>
+								</li>
+									<%} %>	
+								<%} %>
+							</ul>
 						</div>
     			
     			</div>
-  			</div> 
-  			<br /><!-- 두번째줄끝 -->
-  			
- 			<div class="row">
     			<div class="col-sm">
     				<div class="card" >
- 						 <div class="card-header">
-  						LOL
- 			 			</div>
- 						 <div class="card-body">
-                        <p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    	</div>
-					</div>
-    			
-    			</div>
-    			<div class="col-sm">
-    				<div class="card" >
- 						  <div class="card-header">
-  						 배틀그라운드
- 			 			</div>
- 						 <div class="card-body">
-                       			<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    	</div>
-					</div>
+ 						 	<div class="card-header">
+  								 <span style="color:red;"><string >Q&A</string></span> 게시판
+ 			 				</div>
+ 							<ul class="list-group">
+  								<%for(int i=0; i<questionlist.size(); i++) {
+							 	BulletinDto tmp = questionlist.get(i);
+							 	%>
+							 	<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">9</span>
+								</li>
+								<%} %>	
+								<%} %>
+							</ul>
+						</div>
     		
     			</div>
-   				 <div class="col-sm">
-    				<div class="card" >
- 						  <div class="card-header">
-  						 FIFA Online
- 			 			</div>
- 						 <div class="card-body">
-                        		<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    	</div>
-					</div>
-    			
     			</div>
-  			</div> 
-  			<br /><!-- 세번째줄끝 -->
-  			<div class="row">
-    			<div class="col-sm">
-    				<div class="card" >
- 						 <div class="card-header">
-  						축구
- 			 			</div>
- 						 <div class="card-body">
-                        <p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                      		 	<p>운영체제가 Android 입니다.</p>
-                    	</div>
-					</div>
-    			
-    			</div>
-  			</div>
+  			
+
 		</div>
     	<div class="col-sm-3">
     	
@@ -523,19 +411,22 @@
  				<jsp:include page="include/loginstatus.jsp"> 
  					<jsp:param value="<%=url %>" name="url"/>
  				</jsp:include>
-    		
-            
-            
-            
+ 				<br>
+ 				<div class="side_left">
+					<a href="${pageContext.request.contextPath }/sport/soccer.jsp"><img src="${pageContext.request.contextPath }/images/Coim-e2VIAA4NNj2.jpg" alt="" /></a>
+ 					<a href="${pageContext.request.contextPath }/sport/soccer.jsp"><img src="${pageContext.request.contextPath }/images/bo99.jpg" alt="" /></a>
+ 				</div>
             </div>
             
       
         
     		</div>
   	</div>
-	<jsp:include page="/include/footer.jsp">	
+
+  	
+<jsp:include page="/include/footer.jsp">	
 	<jsp:param value="index" name="thisPage"/>
-	</jsp:include>
+</jsp:include>
 	
 
 <!--  기존 로그인 폼

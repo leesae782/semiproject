@@ -6,16 +6,19 @@ public class MemberDto {
 	private String nick;
 	private String email;
 	private String regdate;
+	private String profile;
 	private String newPwd;
 	private int isStop;
 	public MemberDto() {}
-	public MemberDto(String id, String pwd, String nick, String email, String regdate, String newPwd, int isStop) {
+
+	public MemberDto(String id, String pwd, String nick, String email, String regdate, String profile, String newPwd, int isStop) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
 		this.nick = nick;
 		this.email = email;
 		this.regdate = regdate;
+		this.profile = profile;
 		this.newPwd = newPwd;
 		this.isStop = isStop;
 	}
@@ -49,6 +52,12 @@ public class MemberDto {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	public String getNewPwd() {
 		return newPwd;
 	}
@@ -61,6 +70,7 @@ public class MemberDto {
 	public void setIsStop(int isStop) {
 		this.isStop = isStop;
 	}
+	
 	
 	
 }
