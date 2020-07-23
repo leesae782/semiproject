@@ -5,12 +5,7 @@ CREATE TABLE bulletin_board
     title      VARCHAR2(80)    NOT NULL, 
     content    CLOB            NULL, 
     regdate    DATE            NOT NULL, 
-<<<<<<< HEAD
-=======
-    recom      NUMBER          NULL, 
->>>>>>> refs/heads/master
     lookup     NUMBER          NULL, 
-
     kinds      VARCHAR2(20)    NOT NULL, 
     CONSTRAINT BULLETIN_BOARD_PK PRIMARY KEY (num)
 );

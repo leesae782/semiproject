@@ -17,6 +17,37 @@ public class BulletinDao {
 		}
 		return dao;
 	}
+	//글 조회수 1 증가 시키는 메소드
+		public boolean addViewCount(int num) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			int flag = 0;
+			try {
+				conn = new DbcpBean().getConn();
+				String sql = "UPDATE bulletin_board"
+						+ " SET lookup=lookup+1"
+						+ " WHERE num=?";
+				pstmt = conn.prepareStatement(sql);
+				// ? 에 값 바인딩 하기
+				pstmt.setInt(1, num);
+				flag = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (Exception e) {
+				}
+			}
+			if (flag > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	public int getCount() {
 		//전체 row  의 갯수를 담을 지역 변수 
 		int count=0;
@@ -266,7 +297,7 @@ public class BulletinDao {
 				//Connection 객체의 참조값 얻어오기 
 				conn = new DbcpBean().getConn();
 				//실행할 sql 문 준비하기
-				String sql = "SELECT name,title,content,regdate"
+				String sql = "SELECT name,title,content,regdate,lookup"
 						+ " FROM bulletin_board"
 						+ " WHERE num=?";
 				pstmt = conn.prepareStatement(sql);
@@ -282,6 +313,7 @@ public class BulletinDao {
 					dto.setTitle(rs.getString("title"));
 					dto.setContent(rs.getString("content"));
 					dto.setRegdate(rs.getString("regdate"));
+					dto.setLookup(rs.getInt("lookup"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -553,7 +585,6 @@ public class BulletinDao {
 				tmp.setTitle(rs.getString("title"));
 				tmp.setContent(rs.getString("content"));
 				tmp.setRegdate(rs.getString("regdate"));
-				
 				tmp.setLookup(rs.getInt("lookup"));
 				//ArrayList 객체에 누적 시킨다. 
 				list.add(tmp);
@@ -585,8 +616,8 @@ public class BulletinDao {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
 			String sql = "INSERT INTO bulletin_board"
-					+ " (num, name, title, content, regdate,kinds)"
-					+ " VALUES(bulletin_board_seq.NEXTVAL,?, ?, ?, SYSDATE,?)";
+					+ " (num, name, title, content, regdate,lookup,kinds)"
+					+ " VALUES(bulletin_board_seq.NEXTVAL,?, ?, ?, 0,SYSDATE,?)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩 한다.
 			pstmt.setString(1, dto.getName());

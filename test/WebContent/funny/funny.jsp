@@ -159,7 +159,7 @@ if(totalPageCount < endPageNum){
 			      <td><%=tmp.getName() %></td>
 			      <td><a href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getTitle() %></td>
 			      <td><%=tmp.getRegdate() %></td>
-			      <td>조회수</td>
+			      <td><%=tmp.getLookup()%></td>
 			    </tr>
 			    <%} %>
 			  </tbody>
