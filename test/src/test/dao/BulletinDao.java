@@ -316,7 +316,7 @@ public class BulletinDao {
 					+ " ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-
+			
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
@@ -326,7 +326,7 @@ public class BulletinDao {
 				dto.setName(rs.getString("name"));
 				dto.setTitle(rs.getString("title"));
 				dto.setRegdate(rs.getString("regdate"));
-				
+	
 				dto.setKinds(rs.getString("kinds"));
 				list.add(dto);
 			}
