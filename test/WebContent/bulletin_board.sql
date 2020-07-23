@@ -1,6 +1,6 @@
 CREATE TABLE bulletin_board
 (
-    num        NUMBER          PRIMARY KEY, 
+    num        NUMBER          NOT NULL, 
     name       VARCHAR2(40)    NOT NULL, 
     title      VARCHAR2(80)    NOT NULL, 
     content    CLOB            NULL, 

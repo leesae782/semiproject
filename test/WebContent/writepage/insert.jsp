@@ -14,7 +14,7 @@
 	dto.setKinds(kinds);
 	BulletinDao dao = BulletinDao.getInstance();
 	boolean isSuccess = dao.bulletin_insert(dto);
-	
+
 	/*
 	String cPath=request.getContextPath();
 	response.sendRedirect(cPath+"/funny/funny.jsp");
