@@ -438,7 +438,7 @@ public class BulletinDao {
 			String sql = "SELECT *"
 					+ " FROM"
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
-					+ "      FROM (SELECT num,name,title,content,regdate,kinds"
+					+ "      FROM (SELECT num,name,title,content,regdate,lookup,kinds"
 					+ "            FROM bulletin_board WHERE kinds=?"
 					+ "            ORDER BY num DESC) result1)"
 					+ "   where rnum BETWEEN ? AND ?";
@@ -459,6 +459,7 @@ public class BulletinDao {
 				tmp.setTitle(rs.getString("title"));
 				tmp.setContent(rs.getString("content"));
 				tmp.setRegdate(rs.getString("regdate"));
+				tmp.setLookup(rs.getInt("lookup"));
 				tmp.setKinds(rs.getString("kinds"));
 				
 				//ArrayList 객체에 누적 시킨다. 
@@ -666,8 +667,8 @@ public class BulletinDao {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
 			String sql = "INSERT INTO bulletin_board"
-					+ " (num, name, title, content, regdate,kinds)"
-					+ " VALUES(bulletin_board_seq.NEXTVAL,?, ?, ?, SYSDATE,?)";
+					+ " (num, name, title, content, regdate,lookup,kinds)"
+					+ " VALUES(bulletin_board_seq.NEXTVAL,?, ?, ?, SYSDATE,0,?)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩 한다.
 			pstmt.setString(1, dto.getName());

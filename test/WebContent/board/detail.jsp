@@ -12,6 +12,7 @@
  	BulletinDto dto=BulletinDao.getInstance().bulletin_getData(num);
  	String url = request.getParameter("url");
  	BulletinDao.getInstance().addViewCount(num);
+ 	
 %>    
 <!DOCTYPE html>
 <html>
