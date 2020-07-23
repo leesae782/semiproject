@@ -61,13 +61,15 @@ int endRowNum=pageNum*PAGE_ROW_COUNT;
 /*
 	검색 키워드에 관련된 처리 
 */
-String keyword=request.getParameter("keyword");
+String keyword=request.getParameter("keyword"); //검색 키워드
+String condition=request.getParameter("condition"); //검색 조건
 if(keyword==null){//전달된 키워드가 없다면 
 	keyword=""; //빈 문자열을 넣어준다. 
+	condition="";
 }
 //인코딩된 키워드를 미리 만들어 둔다. 
 String encodedK=URLEncoder.encode(keyword);
-String condition=request.getParameter("condition");
+
 //검색 키워드와 startRowNum, endRowNum 을 담을 bulletin_dto 객체 생성
 BulletinDto dto=new BulletinDto();
 dto.setStartRowNum(startRowNum);
@@ -79,7 +81,7 @@ List<BulletinDto> list=null;
 int totalRow=0; 
 if(!keyword.equals("")){ //만일 키워드가 넘어온다면 
 	if(condition.equals("title_name")){
-		//검색 키워드를 bulletin_dto 객체의 필드에 담는다. 
+		//검색 키워드를 FileDto 객체의 필드에 담는다. 
 		dto.setTitle(keyword);
 		dto.setName(keyword);
 		//검색 키워드에 맞는 파일 목록 중에서 pageNum 에 해당하는 목록 얻어오기
@@ -90,18 +92,14 @@ if(!keyword.equals("")){ //만일 키워드가 넘어온다면
 		dto.setTitle(keyword);
 		list=BulletinDao.getInstance().getListT(dto);
 		totalRow=BulletinDao.getInstance().getCountT(dto);
-	}else if(condition.equals("name")){
+	}else if(condition.equals("name1")){
 		dto.setName(keyword);
 		list=BulletinDao.getInstance().getListW(dto);
 		totalRow=BulletinDao.getInstance().getCountW(dto);
 	}
 }else{//검색 키워드가 없으면 전체 목록을 얻어온다.
-	condition="";
-	keyword="";
 	list=BulletinDao.getInstance().getList(dto);
-	totalRow=BulletinDao.getInstance().getCount();
-	
-	
+	totalRow=BulletinDao.getInstance().getCount(kinds);
 }	
 //전체 페이지의 갯수 구하기
 int totalPageCount=
@@ -166,6 +164,9 @@ if(totalPageCount < endPageNum){
 			  
 			</table>
 			<button style="float:right;"><a href="${pageContext.request.contextPath }/writepage/insertform.jsp">글쓰기</a></button>
+			
+			
+			
 			<div class="page-display">
 				<ul>
 				<%if(startPageNum != 1){ %>
@@ -188,9 +189,9 @@ if(totalPageCount < endPageNum){
 	<form action="funny.jsp" method="get">
 		<label for="condition">검색조건</label>
 		<select name="condition" id="condition">
-			<option value="title_name" <%if(condition.equals("title_filename")){ %>selected<%} %>>제목+닉네임</option>
+			<option value="title_name" <%if(condition.equals("title_name")){ %>selected<%} %>>제목+닉네임</option>
 			<option value="title" <%if(condition.equals("title")){ %>selected<%} %>>제목</option>
-			<option value="name" <%if(condition.equals("name")){ %>selected<%} %>>닉네임</option>
+			<option value="name1" <%if(condition.equals("name1")){ %>selected<%} %>>닉네임</option>
 		</select>
 		<input value="<%=keyword %>" type="text" name="keyword" placeholder="검색어..."/>
 		<button type="submit">검색</button>

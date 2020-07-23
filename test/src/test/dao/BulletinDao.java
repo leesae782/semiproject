@@ -48,7 +48,7 @@ public class BulletinDao {
 				return false;
 			}
 		}
-	public int getCount() {
+	public int getCount(String kinds) {
 		//전체 row  의 갯수를 담을 지역 변수 
 		int count=0;
 		//필요한 객체의 참조값을 담을 지역변수 만들기 
@@ -62,10 +62,10 @@ public class BulletinDao {
 			//혹시 row 가 하나도 없으면 null 이 얻어와 지기때문에  null 인 경우 0 으로 
 			//바꿔 줘야 한다.
 			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
-					+ " FROM bulletin_board";
+					+ " FROM bulletin_board where kinds=?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-
+			pstmt.setString(1, kinds);
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//결과 값 추출하기 
@@ -348,7 +348,7 @@ public class BulletinDao {
 					+ " ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-
+			
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
@@ -358,7 +358,7 @@ public class BulletinDao {
 				dto.setName(rs.getString("name"));
 				dto.setTitle(rs.getString("title"));
 				dto.setRegdate(rs.getString("regdate"));
-				
+	
 				dto.setKinds(rs.getString("kinds"));
 				list.add(dto);
 			}
@@ -393,9 +393,9 @@ public class BulletinDao {
 					+ " FROM"
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
 					+ "      FROM (SELECT num,name,title,content,regdate,kinds"
-					+ "            FROM bulletin_board"
+					+ "            FROM bulletin_board WHERE kinds=?"
 					+ "            ORDER BY num DESC) result1)"
-					+ " WHERE kinds=? and rnum BETWEEN ? AND ?";
+					+ "   where rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
 			pstmt.setString(1, dto.getKinds());
