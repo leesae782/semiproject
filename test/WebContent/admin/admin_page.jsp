@@ -62,12 +62,12 @@
 				<td>	
 					<div>
 						<%if(tmp.getIsStop()==0){ %>
-						<a class="btn btn-primary" href="admincontrol.jsp?data=<%=tmp.getId() %>&select=정지">정지</a>
+						<a class="btn btn-primary" href="private/admin_control.jsp?data=<%=tmp.getId() %>&select=정지">정지</a>
 						<%}else if(tmp.getIsStop()==1){ %>
-						<a class="btn btn-warning" href="admincontrol.jsp?data=<%=tmp.getId() %>&select=정지">정지</a>
+						<a class="btn btn-warning" href="private/admin_control.jsp?data=<%=tmp.getId() %>&select=정지">정지</a>
 						<%} %>
 						
-						<a class="btn btn-danger" href="admincontrol.jsp?data=<%=tmp.getId() %>&select=탈퇴">탈퇴</a>
+						<a class="btn btn-danger" href="private/admin_control.jsp?data=<%=tmp.getId() %>&select=탈퇴">탈퇴</a>
 					</div>
 				</td>
 			</tr>
@@ -75,6 +75,7 @@
 		</tbody>
 	</table>
 </div>
+
 
 <jsp:include page="/include/footer.jsp">
 	<jsp:param value="index" name="thisPage"/>

@@ -13,16 +13,17 @@
 			dto.setId(id);
 			dto.setIsStop(1);
 			MemberDao.getInstance().isStop(dto);
-			response.sendRedirect("adminPage.jsp");
+			response.sendRedirect("private/admin_page.jsp");
 			break;
 		case 1:
 			dto.setId(id);
 			dto.setIsStop(0);
 			MemberDao.getInstance().isStop(dto);
-			response.sendRedirect("adminPage.jsp");
+			response.sendRedirect("private/admin_page.jsp");
 			break;
 		}
 	}else if(select.equals("탈퇴")){
-		
+		MemberDao.getInstance().delete(id);
+		response.sendRedirect("private/admin_page.jsp");
 	}
 %>
