@@ -5,19 +5,16 @@
 <html lang="utf-8">
 <head>
 	<meta charset="uft-8" />
-	<title>summernote</title>
+	<title>/writepage/insertform</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
-	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
-	
-	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/js/jquery-3.5.1.js" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/js/jquery.form.min.js" />
 	
 </head>
 
 <style>
 	#content{
-		width: 95%;
+		width: 99.5%;
 		height: 300px;
 	}
 </style>
@@ -34,17 +31,16 @@
 
 <body>
 <jsp:include page="/include/navbar.jsp">
-	<jsp:param value="index" name="thisPage"/>
+	<jsp:param value="insertform" name="thisPage"/>
 </jsp:include>
 <div class="container">
-	<h1>글쓰기</h1>
-	<form action="insert.jsp" method="post">
-	
+	<h1>작성글 페이지.</h1>
+	<hr style="clear:left;"/>
+
+	<form action="insert.jsp" method="post">	
 	<input type="hidden"  name ="name" value =" <%=name %>"/>
-	<div class="form-group">
-		<label for="title">제목</label>
-		<input type="text" name = "title" id = "title" />
-		<select name='kinds'>
+<div class="form-inline">
+	<select class="form-control" name='kinds' >
 	  <option selected value='funny'>유머</option>
 	  <option value='issue'>이슈</option>
 	  <option value='infor'>정보</option>
@@ -58,15 +54,19 @@
 	  <option value='question'>QnA</option>
 	  
 	</select>
-	</div>
+		<label for="title"></label>
+		<input class="form-control"  type="text" name = "title" id = "title" style="width: 70%" placeholder="제목" />
+</div>
 	
 	<div class="form-group">
-		<label for="content">내용</label>
+		<label for="content"></label>
 		<textarea name = "content" id = "content" cols="30" rows="10" /></textarea>
 	</div>
-	<button type="submit" onclick="submitContents(this);">글쓰기</button>
+	
+	<button type="submit" class="btn btn-success" onclick="submitContents(this);">글쓰기</button>
 	</form>
 </div>
+
 <%--
 	[ SmartEditor 를 사용하기 위한 설정 ]
 	

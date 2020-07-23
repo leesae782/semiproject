@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="test.dao.BulletinDao"%>
 <%@page import="test.dto.BulletinDto"%>
 <%@page import="java.util.List"%>
@@ -10,9 +11,19 @@
 	String id = (String)session.getAttribute("id");
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.getData(id);
-	
-	List<BulletinDto> list=BulletinDao.getInstance().getLine();
-	
+	List<BulletinDto> list=BulletinDao.getInstance().getLine2();
+	List<BulletinDto> funnylist=BulletinDao.getInstance().getLine("funny");
+	List<BulletinDto> issuelist=BulletinDao.getInstance().getLine("issue");
+	List<BulletinDto> inforlist=BulletinDao.getInstance().getLine("infor");
+	List<BulletinDto> soccerlist=BulletinDao.getInstance().getLine("soccer");
+	List<BulletinDto> baseballlist=BulletinDao.getInstance().getLine("baseball");
+	List<BulletinDto> basketballlist=BulletinDao.getInstance().getLine("basketball");
+	List<BulletinDto> lollist=BulletinDao.getInstance().getLine("lol");
+	List<BulletinDto> baglist=BulletinDao.getInstance().getLine("bag");
+	List<BulletinDto> fifalist=BulletinDao.getInstance().getLine("fifa");
+	List<BulletinDto> freelist=BulletinDao.getInstance().getLine("free");
+	List<BulletinDto> questionlist=BulletinDao.getInstance().getLine("question");
+
 	
 	String url= request.getRequestURI();  // 현재 url 을  저장함
 %>
@@ -65,46 +76,20 @@
    					 <div class="col-sm">
     					  <div class="card" >
  						 	<div class="card-header">
-  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+  								 <span style="color:red;"><string >최신</string></span> 게시글 순위
  			 				</div>
- 								<ul class="list-group">
-									  								<li class="list-group-item d-flex justify-content-between align-items-center">
-   									메가젠임플란트 대표이기도 한 대구 미르치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    에 상당히 도움이 될만한 
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 Cras justo odio
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 에 상당히 도움이 될만한 
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								</ul>
+ 							<ul class="list-group">
+							 	<%for(int i=0; i<list.size(); i++) {
+							 		BulletinDto tmp = list.get(i);
+							 		%>
+							 		<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">14</span>
+								</li>
+									<%} %>	
+								<%} %>
+							</ul>
 						</div>
     				</div>
     				<div class="col-sm">
@@ -173,7 +158,7 @@
   				<img src="${pageContext.request.contextPath}/images/colon.png" class="card-img-top" alt="무슨파일인지설명">
  			 	<ul class="list-group">
   					<li class="list-group-item d-flex justify-content-between align-items-center">
-   						메가젠임플란트 대표이기도 한 대구 미르치
+						 <a class="f-color" href="/test/board/detail.jsp?num=<%=soccerlist.get(0).getNum() %>"><%=soccerlist.get(0).getTitle() %></a>
    						 <span class="badge badge-primary badge-pill">14</span>
   					</li>
   				</ul>
@@ -182,12 +167,12 @@
     	<div class="col-8">
  <div class="card" id ="card1" >
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=1; i<soccerlist.size(); i++) {
+							 	BulletinDto tmp = soccerlist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="sport/soccer.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -202,12 +187,12 @@
   <div class="card"id ="card2" >
  						 	
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<baseballlist.size(); i++) {
+							 	BulletinDto tmp = baseballlist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="sport/baseball.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -219,12 +204,12 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<basketballlist.size(); i++) {
+							 	BulletinDto tmp = basketballlist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="sport/basketball.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -236,12 +221,12 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<lollist.size(); i++) {
+							 	BulletinDto tmp = lollist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="game/lol.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -253,12 +238,12 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<baglist.size(); i++) {
+							 	BulletinDto tmp = baglist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="game/bag.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -270,12 +255,12 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<fifalist.size(); i++) {
+							 	BulletinDto tmp = fifalist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="game/fifa.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -291,12 +276,12 @@
   								 <span style="color:red;"><strong >유머</strong></span> 게시판
  			 				</div>
  							<ul class="list-group">
-							 	<%for(int i=0; i<list.size(); i++) {
-							 		BulletinDto tmp = list.get(i);
+							 	<%for(int i=0; i<funnylist.size(); i++) {
+							 		BulletinDto tmp = funnylist.get(i);
 							 		%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="funny/funny.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">14</span>
 								</li>
 									<%} %>	
@@ -311,12 +296,12 @@
   								 <span style="color:red;"><string >이슈</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<issuelist.size(); i++) {
+							 	BulletinDto tmp = issuelist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="funny/issue.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
@@ -332,21 +317,67 @@
   								<span style="color:red;"><string >정보</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
-  								<%for(int i=0; i<list.size(); i++) {
-							 	BulletinDto tmp = list.get(i);
+  								<%for(int i=0; i<inforlist.size(); i++) {
+							 	BulletinDto tmp = inforlist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="funny/infor.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">5</span>
 								</li>
 								<%} %>	
 								<%} %>	
 							</ul>
 						</div>
+						
+					
     			
     			</div>
+    			
   			</div> 
+  			 <div class="row">
+    			<div class="col-sm">
+    				<div class="card" >
+ 						 	<div class="card-header">
+  								 <span style="color:red;"><strong >자유</strong></span> 게시판
+ 			 				</div>
+ 							<ul class="list-group">
+							 	<%for(int i=0; i<freelist.size(); i++) {
+							 		BulletinDto tmp = freelist.get(i);
+							 		%>
+							 		<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">14</span>
+								</li>
+									<%} %>	
+								<%} %>
+							</ul>
+						</div>
+    			
+    			</div>
+    			<div class="col-sm">
+    				<div class="card" >
+ 						 	<div class="card-header">
+  								 <span style="color:red;"><string >Q&A</string></span> 게시판
+ 			 				</div>
+ 							<ul class="list-group">
+  								<%for(int i=0; i<questionlist.size(); i++) {
+							 	BulletinDto tmp = questionlist.get(i);
+							 	%>
+							 	<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<span class="badge badge-primary badge-pill">9</span>
+								</li>
+								<%} %>	
+								<%} %>
+							</ul>
+						</div>
+    		
+    			</div>
+    			</div>
+  			
 
 		</div>
     	<div class="col-sm-3">

@@ -17,7 +17,38 @@ public class BulletinDao {
 		}
 		return dao;
 	}
-	public int getCount() {
+	//글 조회수 1 증가 시키는 메소드
+		public boolean addViewCount(int num) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			int flag = 0;
+			try {
+				conn = new DbcpBean().getConn();
+				String sql = "UPDATE bulletin_board"
+						+ " SET lookup=lookup+1"
+						+ " WHERE num=?";
+				pstmt = conn.prepareStatement(sql);
+				// ? 에 값 바인딩 하기
+				pstmt.setInt(1, num);
+				flag = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (Exception e) {
+				}
+			}
+			if (flag > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	public int getCount(String kinds) {
 		//전체 row  의 갯수를 담을 지역 변수 
 		int count=0;
 		//필요한 객체의 참조값을 담을 지역변수 만들기 
@@ -31,10 +62,10 @@ public class BulletinDao {
 			//혹시 row 가 하나도 없으면 null 이 얻어와 지기때문에  null 인 경우 0 으로 
 			//바꿔 줘야 한다.
 			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
-					+ " FROM bulletin_board";
+					+ " FROM bulletin_board where kinds=?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-
+			pstmt.setString(1, kinds);
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//결과 값 추출하기 
@@ -301,7 +332,7 @@ public class BulletinDao {
 	
 	//게시판 리스트 불러오기
 
-	public List<BulletinDto> getLine(){
+	public List<BulletinDto> getLine(String kinds){
 		List<BulletinDto> list = new ArrayList<>();
 		//필요한 객체의 참조값을 담을 지역변수 만들기 
 		Connection conn = null;
@@ -312,11 +343,11 @@ public class BulletinDao {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
 			String sql = "SELECT num,name,title,regdate,kinds"
-					+ " FROM bulletin_board"
+					+ " FROM bulletin_board where kinds =?"
 					+ " ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-
+			pstmt.setString(1, kinds);
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
@@ -345,6 +376,50 @@ public class BulletinDao {
 		 	}
 			return list;
 		}
+		//게시판 리스트 불러오기
+
+		public List<BulletinDto> getLine2(){
+			List<BulletinDto> list = new ArrayList<>();
+			//필요한 객체의 참조값을 담을 지역변수 만들기 
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				//Connection 객체의 참조값 얻어오기 
+				conn = new DbcpBean().getConn();
+				//실행할 sql 문 준비하기
+				String sql = "SELECT num,name,title,regdate,kinds"
+						+ " FROM bulletin_board"
+						+ " ORDER BY num DESC";
+				pstmt = conn.prepareStatement(sql);
+				//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+				//select 문 수행하고 결과 받아오기 
+				rs = pstmt.executeQuery();
+				//반복문 돌면서 결과 값 추출하기 
+				while (rs.next()) {
+					BulletinDto dto = new BulletinDto();
+					dto.setNum(rs.getInt("num"));
+					dto.setName(rs.getString("name"));
+					dto.setTitle(rs.getString("title"));
+					dto.setRegdate(rs.getString("regdate"));
+					dto.setKinds(rs.getString("kinds"));
+					list.add(dto);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (rs != null)
+						rs.close();
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (Exception e) {
+					}
+			 	}
+				return list;
+			}
 		
 	public List<BulletinDto> getList(BulletinDto dto){
 		//파일 목록을 담을 ArrayList  객체 생성 
@@ -361,9 +436,9 @@ public class BulletinDao {
 					+ " FROM"
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
 					+ "      FROM (SELECT num,name,title,content,regdate,kinds"
-					+ "            FROM bulletin_board"
+					+ "            FROM bulletin_board WHERE kinds=?"
 					+ "            ORDER BY num DESC) result1)"
-					+ " WHERE kinds=? and rnum BETWEEN ? AND ?";
+					+ "   where rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
 			pstmt.setString(1, dto.getKinds());
@@ -475,7 +550,7 @@ public class BulletinDao {
 			String sql = "SELECT *"
 					+ " FROM"
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
-					+ "      FROM (SELECT num,name,title,content,regdate,recom,lookup"
+					+ "      FROM (SELECT num,name,title,content,regdate,lookup"
 					+ "            FROM bulletin_board"
 					+ "				WHERE title LIKE '%'||?||'%'"
 					+ "            ORDER BY num DESC) result1)"
@@ -586,8 +661,7 @@ public class BulletinDao {
 			//실행할 sql 문 준비하기
 			String sql = "INSERT INTO bulletin_board"
 					+ " (num, name, title, content, regdate,kinds)"
-					+ " VALUES(bulletin_board_seq.NEXTVAL,?, ?, ?, TO_CHAR(SYSDATE , 'YY\" 년 \"MM\" 월 \"DD\" 일 \" HH24\" 시 \"MI\" 분\r\n" + 
-					"\"SS\" 초 \"') D ,?)";
+					+ " VALUES(bulletin_board_seq.NEXTVAL,?, ?, ?, SYSDATE,?)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩 한다.
 			pstmt.setString(1, dto.getName());

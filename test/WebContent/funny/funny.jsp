@@ -99,7 +99,8 @@ if(!keyword.equals("")){ //만일 키워드가 넘어온다면
 	}
 }else{//검색 키워드가 없으면 전체 목록을 얻어온다.
 	list=BulletinDao.getInstance().getList(dto);
-	totalRow=BulletinDao.getInstance().getCount();
+
+	totalRow=BulletinDao.getInstance().getCount(kinds);
 }	
 //전체 페이지의 갯수 구하기
 int totalPageCount=
@@ -157,7 +158,7 @@ if(totalPageCount < endPageNum){
 			      <td><%=tmp.getName() %></td>
 			      <td><a href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=tmp.getNum()%>"><%=tmp.getTitle() %></td>
 			      <td><%=tmp.getRegdate() %></td>
-			      <td>조회수</td>
+			      <td><%=tmp.getLookup()%></td>
 			    </tr>
 			    <%} %>
 			  </tbody>

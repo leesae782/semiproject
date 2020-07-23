@@ -14,34 +14,40 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
-	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
 	
 	<style>
 	#content{
-		width: 95%;
-		height: 300px;
+		width: 99.5%;
+		height: 500px;
 	}
 </style>
 </head>
 <body>
-	<div style="width: 60%; margin: auto;">
+<jsp:include page="/include/navbar.jsp">
+	<jsp:param value="insertform" name="thisPage"/>
+</jsp:include>
+<div class="container">
+	<h1>수정 글 페이지.</h1>
+	<hr style="clear:left;"/>
 		<form action="update.jsp?url=" method="post">
+	<div class="form-inline">
 		<input type="hidden" name="num" value="<%=dto.getNum()%>"/>
 		<input type="hidden" name="name" value="<%=dto.getName()%>"/>
-		<input type="text" id="num" value="<%=dto.getNum() %>" disabled/>
-		<input type="text" id="name"  value="<%=dto.getName() %>" disabled/>
-		<input type="text" name="title" id="title" style="width: 40%;" value="<%=dto.getTitle() %>"/>
+		<input class="form-control" type="text" id="num" style="width: 8%" value="<%=dto.getNum() %>" disabled/>
+		<input class="form-control" type="text" id="name" style="width: 10%"  value="<%=dto.getName() %>" disabled/>
+		<input class="form-control" type="text" name="title" id="title" style="width: 40%;" value="<%=dto.getTitle() %>"/>	
+	</div>
 		<div class="form-group">
-		<label for="content">내용</label>
-		<textarea name = "content" id = "content" cols="30" rows="10" value="" /><%=dto.getContent() %></textarea>
+			<label for="content"></label>
+			<textarea name = "content" id = "content" cols="30" rows="10" value="" /><%=dto.getContent() %></textarea>
 		</div>
-		<button type="submit" onclick="submitContents(this);">수정</button>
-
-		<button type ="reset"> 취소</button>
+		<button type="submit" class="btn btn-success" onclick="submitContents(this);">수정</button>
+		<button class="btn btn-danger" type ="reset"> 취소</button>
 		</form>
-		</div> 
+</div> 
+
 		
 		<%--
 	[ SmartEditor 를 사용하기 위한 설정 ]
@@ -111,5 +117,8 @@
 		oEditors.getById["content"].setDefaultFont(sDefaultFont, nFontSize);
 	}
 </script>
+<jsp:include page="/include/footer.jsp">
+	<jsp:param value="index" name="thisPage"/>
+</jsp:include>
 </body>
 </html>
