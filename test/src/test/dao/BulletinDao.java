@@ -344,12 +344,8 @@ public class BulletinDao {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
 			String sql = "SELECT num,name,title,regdate,kinds"
-<<<<<<< HEAD
 					+ " FROM bulletin_board"
 					+ " WHERE kinds=?"
-=======
-					+ " FROM bulletin_board where kinds =?"
->>>>>>> refs/heads/master
 					+ " ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
