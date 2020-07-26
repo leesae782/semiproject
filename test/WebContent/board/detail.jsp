@@ -11,7 +11,8 @@
  	//BoardDao 객체를 이용해서 해당글의 정보를 얻어온다.
  	BulletinDto dto=BulletinDao.getInstance().bulletin_getData(num);
  	String url = request.getParameter("url");
- 	 	BulletinDao.getInstance().addViewCount(num);
+ 	 BulletinDao.getInstance().addViewCount(num);
+ 	String kinds =request.getParameter("kinds");
 %>    
 <!DOCTYPE html>
 <html>
@@ -19,12 +20,17 @@
 <meta charset="UTF-8">
 <title>/board/detail.jsp</title>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/bootstrap.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/font.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
 </head>	
 <body>
 	<jsp:include page="../include/navbar.jsp">
-		<jsp:param value="funny" name="thisPage"/>
+		<jsp:param value="<%=kinds %>" name="thisPage"/>
 	</jsp:include>
 	<div class="container">
 		<table class="table">
@@ -50,7 +56,7 @@
 			</tbody>
 		</table>
 
-		<a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&url=<%=url%>"><button class="btn btn-primary">수정</button></a>
+		<a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&url=<%=url%>&kinds=<%=kinds%>"><button class="btn btn-primary">수정</button></a>
 		<a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-danger">삭제</button></a>
 	</div>
 
