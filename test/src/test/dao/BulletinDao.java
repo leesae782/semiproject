@@ -102,12 +102,13 @@ public class BulletinDao {
 			//혹시 row 가 하나도 없으면 null 이 얻어와 지기때문에  null 인 경우 0 으로 
 			//바꿔 줘야 한다.
 			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
-					+ " FROM bulletin_board"
-					+ " WHERE title LIKE '%'||?||'%' OR name LIKE '%'||?||'%'";
+					+ " FROM bulletin_board "
+					+ " WHERE kinds =? and title LIKE '%'||?||'%' OR content LIKE '%'||?||'%'";
 			pstmt = conn.prepareStatement(sql);
-			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-			pstmt.setString(1, dto.getTitle());
-			pstmt.setString(2, dto.getName());
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
+			pstmt.setString(1, dto.getKinds());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getContent());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//결과 값 추출하기 
@@ -146,10 +147,11 @@ public class BulletinDao {
 			//바꿔 줘야 한다.
 			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
 					+ " FROM bulletin_board"
-					+ " WHERE title LIKE '%'||?||'%'";
+					+ " WHERE kinds = ? and title LIKE '%'||?||'%'";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(1, dto.getKinds());
+			pstmt.setString(2, dto.getTitle());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//결과 값 추출하기 
@@ -188,9 +190,10 @@ public class BulletinDao {
 			//바꿔 줘야 한다.
 			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
 					+ " FROM bulletin_board"
-					+ " WHERE name LIKE '%'||?||'%'";
+					+ " WHERE kinds =? and name LIKE '%'||?||'%'";
 			pstmt = conn.prepareStatement(sql);
-			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
+			pstmt.setString(1, dto.getKinds());
 			pstmt.setString(1, dto.getName());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
@@ -297,8 +300,12 @@ public class BulletinDao {
 				//Connection 객체의 참조값 얻어오기 
 				conn = new DbcpBean().getConn();
 				//실행할 sql 문 준비하기
-				String sql = "SELECT name,title,content,regdate"
-						+ " FROM bulletin_board"
+				String sql = "SELECT result1.*"
+						+ " FROM"
+						+ "     (SELECT num,name,title,content,lookup,regdate,"
+						+ "      LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,"
+						+ "      LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum"
+						+ "      FROM bulletin_board) result1"
 						+ " WHERE num=?";
 				pstmt = conn.prepareStatement(sql);
 				//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
@@ -313,6 +320,8 @@ public class BulletinDao {
 					dto.setTitle(rs.getString("title"));
 					dto.setContent(rs.getString("content"));
 					dto.setRegdate(rs.getString("regdate"));
+					dto.setPrevNum(rs.getInt("prevNum"));
+					dto.setNextNum(rs.getInt("nextNum"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -435,7 +444,7 @@ public class BulletinDao {
 			String sql = "SELECT *"
 					+ " FROM"
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
-					+ "      FROM (SELECT num,name,title,content,regdate,kinds"
+					+ "      FROM (SELECT num,name,title,content,regdate,lookup,kinds"
 					+ "            FROM bulletin_board WHERE kinds=?"
 					+ "            ORDER BY num DESC) result1)"
 					+ "   where rnum BETWEEN ? AND ?";
@@ -456,6 +465,7 @@ public class BulletinDao {
 				tmp.setTitle(rs.getString("title"));
 				tmp.setContent(rs.getString("content"));
 				tmp.setRegdate(rs.getString("regdate"));
+				tmp.setLookup(rs.getInt("lookup"));
 				tmp.setKinds(rs.getString("kinds"));
 				
 				//ArrayList 객체에 누적 시킨다. 
@@ -494,15 +504,16 @@ public class BulletinDao {
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
 					+ "      FROM (SELECT num,name,title,content,regdate,lookup"
 					+ "            FROM bulletin_board"
-					+ "				WHERE title LIKE '%'||?||'%' OR name LIKE '%'||?||'%'"
+					+ "				WHERE kinds =? and (title LIKE '%'||?||'%' OR content LIKE '%'||?||'%')"
 					+ "            ORDER BY num DESC) result1)"
 					+ " WHERE rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
-			pstmt.setString(1, dto.getTitle());
-			pstmt.setString(2, dto.getName());
-			pstmt.setInt(3, dto.getStartRowNum());
-			pstmt.setInt(4, dto.getEndRowNum());
+			pstmt.setString(1, dto.getKinds());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getContent());
+			pstmt.setInt(4, dto.getStartRowNum());
+			pstmt.setInt(5, dto.getEndRowNum());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
@@ -552,14 +563,15 @@ public class BulletinDao {
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
 					+ "      FROM (SELECT num,name,title,content,regdate,lookup"
 					+ "            FROM bulletin_board"
-					+ "				WHERE title LIKE '%'||?||'%'"
+					+ "				WHERE kinds = ? and title LIKE '%'||?||'%'"
 					+ "            ORDER BY num DESC) result1)"
 					+ " WHERE rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
-			pstmt.setString(1, dto.getTitle());
-			pstmt.setInt(2, dto.getStartRowNum());
-			pstmt.setInt(3, dto.getEndRowNum());
+			pstmt.setString(1, dto.getKinds());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setInt(3, dto.getStartRowNum());
+			pstmt.setInt(4, dto.getEndRowNum());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
@@ -609,14 +621,15 @@ public class BulletinDao {
 					+ "     (SELECT result1.*, ROWNUM AS rnum"
 					+ "      FROM (SELECT num,name,title,content,regdate,lookup"
 					+ "            FROM bulletin_board"
-					+ "				WHERE name LIKE '%'||?||'%'"
+					+ "				WHERE kinds = ? and name LIKE '%'||?||'%'"
 					+ "            ORDER BY num DESC) result1)"
 					+ " WHERE rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
-			pstmt.setString(1, dto.getName());
-			pstmt.setInt(2, dto.getStartRowNum());
-			pstmt.setInt(3, dto.getEndRowNum());
+			pstmt.setString(1, dto.getKinds());
+			pstmt.setString(2, dto.getName());
+			pstmt.setInt(3, dto.getStartRowNum());
+			pstmt.setInt(4, dto.getEndRowNum());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
@@ -660,8 +673,8 @@ public class BulletinDao {
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
 			String sql = "INSERT INTO bulletin_board"
-					+ " (num, name, title, content, regdate,kinds)"
-					+ " VALUES(bulletin_board_seq.NEXTVAL,?, ?, ?, SYSDATE,?)";
+					+ " (num, name, title, content, regdate,lookup,kinds)"
+					+ " VALUES(bulletin_board_seq.NEXTVAL,?, ?, ?, SYSDATE,0,?)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩 한다.
 			pstmt.setString(1, dto.getName());

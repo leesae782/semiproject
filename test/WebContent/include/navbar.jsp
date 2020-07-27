@@ -4,9 +4,7 @@
 	//요청 파라미터 읽어내기
 	String thisPage=request.getParameter("thisPage");
 	String id = (String)session.getAttribute("id");	
-	if(id==null){
-		id="";
-	}
+	
 	
 %>
 
@@ -16,7 +14,7 @@
 <nav style = "height:100px; margin-bottom:50px;"class="navbar navbar-expand-sm bg-dark navbar-dark">
 
 	<!-- Brand <--><br />
-            <a class="navbar-brand" href="${pageContext.request.contextPath}"><strong>VIVE LA JSS</strong>></a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}"><strong>VIVE LA JSS</strong></a>
           
             <!-- Links -->
             <ul class="navbar-nav">
@@ -66,9 +64,11 @@
                 </div>
               </li>
             </ul>
+            <%try{ %>
             <%if(id.equals("admin")){ %>
             	<a class="btn btn-Dark" href="${pageContext.request.contextPath }/admin/admin_page.jsp">    </a>
             <%} %>
+            <%} catch(Exception e){} %>
           </nav>
 			
             
