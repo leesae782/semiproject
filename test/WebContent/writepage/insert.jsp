@@ -14,11 +14,9 @@
 	dto.setKinds(kinds);
 	BulletinDao dao = BulletinDao.getInstance();
 	boolean isSuccess = dao.bulletin_insert(dto);
-<<<<<<< HEAD
-	String url = request.getParameter("url");
-=======
 
->>>>>>> refs/remotes/origin/master
+	String url = request.getParameter("url");
+
 	/*
 	String cPath=request.getContextPath();
 	response.sendRedirect(cPath+"/funny/funny.jsp");
