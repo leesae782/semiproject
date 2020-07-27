@@ -289,7 +289,7 @@ public class BulletinDao {
 			}
 		}
 	//글 하나의 정보를 리턴하는 메소드
-	public BulletinDto bulletin_getData(int num) {
+	public BulletinDto bulletin_getData(String kinds,int num) {
 			//글하나의 정보를 담을 BoardDto 
 			BulletinDto dto=null;
 			//필요한 객체의 참조값을 담을 지역변수 만들기 
@@ -305,11 +305,12 @@ public class BulletinDao {
 						+ "     (SELECT num,name,title,content,lookup,regdate,"
 						+ "      LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,"
 						+ "      LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum"
-						+ "      FROM bulletin_board) result1"
+						+ "      FROM bulletin_board where kinds=?) result1"
 						+ " WHERE num=?";
 				pstmt = conn.prepareStatement(sql);
 				//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-				pstmt.setInt(1, num);
+				pstmt.setString(1, kinds);
+				pstmt.setInt(2, num);
 				//select 문 수행하고 결과 받아오기 
 				rs = pstmt.executeQuery();
 				//결과 값 추출하기 

@@ -5,10 +5,11 @@
 <%
 	//GET 방식 파라미터로 전달되는 수정할 글 번호를 읽어온다. ?num=xx
 	int num=Integer.parseInt(request.getParameter("num"));
+	String kinds =request.getParameter("kinds");
  	//BoardDao 객체를 이용해서 수정할 글 정보를 얻어온다.
- 	BulletinDto dto=BulletinDao.getInstance().bulletin_getData(num);
+ 	BulletinDto dto=BulletinDao.getInstance().bulletin_getData(kinds,num);
  	String url = request.getParameter("url");
- 	String kinds =request.getParameter("kinds");
+ 	
 %> 
 <!DOCTYPE html>
 <html>

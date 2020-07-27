@@ -66,7 +66,7 @@
             </ul>
             <%try{ %>
             <%if(id.equals("admin")){ %>
-            	<a class="btn btn-Dark" href="${pageContext.request.contextPath }/admin/admin_page.jsp">    </a>
+            	<a class="btn btn-Dark" href="${pageContext.request.contextPath }/admin/admin_page.jsp">  admin  </a>
             <%} %>
             <%} catch(Exception e){} %>
           </nav>
