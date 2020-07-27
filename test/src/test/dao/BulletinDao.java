@@ -300,8 +300,12 @@ public class BulletinDao {
 				//Connection 객체의 참조값 얻어오기 
 				conn = new DbcpBean().getConn();
 				//실행할 sql 문 준비하기
-				String sql = "SELECT name,title,content,regdate"
-						+ " FROM bulletin_board"
+				String sql = "SELECT result1.*"
+						+ " FROM"
+						+ "     (SELECT num,name,title,content,lookup,regdate,"
+						+ "      LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,"
+						+ "      LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum"
+						+ "      FROM bulletin_board) result1"
 						+ " WHERE num=?";
 				pstmt = conn.prepareStatement(sql);
 				//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
@@ -316,6 +320,8 @@ public class BulletinDao {
 					dto.setTitle(rs.getString("title"));
 					dto.setContent(rs.getString("content"));
 					dto.setRegdate(rs.getString("regdate"));
+					dto.setPrevNum(rs.getInt("prevNum"));
+					dto.setNextNum(rs.getInt("nextNum"));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
