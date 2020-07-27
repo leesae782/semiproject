@@ -35,5 +35,6 @@
 			location.href="updateform.jsp?num=<%=num%>";
 		</script>
 	<%} %>
+	
 </body>
 </html>
