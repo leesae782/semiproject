@@ -105,3 +105,39 @@
 		color : black;
 		margin-left :20px;
 	}
+	
+	#info-image{
+	
+	width: 150px;
+		height: 150px;
+		border: 1px solid #cecece;
+		border-radius: 0%;
+		background-color: white;
+	}
+	
+	#profileForm{
+		display:none;
+	}
+	
+	.page-display a{
+		text-decoration: none;	
+		color:#000;
+	}
+	.page-display ul li{
+		float:left;	/* 가로로 쌓이게 */
+		list-style-type:none; /* disc 사라지게*/
+		margin-right:10px;}	/*오른쪽 마진*/
+		
+	.page-display ul li.active{/* li 요소 이면서 active 클래스를 가지고 있는 요소*/
+		text-decoration: underline;
+		font-weight: bold;
+	}
+	.psge-display ul li.active a{
+		color:red;
+	}
+	.dkssud{
+		background-color: #fbf2ffc4;
+	}
+	.acolor{
+		color : black;
+	}

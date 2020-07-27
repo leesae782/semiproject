@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 //web.xml 에 필터 정의와 필터 맵핑을 어노테이션을 이용해서 할수 있다.
-@WebFilter({"/member/private/*","/admin/*"})
+@WebFilter({"/member/private/*","/writepage/*","/admin/*"})
 public class LoginFilter implements Filter{
 
 	@Override
@@ -48,7 +48,6 @@ public class LoginFilter implements Filter{
 			String url=req.getRequestURI();
 			//GET 방식 전송 파라미터를 query string 으로 얻어오기
 			String query=req.getQueryString();
-			
 			//인코딩을 한다.
 			String encodedUrl=null;
 			if(query==null) { //전송 파라미터가 없다면
@@ -57,9 +56,10 @@ public class LoginFilter implements Filter{
 				encodedUrl=URLEncoder.encode(url+"?"+query);
 			}
 			//로그인 폼으로 리다일렉트 이동하라고 응답
-				HttpServletResponse res=(HttpServletResponse)response;
-				String cPath=req.getContextPath();
-				res.sendRedirect(cPath+"/member/login_form.jsp?url="+encodedUrl);
+			HttpServletResponse res=(HttpServletResponse)response;
+			String cPath=req.getContextPath();
+			res.sendRedirect(cPath+"/member/login_form.jsp?url="+encodedUrl);
+			
 		}
 	}
 
