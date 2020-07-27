@@ -46,9 +46,11 @@
 <body>
 
 
-<jsp:include page="/include/navbar.jsp">
+
+<jsp:include page="include/navbar.jsp">
 	<jsp:param value="index" name="thisPage"/>
 </jsp:include>
+
 
 
 
@@ -76,7 +78,7 @@
    					 <div class="col-sm">
     					  <div class="card" >
  						 	<div class="card-header">
-  								 <span style="color:red;"><string >최신</string></span> 게시글 순위
+  								 <span style="color:red;"><strong >최신</strong></span> 게시글 순위
  			 				</div>
  							<ul class="list-group">
 							 	<% try {%>
