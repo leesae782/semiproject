@@ -4,9 +4,7 @@
 	//요청 파라미터 읽어내기
 	String thisPage=request.getParameter("thisPage");
 	String id = (String)session.getAttribute("id");	
-	if(id==null){
-		id="";
-	}
+	
 	
 %>
 

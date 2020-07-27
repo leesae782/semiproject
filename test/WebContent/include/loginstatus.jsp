@@ -20,7 +20,10 @@
 				<a class="login-find"href="">아이디 비밀번호 찾기</a>
 				<a class="login-find"href="${pageContext.request.contextPath}/member/signup_form.jsp?url=<%=url%>">회원가입</a>
 				</div>
-				
+				<div class="side_left">
+					<a href="${pageContext.request.contextPath }/sport/soccer.jsp"><img src="${pageContext.request.contextPath }/images/Coim-e2VIAA4NNj2.jpg" alt="" /></a>
+ 					<a href="${pageContext.request.contextPath }/sport/soccer.jsp"><img src="${pageContext.request.contextPath }/images/bo99.jpg" alt="" /></a>
+ 				</div>
  				
  			<%} else { %>
  			
@@ -42,5 +45,10 @@
 
  				
    				</div>
+   				<br>
+ 				<div class="side_left">
+					<a href="${pageContext.request.contextPath }/sport/soccer.jsp"><img src="${pageContext.request.contextPath }/images/Coim-e2VIAA4NNj2.jpg" alt="" /></a>
+ 					<a href="${pageContext.request.contextPath }/sport/soccer.jsp"><img src="${pageContext.request.contextPath }/images/bo99.jpg" alt="" /></a>
+ 				</div>
  				
 <%} %>
