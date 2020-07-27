@@ -336,6 +336,7 @@ public class MemberDao {
 				dto.setPwd(rs.getString("pwd"));
 				dto.setNick(rs.getString("nick"));
 				dto.setEmail(rs.getString("email"));
+				dto.setProfile(rs.getString("profile"));
 				dto.setRegdate(rs.getString("regdate"));
 			}
 		} catch (Exception e) {
