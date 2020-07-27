@@ -46,9 +46,11 @@
 <body>
 
 
-<jsp:include page="/include/navbar.jsp">
+
+<jsp:include page="include/navbar.jsp">
 	<jsp:param value="index" name="thisPage"/>
 </jsp:include>
+
 
 
 
@@ -76,19 +78,22 @@
    					 <div class="col-sm">
     					  <div class="card" >
  						 	<div class="card-header">
-  								 <span style="color:red;"><string >최신</string></span> 게시글 순위
+  								 <span style="color:red;"><strong >최신</strong></span> 게시글 순위
  			 				</div>
  							<ul class="list-group">
+							 	<% try {%>
 							 	<%for(int i=0; i<list.size(); i++) {
 							 		BulletinDto tmp = list.get(i);
 							 		%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">14</span>
 								</li>
 									<%} %>	
 								<%} %>
+								<%} catch(Exception e){ %>
+								<% } %>
 							</ul>
 						</div>
     				</div>
@@ -158,7 +163,9 @@
   				<img src="${pageContext.request.contextPath}/images/colon.png" class="card-img-top" alt="무슨파일인지설명">
  			 	<ul class="list-group">
   					<li class="list-group-item d-flex justify-content-between align-items-center">
+						 <%try{ %>
 						 <a class="f-color" href="/test/board/detail.jsp?num=<%=soccerlist.get(0).getNum() %>"><%=soccerlist.get(0).getTitle() %></a>
+   						<%}catch(Exception e){} %>
    						 <span class="badge badge-primary badge-pill">14</span>
   					</li>
   				</ul>
@@ -167,16 +174,18 @@
     	<div class="col-8">
  <div class="card" id ="card1" >
  							<ul class="list-group">
+ 							<%try { %>
   								<%for(int i=1; i<soccerlist.size(); i++) {
 							 	BulletinDto tmp = soccerlist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
 								<%} %>	
+								<%} catch(Exception e){} %>
 							</ul>
 						</div>
     	</div>
@@ -187,16 +196,18 @@
   <div class="card"id ="card2" >
  						 	
  							<ul class="list-group">
+ 							<%try{ %>
   								<%for(int i=0; i<baseballlist.size(); i++) {
 							 	BulletinDto tmp = baseballlist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
 								<%} %>	
+								<%} catch(Exception e){}%>
 							</ul>
 						</div>
   </div>
@@ -204,16 +215,18 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
+ 							<%try { %>
   								<%for(int i=0; i<basketballlist.size(); i++) {
 							 	BulletinDto tmp = basketballlist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
 								<%} %>		
+								<%} catch(Exception e){} %>
 							</ul>
 						</div>
   </div>
@@ -221,16 +234,18 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
+ 							<%try{ %>
   								<%for(int i=0; i<lollist.size(); i++) {
 							 	BulletinDto tmp = lollist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
 								<%} %>		
+								<%} catch(Exception e){} %>
 							</ul>
 						</div>
   </div>
@@ -238,16 +253,18 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
+ 							<%try{ %>
   								<%for(int i=0; i<baglist.size(); i++) {
 							 	BulletinDto tmp = baglist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
 								<%} %>		
+								<%} catch(Exception e){} %>
 							</ul>
 						</div>
   </div>
@@ -255,16 +272,18 @@
   <div class="card" id ="card3" >
  						 	
  							<ul class="list-group">
+ 							<%try { %>
   								<%for(int i=0; i<fifalist.size(); i++) {
 							 	BulletinDto tmp = fifalist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
-								<%} %>		
+								<%} %>	
+								<%} catch(Exception e){} %>	
 							</ul>
 						</div>
   </div>
@@ -276,16 +295,19 @@
   								 <span style="color:red;"><strong >유머</strong></span> 게시판
  			 				</div>
  							<ul class="list-group">
+ 							<%try{ %>
 							 	<%for(int i=0; i<funnylist.size(); i++) {
 							 		BulletinDto tmp = funnylist.get(i);
 							 		%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>"><%=tmp.getTitle() %></a>
+
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">14</span>
 								</li>
 									<%} %>	
 								<%} %>
+								<%} catch(Exception e){} %>
 							</ul>
 						</div>
     			
@@ -296,16 +318,18 @@
   								 <span style="color:red;"><string >이슈</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
+ 							<%try{ %>
   								<%for(int i=0; i<issuelist.size(); i++) {
 							 	BulletinDto tmp = issuelist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
 								<%} %>
+								<%} catch(Exception e){} %>
 							</ul>
 						</div>
     		
@@ -317,16 +341,18 @@
   								<span style="color:red;"><string >정보</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
+ 							<%try{ %>
   								<%for(int i=0; i<inforlist.size(); i++) {
 							 	BulletinDto tmp = inforlist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">5</span>
 								</li>
 								<%} %>	
 								<%} %>	
+								<%} catch(Exception e){} %>
 							</ul>
 						</div>
 						
@@ -342,16 +368,18 @@
   								 <span style="color:red;"><strong >자유</strong></span> 게시판
  			 				</div>
  							<ul class="list-group">
+ 							<%try { %>
 							 	<%for(int i=0; i<freelist.size(); i++) {
 							 		BulletinDto tmp = freelist.get(i);
 							 		%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">14</span>
 								</li>
 									<%} %>	
 								<%} %>
+								<%}catch(Exception e){} %>
 							</ul>
 						</div>
     			
@@ -362,16 +390,18 @@
   								 <span style="color:red;"><string >Q&A</string></span> 게시판
  			 				</div>
  							<ul class="list-group">
+ 							<%try{ %>
   								<%for(int i=0; i<questionlist.size(); i++) {
 							 	BulletinDto tmp = questionlist.get(i);
 							 	%>
 							 	<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
 									<span class="badge badge-primary badge-pill">9</span>
 								</li>
 								<%} %>	
 								<%} %>
+								<%}catch(Exception e){} %>
 							</ul>
 						</div>
     		
@@ -412,11 +442,7 @@
  				<jsp:include page="include/loginstatus.jsp"> 
  					<jsp:param value="<%=url %>" name="url"/>
  				</jsp:include>
- 				<br>
- 				<div class="side_left">
-					<a href="${pageContext.request.contextPath }/sport/soccer.jsp"><img src="${pageContext.request.contextPath }/images/Coim-e2VIAA4NNj2.jpg" alt="" /></a>
- 					<a href="${pageContext.request.contextPath }/sport/soccer.jsp"><img src="${pageContext.request.contextPath }/images/bo99.jpg" alt="" /></a>
- 				</div>
+ 				
             </div>
             
       
