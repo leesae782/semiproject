@@ -8,11 +8,9 @@
 	String name=request.getParameter("name");
 	String title=request.getParameter("title");
 	String content=request.getParameter("content");
-<<<<<<< HEAD
-	
-=======
+
 	String url = request.getParameter("url");
->>>>>>> refs/heads/master
+
 	BulletinDto dto=new BulletinDto();
 	dto.setNum(num);
 	dto.setName(name);
@@ -31,11 +29,8 @@
 	<%if(isSuccess){ %>
 		<script>
 			alert("<%=num%>번 글을 수정했습니다.");
-<<<<<<< HEAD
-			location.href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=num%>";
-=======
 			location.href="<%=url%>";
->>>>>>> refs/heads/master
+
 		</script>
 	<%}else{ %>
 		<script>

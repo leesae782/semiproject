@@ -6,20 +6,16 @@
 <head>
 	<meta charset="uft-8" />
 	<title>/writepage/insertform</title>
-<<<<<<< HEAD
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/js/jquery-3.5.1.js" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/js/jquery.form.min.js" />
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	
-=======
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
->>>>>>> refs/heads/master
 </head>
 
 <style>
@@ -36,43 +32,20 @@
  	MemberDao dao = MemberDao.getInstance();
  	MemberDto dto =dao.getData(id);
  	String name = dto.getNick();
-<<<<<<< HEAD
- 	
-=======
+
  	String url = request.getParameter("url");
  	String kinds = request.getParameter("kinds");
->>>>>>> refs/heads/master
+
  %>
 
 <body>
 <jsp:include page="/include/navbar.jsp">
-<<<<<<< HEAD
-	<jsp:param value="insertform" name="thisPage"/>
-=======
 	<jsp:param value="<%=kinds %>" name="thisPage"/>
->>>>>>> refs/heads/master
 </jsp:include>
 <div class="container">
 	<h1>작성글 페이지.</h1>
 	<hr style="clear:left;"/>
 
-<<<<<<< HEAD
-	<form action="insert.jsp" method="post">	
-	<input type="hidden"  name ="name" value =" <%=name %>"/>
-<div class="form-inline">
-	<select class="form-control" name='kinds' >
-	  <option selected value='funny'>유머</option>
-	  <option value='issue'>이슈</option>
-	  <option value='infor'>정보</option>
-	  <option value='lol'>LOL</option>
-	  <option value='bag'>배틀 그라운드</option>
-	  <option value='fifa'>FIFA Online</option>
-	  <option value='soccer'>축구</option>
-	  <option value='basketball'>농구</option>
-	  <option value='baseball'>야구</option>
-	  <option value='free'>자유</option>
-	  <option value='question'>QnA</option>
-=======
 	<form action="insert.jsp?url=<%=url %>" method="post">	
 	<input type="hidden"  name ="name" value =" <%=name %>"/>
 <div class="form-inline">
@@ -88,8 +61,6 @@
 	  <option <%if(kinds.equals("baseball")){ %>selected <%} %>value='baseball'>야구</option>
 	  <option <%if(kinds.equals("free")){ %>selected <%} %>value='free'>자유</option>
 	  <option <%if(kinds.equals("question")){ %>selected <%} %>value='question'>QnA</option>
->>>>>>> refs/heads/master
-	  
 	</select>
 		<label for="title"></label>
 		<input class="form-control"  type="text" name = "title" id = "title" style="width: 70%" placeholder="제목" />
