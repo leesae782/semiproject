@@ -97,6 +97,17 @@
 		
       <a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&kinds=<%=kinds %>&url=<%=url%>"><button class="btn btn-primary">수정</button></a>
       <a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-danger">삭제</button></a>
+   
+   
+   <form action="writecomment.jsp" method ="post">
+   		<div class="form-group">
+    		<label for="comment">댓글</label>
+   		 	<textarea class="form-control" id="comment" name="comment" rows="3" placeholder="로그인후 이용 가능합니다."></textarea>
+  		</div>
+  		
+  		<button class="btn btn-primary"type="submit"> 작성</button>
+  		<button class="btn btn-primary"type="reset"> 취소</button>
+   </form>
    </div>
 
 </body>
