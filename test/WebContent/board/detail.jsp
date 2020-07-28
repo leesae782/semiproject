@@ -65,6 +65,8 @@
            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
          </svg></a>
    <%} %>
+   
+   <a href="javascript:goBack(<%=dto.getNum() %>)"><button class="btn btn-outline-info">이전페이지로</button></a>
       <table class="table">
          <thead class="d-font">
              <tr>
@@ -87,13 +89,17 @@
             </tr>
          </tbody>
       </table>
-
+		
       <a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&url=<%=url%>&kinds=<%=kinds%>"><button class="btn btn-primary">수정</button></a>
       <a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-danger">삭제</button></a>
    </div>
 
 </body>
 <script>
+
+	function goBack() {
+    window.history.back();
+	}
    function deleteConfirm(num){
       var isDelete=confirm(num+" 번 글을 삭제 하시겠습니까?");
       if(isDelete){
