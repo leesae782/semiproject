@@ -355,7 +355,7 @@ public class BulletinDao {
 			//실행할 sql 문 준비하기
 			String sql = "SELECT result1.*"
 					+ " FROM"
-					+ "     (SELECT num,name,title,content,lookup,regdate,"
+					+ "     (SELECT num,name,title,content,lookup,regdate,kinds,"
 					+ "      LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,"
 					+ "      LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum"
 					+ "      FROM bulletin_board) result1"
@@ -376,6 +376,7 @@ public class BulletinDao {
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setPrevNum(rs.getInt("prevNum"));
 				dto.setNextNum(rs.getInt("nextNum"));
+				dto.setKinds(rs.getString("kinds"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

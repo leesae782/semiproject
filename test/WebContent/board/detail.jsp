@@ -7,9 +7,14 @@
 <%
    //GET 방식 파리미터로 전달되는 자세히 보여줄 글의 번호 읽어오기   ?num=xx
    int num=Integer.parseInt(request.getParameter("num"));
-	String kinds =request.getParameter("kinds");
     //BoardDao 객체를 이용해서 해당글의 정보를 얻어온다.
     String allpage = request.getParameter("allpage");
+    
+    BulletinDao dao2 = BulletinDao.getInstance();
+    BulletinDto dto2 = dao2.bulletin_getData2(num);
+    String kinds= dto2.getKinds();
+    
+    
     BulletinDto dto = null ;
     if(allpage==null){
     	allpage = "other";
@@ -48,7 +53,7 @@
    <div class="container">
    <%if(dto.getPrevNum() != 0){ %>
  	
-     	<a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getPrevNum()%>&kinds=<%=kinds%>&allpage=<%=allpage%>&url=<%=url%>">
+     	<a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getPrevNum()%>&kinds=<%=kinds %>&url=<%=url%>&allpage=<%=allpage%>">
      
          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
            <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
@@ -58,7 +63,7 @@
    <%if(dto.getNextNum() != 0){ %>
    
      
-    	<a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getNextNum()%>&kinds=<%=kinds%>&allpage=<%=allpage%>&url=<%=url%>">
+    	<a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getNextNum()%>&kinds=<%=kinds %>&url=<%=url%>&allpage=<%=allpage%>">
  
          다음글
          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +95,7 @@
          </tbody>
       </table>
 		
-      <a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&url=<%=url%>&kinds=<%=kinds%>"><button class="btn btn-primary">수정</button></a>
+      <a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&kinds=<%=kinds %>&url=<%=url%>"><button class="btn btn-primary">수정</button></a>
       <a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-danger">삭제</button></a>
    </div>
 
