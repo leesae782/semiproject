@@ -88,7 +88,7 @@
 							 		%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=all"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>&allpage=all"><%=tmp.getTitle() %></a>
 									<div>
 									<span class="badge badge-primary badge-pill">15</span>
 									<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
@@ -114,7 +114,7 @@
 							 		%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=lookup"><%=tmp.getTitle() %></a>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>&allpage=lookup"><%=tmp.getTitle() %></a>
 									<div>
 									<span class="badge badge-primary badge-pill">15</span>
 									<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
