@@ -48,7 +48,7 @@
    <div class="container">
    <%if(dto.getPrevNum() != 0){ %>
  	
-     	<a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getPrevNum()%>&kinds=<%=kinds%>&allpage=<%=allpage%>">
+     	<a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getPrevNum()%>&kinds=<%=kinds%>&allpage=<%=allpage%>&url=<%=url%>">
      
          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
            <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
@@ -58,7 +58,7 @@
    <%if(dto.getNextNum() != 0){ %>
    
      
-    	<a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getNextNum()%>&kinds=<%=kinds%>&allpage=<%=allpage%>">
+    	<a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getNextNum()%>&kinds=<%=kinds%>&allpage=<%=allpage%>&url=<%=url%>">
  
          다음글
          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +66,7 @@
          </svg></a>
    <%} %>
    
-   <a href="javascript:goBack(<%=dto.getNum() %>)"><button class="btn btn-outline-info">이전페이지로</button></a>
+   <a href="javascript:goBack(<%=dto.getNum() %>)"><button class="btn btn-outline-info">목록 보기</button></a>
       <table class="table">
          <thead class="d-font">
              <tr>
@@ -98,7 +98,7 @@
 <script>
 
 	function goBack() {
-    window.history.back();
+		location.href = "<%=url%>";
 	}
    function deleteConfirm(num){
       var isDelete=confirm(num+" 번 글을 삭제 하시겠습니까?");
