@@ -9,7 +9,15 @@
    int num=Integer.parseInt(request.getParameter("num"));
 	String kinds =request.getParameter("kinds");
     //BoardDao 객체를 이용해서 해당글의 정보를 얻어온다.
-    BulletinDto dto=BulletinDao.getInstance().bulletin_getData(kinds,num);
+    
+    BulletinDto dto = null ;
+    if(kinds.equals("all")){
+    	dto=BulletinDao.getInstance().bulletin_getData2(num);
+    }else if (kinds.equals("lookup")){
+    	dto=BulletinDao.getInstance().bulletin_getData3(num);
+    }else {
+    	dto=BulletinDao.getInstance().bulletin_getData(kinds,num);
+    }
     String url = request.getParameter("url");
      BulletinDao.getInstance().addViewCount(num);
      
@@ -36,13 +44,19 @@
    </jsp:include>
    <div class="container">
    <%if(dto.getPrevNum() != 0){ %>
-      <a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getPrevNum()%>&kinds=<%=kinds%>">
+ 	
+     	<a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getPrevNum()%>&kinds=<%=kinds%>">
+     
          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
            <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
          </svg>이전글</a>
    <%} %>
+  
    <%if(dto.getNextNum() != 0){ %>
-      <a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getNextNum()%>&kinds=<%=kinds%>">
+   
+     
+    	<a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getNextNum()%>&kinds=<%=kinds%>">
+ 
          다음글
          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>

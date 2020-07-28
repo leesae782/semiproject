@@ -288,6 +288,8 @@ public class BulletinDao {
 				return false;
 			}
 		}
+	
+	
 	//글 하나의 정보를 리턴하는 메소드
 	public BulletinDto bulletin_getData(String kinds,int num) {
 			//글하나의 정보를 담을 BoardDto 
@@ -339,7 +341,109 @@ public class BulletinDao {
 			}
 			return dto;
 		}
+	// 카인즈 상관없이 가져오는 메소드
+	public BulletinDto bulletin_getData2(int num) {
+		//글하나의 정보를 담을 BoardDto 
+		BulletinDto dto=null;
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 준비하기
+			String sql = "SELECT result1.*"
+					+ " FROM"
+					+ "     (SELECT num,name,title,content,lookup,regdate,"
+					+ "      LAG(num,1,0) OVER (ORDER BY num DESC) AS prevNum,"
+					+ "      LEAD(num,1,0) OVER (ORDER BY num DESC) AS nextNum"
+					+ "      FROM bulletin_board) result1"
+					+ " WHERE num=?";
+			pstmt = conn.prepareStatement(sql);
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+			
+			pstmt.setInt(1, num);
+			//select 문 수행하고 결과 받아오기 
+			rs = pstmt.executeQuery();
+			//결과 값 추출하기 
+			if (rs.next()) {
+				dto=new BulletinDto();
+				dto.setNum(num);
+				dto.setName(rs.getString("name"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setPrevNum(rs.getInt("prevNum"));
+				dto.setNextNum(rs.getInt("nextNum"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return dto;
+	}
 	
+	// 카인즈 상관없이 가져오는 메소드
+		public BulletinDto bulletin_getData3(int num) {
+			//글하나의 정보를 담을 BoardDto 
+			BulletinDto dto=null;
+			//필요한 객체의 참조값을 담을 지역변수 만들기 
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				//Connection 객체의 참조값 얻어오기 
+				conn = new DbcpBean().getConn();
+				//실행할 sql 문 준비하기
+				String sql = "SELECT result1.*"
+						+ " FROM"
+						+ "     (SELECT num,name,title,content,lookup,regdate,"
+						+ "      LAG(num,1,0) OVER (ORDER BY lookup DESC) AS prevNum,"
+						+ "      LEAD(num,1,0) OVER (ORDER BY lookup DESC) AS nextNum"
+						+ "      FROM bulletin_board) result1"
+						+ " WHERE num=?";
+				pstmt = conn.prepareStatement(sql);
+				//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+				
+				pstmt.setInt(1, num);
+				//select 문 수행하고 결과 받아오기 
+				rs = pstmt.executeQuery();
+				//결과 값 추출하기 
+				if (rs.next()) {
+					dto=new BulletinDto();
+					dto.setNum(num);
+					dto.setName(rs.getString("name"));
+					dto.setTitle(rs.getString("title"));
+					dto.setContent(rs.getString("content"));
+					dto.setRegdate(rs.getString("regdate"));
+					dto.setPrevNum(rs.getInt("prevNum"));
+					dto.setNextNum(rs.getInt("nextNum"));
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (rs != null)
+						rs.close();
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (Exception e) {
+				}
+			}
+			return dto;
+		}
 	//게시판 리스트 불러오기
 
 	public List<BulletinDto> getLine(String kinds){
@@ -352,7 +456,7 @@ public class BulletinDao {
 			//Connection 객체의 참조값 얻어오기 
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
-			String sql = "SELECT num,name,title,regdate,kinds"
+			String sql = "SELECT num,name,title,regdate,lookup,kinds"
 					+ " FROM bulletin_board where kinds =?"
 					+ " ORDER BY num DESC";
 			pstmt = conn.prepareStatement(sql);
@@ -367,7 +471,7 @@ public class BulletinDao {
 				dto.setName(rs.getString("name"));
 				dto.setTitle(rs.getString("title"));
 				dto.setRegdate(rs.getString("regdate"));
-				
+				dto.setLookup(rs.getInt("lookup"));
 				dto.setKinds(rs.getString("kinds"));
 				list.add(dto);
 			}
@@ -398,7 +502,7 @@ public class BulletinDao {
 				//Connection 객체의 참조값 얻어오기 
 				conn = new DbcpBean().getConn();
 				//실행할 sql 문 준비하기
-				String sql = "SELECT num,name,title,regdate,kinds"
+				String sql = "SELECT num,name,title,regdate,lookup,kinds"
 						+ " FROM bulletin_board"
 						+ " ORDER BY num DESC";
 				pstmt = conn.prepareStatement(sql);
@@ -412,6 +516,53 @@ public class BulletinDao {
 					dto.setName(rs.getString("name"));
 					dto.setTitle(rs.getString("title"));
 					dto.setRegdate(rs.getString("regdate"));
+					dto.setKinds(rs.getString("kinds"));
+					dto.setLookup(rs.getInt("lookup"));
+					list.add(dto);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (rs != null)
+						rs.close();
+					if (pstmt != null)
+						pstmt.close();
+					if (conn != null)
+						conn.close();
+				} catch (Exception e) {
+					}
+			 	}
+				return list;
+			}
+		
+		//게시판 조회순 리스트 불러오기
+
+		public List<BulletinDto> getLine3(){
+			List<BulletinDto> list = new ArrayList<>();
+			//필요한 객체의 참조값을 담을 지역변수 만들기 
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				//Connection 객체의 참조값 얻어오기 
+				conn = new DbcpBean().getConn();
+				//실행할 sql 문 준비하기
+				String sql = "SELECT num,name,title,regdate,lookup,kinds"
+						+ " FROM bulletin_board"
+						+ " ORDER BY lookup DESC";
+				pstmt = conn.prepareStatement(sql);
+				//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+				//select 문 수행하고 결과 받아오기 
+				rs = pstmt.executeQuery();
+				//반복문 돌면서 결과 값 추출하기 
+				while (rs.next()) {
+					BulletinDto dto = new BulletinDto();
+					dto.setNum(rs.getInt("num"));
+					dto.setName(rs.getString("name"));
+					dto.setTitle(rs.getString("title"));
+					dto.setRegdate(rs.getString("regdate"));
+					dto.setLookup(rs.getInt("lookup"));;
 					dto.setKinds(rs.getString("kinds"));
 					list.add(dto);
 				}

@@ -12,6 +12,7 @@
 	MemberDao dao = MemberDao.getInstance();
 	MemberDto dto = dao.getData(id);
 	List<BulletinDto> list=BulletinDao.getInstance().getLine2();
+	List<BulletinDto> lookuplist=BulletinDao.getInstance().getLine3();
 	List<BulletinDto> funnylist=BulletinDao.getInstance().getLine("funny");
 	List<BulletinDto> issuelist=BulletinDao.getInstance().getLine("issue");
 	List<BulletinDto> inforlist=BulletinDao.getInstance().getLine("infor");
@@ -87,8 +88,12 @@
 							 		%>
 							 		<%if(i < 9) { %>
 								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
-									<span class="badge badge-primary badge-pill">14</span>
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=all"><%=tmp.getTitle() %></a>
+									<div>
+									<span class="badge badge-primary badge-pill">15</span>
+									<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+									</div>
+									
 								</li>
 									<%} %>	
 								<%} %>
@@ -100,45 +105,26 @@
     				<div class="col-sm">
     					  <div class="card" >
  						 	<div class="card-header">
-  								최신 <span style="color:red;"><string >HOT</string></span> 게시글 순위
+  								 <span style="color:red;"><string >HOT</string></span> 게시글 순위
  			 				</div>
  							<ul class="list-group">
-  								<li class="list-group-item d-flex justify-content-between align-items-center">
-   									메가젠임플란트 대표이기도 한 대구 미르치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    에 상당히 도움이 될만한 
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 Cras justo odio
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 에 상당히 도움이 될만한 
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">14</span>
-  								</li>
- 								 <li class="list-group-item d-flex justify-content-between align-items-center">
-   									 범 원장이 문자메시지를 이용, 동료치
-   									 <span class="badge badge-primary badge-pill">2</span>
-  								</li>
-								  <li class="list-group-item d-flex justify-content-between align-items-center">
-								    Morbi leo risus
-								    <span class="badge badge-primary badge-pill">1</span>
-								  </li>
+  								<% try {%>
+							 	<%for(int i=0; i<lookuplist.size(); i++) {
+							 		BulletinDto tmp = lookuplist.get(i);
+							 		%>
+							 		<%if(i < 9) { %>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=lookup"><%=tmp.getTitle() %></a>
+									<div>
+									<span class="badge badge-primary badge-pill">15</span>
+									<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+									</div>
+									
+								</li>
+									<%} %>	
+								<%} %>
+								<%} catch(Exception e){ %>
+								<% } %>
 								</ul>
 						</div>
    				 	</div>
