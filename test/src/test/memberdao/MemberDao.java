@@ -247,7 +247,7 @@ public class MemberDao {
 			//실행할 sql문 준비하기
 			String sql = "UPDATE MEMBER"
 					+ " SET isstop = ?"
-					+" WHERE id = ?";
+					+ " WHERE id = ?";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩한다.
 			pstmt.setInt(1, dto.getIsStop());
@@ -310,6 +310,48 @@ public class MemberDao {
 		}
 		return dto;
 	}
+	
+	public List<MemberDto> getListnick(MemberDto dto){
+		List<MemberDto> list = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "SELECT id,pwd,nick,email,regdate,isstop"
+					+ " FROM member"
+					+ " WHERE nick = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getNick());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				MemberDto tmp = new MemberDto();
+				tmp.setId(rs.getString("id"));
+				tmp.setPwd(rs.getString("pwd"));
+				tmp.setNick(rs.getString("nick"));
+				tmp.setEmail(rs.getString("email"));
+				tmp.setRegdate(rs.getString("regdate"));
+				tmp.setIsStop(rs.getInt("isstop"));
+				list.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	
 	
 	
 	

@@ -1,10 +1,34 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="test.memberdao.MemberDao"%>
 <%@page import="java.util.List"%>
 <%@page import="test.memberdto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	List<MemberDto> list = MemberDao.getInstance().getList();
+
+	String keyword=request.getParameter("keyword"); //검색 키워드
+	String condition=request.getParameter("condition"); //검색 조건
+	if(keyword==null){//전달된 키워드가 없다면 
+		keyword=""; //빈 문자열을 넣어준다. 
+		condition="";
+	}
+	//인코딩된 키워드를 미리 만들어 둔다. 
+	String encodedK=URLEncoder.encode(keyword);
+	
+	//검색 키워드와 startRowNum, endRowNum 을 담을 bulletin_dto 객체 생성
+	
+	MemberDto dto=new MemberDto();
+	dto.setId(condition);
+	dto.setNick(keyword);
+	List<MemberDto> list=null;
+	
+	if(!keyword.equals("")){  
+		dto.setNick(keyword);
+		list=MemberDao.getInstance().getListnick(dto);
+	}else{
+		list=MemberDao.getInstance().getListnick(dto);
+	}	
+
 %>
 <!DOCTYPE html>
 <html>
@@ -14,17 +38,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
-<style>
-	.footer {
-	width:100%;
-	height:100px;
-	position:absolute;
-	bottom:0;
-	background:#5eaeff;
-	text-align: center;
-	color: white;
-	}
-</style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -40,6 +53,11 @@
 
 <div class="container">
 	<h1>관리자 페이지 입니다</h1>
+	<form action="admin_page.jsp" method="get">
+		<label for="keyword">닉네임 :</label>
+		<input value="<%=keyword %>" type="text" name="keyword" placeholder="검색어..."/>
+		<button type="submit">검색</button>
+	</form>
 	<table class="table table-bordered table-hover">
 		<thead class="thead-light">
 			<tr>
@@ -62,11 +80,10 @@
 				<td>	
 					<div>
 						<%if(tmp.getIsStop()==0){ %>
-						<a class="btn btn-primary" href="admin_control.jsp?data=<%=tmp.getId() %>&select=정지">정지</a>
+						<a class="btn btn-primary" href="admin_control.jsp?data=<%=tmp.getId() %>&select=정지&keyword=<%=keyword%>">정지</a>
 						<%}else if(tmp.getIsStop()==1){ %>
-						<a class="btn btn-warning" href="admin_control.jsp?data=<%=tmp.getId() %>&select=정지">정지</a>
+						<a class="btn btn-warning" href="admin_control.jsp?data=<%=tmp.getId() %>&select=정지&keyword=<%=keyword%>">정지</a>
 						<%} %>
-						
 						<a class="btn btn-danger" href="admin_control.jsp?data=<%=tmp.getId() %>&select=탈퇴">탈퇴</a>
 					</div>
 				</td>
@@ -75,7 +92,6 @@
 		</tbody>
 	</table>
 </div>
-
 
 <jsp:include page="/include/footer.jsp">
 	<jsp:param value="index" name="thisPage"/>

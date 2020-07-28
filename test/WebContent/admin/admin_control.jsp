@@ -5,6 +5,7 @@
 <%
 	String id = request.getParameter("data");
 	String select = request.getParameter("select");
+	String keyword = request.getParameter("keyword");
 	if(select.equals("정지")){
 		MemberDto dto = MemberDao.getInstance().getisStop(id);
 		int num = dto.getIsStop();
@@ -13,17 +14,17 @@
 			dto.setId(id);
 			dto.setIsStop(1);
 			MemberDao.getInstance().isStop(dto);
-			response.sendRedirect("private/admin_page.jsp");
+			response.sendRedirect("admin_page.jsp?keyword="+keyword);
 			break;
 		case 1:
 			dto.setId(id);
 			dto.setIsStop(0);
 			MemberDao.getInstance().isStop(dto);
-			response.sendRedirect("private/admin_page.jsp");
+			response.sendRedirect("admin_page.jsp?keyword="+keyword);
 			break;
 		}
 	}else if(select.equals("탈퇴")){
 		MemberDao.getInstance().delete(id);
-		response.sendRedirect("private/admin_page.jsp");
+		response.sendRedirect("admin_page.jsp");
 	}
 %>
