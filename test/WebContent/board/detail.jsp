@@ -112,7 +112,7 @@
       }
    }
 </script>
-</div>
+
   <jsp:include page="/include/footer.jsp">
    <jsp:param value="index" name="thisPage"/>
   </jsp:include>
