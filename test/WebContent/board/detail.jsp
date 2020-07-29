@@ -80,7 +80,7 @@
          </thead>
          <tbody>
             <tr>
-               <th>작성자 : <%=dto.getName() %></td>
+               <th>작성자 : <%=dto.getName() %>
                </th>
             </tr>
             <tr>
@@ -97,9 +97,21 @@
 		
       <a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&kinds=<%=kinds %>&url=<%=url%>"><button class="btn btn-primary">수정</button></a>
       <a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-danger">삭제</button></a>
+   
+   
+  	<form action="writecomment.jsp" method = "post" id="myForm">
+  	<div class="form-group">
+    <label for="comment">댓글</label>
+    <textarea class="form-control" name = "comment" id="comment" rows="3"></textarea>
+  	</div>
+  	<button class="btn btn-success" id ="writecomment" >글쓰기</button>
+  	<button class="btn btn-danger"type = "reset">취소</button>
+  	</form>
+   
    </div>
 
 </body>
+<script src="${pageContext.request.contextPath }/js/jquery-3.5.1.js"></script>
 <script>
 
 	function goBack() {
@@ -111,6 +123,29 @@
          location.href="${pageContext.request.contextPath }/writepage/delete.jsp?num="+num+"&url=<%=url%>";
       }
    }
+   
+   $("#myForm").on("submit",function(){
+	   
+	 //입력한 아이디를 읽어온다.
+		var comment=$("#comment").val();
+	 
+		var query=$(this).serialize();
+		//ajax 를 이용해서 서버에 보낸후 결과를 응답 받는다.
+		console.log(query);
+		$.ajax({
+			method:"post",
+			url:"writecomment.jsp",
+			data:query,
+			success:function(data){
+				//data => {isExist:true} or {isExist:false} 인 object 이다.
+				console.log(data);
+				
+			}
+		});
+		//form 안에 있는 일반 버튼을 눌러도 폼이 전송 되기 때문에 폼 전송을 막아준다.
+		return false;
+   })
+  
 </script>
 
   <jsp:include page="/include/footer.jsp">
