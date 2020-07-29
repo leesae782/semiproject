@@ -3,13 +3,23 @@
 <%@ page language="java" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String comment = request.getParameter("comment");
+String content = request.getParameter("content");
 String name = request.getParameter("name");
 String boardnum= request.getParameter("num");
 
+CommentDao dao = CommentDao.getInstance();
+CommentDto dto  = new CommentDto();
+dto.setName(name);
+dto.setContent(content);
+dto.setBoardnum(boardnum);
 
-System.out.println(comment);
+
+boolean isSuccess = dao.insert(dto);
+
+System.out.println(content);
+System.out.println(name);
+System.out.println(boardnum);
 %>
 
-{"comment":<%=comment%>}
+{"isSuccess":<%=isSuccess%>}
 

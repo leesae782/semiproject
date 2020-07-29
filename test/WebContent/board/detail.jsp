@@ -13,6 +13,11 @@
     BulletinDao dao2 = BulletinDao.getInstance();
     BulletinDto dto2 = dao2.bulletin_getData2(num);
     String kinds= dto2.getKinds();
+   
+    String id  =(String)session.getAttribute("id");
+    MemberDao dao = MemberDao.getInstance();
+    MemberDto dto3  =dao.getData(id);
+	String name =dto3.getNick();    
     
     
     BulletinDto dto = null ;
@@ -41,7 +46,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath }/js/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
@@ -99,19 +104,24 @@
       <a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-danger">삭제</button></a>
    
    
-  	<form action="writecomment.jsp" method = "post" id="myForm">
-  	<div class="form-group">
-    <label for="comment">댓글</label>
-    <textarea class="form-control" name = "comment" id="comment" rows="3"></textarea>
-  	</div>
-  	<button class="btn btn-success" id ="writecomment" >글쓰기</button>
-  	<button class="btn btn-danger"type = "reset">취소</button>
+  	
+  	
+  	<form action="writecomment.jsp" method="post" id="myForm">
+	  	<input type="hidden" name="num" id="num" 
+					value="<%=num%>"/>
+		<input type="hidden" name="name" id="name" 
+					value="<%=name%>"/>
+	  	<div class="form-group">
+	    <label for="comment">댓글</label>
+	    <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+	  	</div>
+	  	<button type="submit" class="btn btn-success" id="writecomment" >글쓰기</button>
+	  	<button class="btn btn-danger" type="reset">취소</button>
   	</form>
    
    </div>
 
 </body>
-<script src="${pageContext.request.contextPath }/js/jquery-3.5.1.js"></script>
 <script>
 
 	function goBack() {
@@ -124,27 +134,24 @@
       }
    }
    
+  
+   
    $("#myForm").on("submit",function(){
-	   
-	 //입력한 아이디를 읽어온다.
-		var comment=$("#comment").val();
 	 
-		var query=$(this).serialize();
-		//ajax 를 이용해서 서버에 보낸후 결과를 응답 받는다.
-		console.log(query);
+		var content=$("#content").val();
+		
 		$.ajax({
 			method:"post",
 			url:"writecomment.jsp",
-			data:query,
+			data:{content:content, name:"<%=name%>",num:<%=num%>},
 			success:function(data){
-				//data => {isExist:true} or {isExist:false} 인 object 이다.
 				console.log(data);
-				
 			}
+			
 		});
-		//form 안에 있는 일반 버튼을 눌러도 폼이 전송 되기 때문에 폼 전송을 막아준다.
+		
 		return false;
-   })
+   });
   
 </script>
 
