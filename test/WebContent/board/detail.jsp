@@ -13,8 +13,12 @@
     BulletinDao dao2 = BulletinDao.getInstance();
     BulletinDto dto2 = dao2.bulletin_getData2(num);
     String kinds= dto2.getKinds();
-    
-    
+         
+    String id  =(String)session.getAttribute("id");
+    MemberDao dao = MemberDao.getInstance();
+    MemberDto dto3  =dao.getData(id);
+	String name =dto3.getNick();    
+
     BulletinDto dto = null ;
     if(allpage==null){
     	allpage = "other";
@@ -27,12 +31,10 @@
     	dto=BulletinDao.getInstance().bulletin_getData(kinds,num);
     }
     String url = request.getParameter("url");
-     BulletinDao.getInstance().addViewCount(num);
-     
-    String id = (String)session.getAttribute("id");
+	BulletinDao.getInstance().addViewCount(num);
 	
     String nick = (String)MemberDao.getInstance().getData(id).getNick();
-	String name = (String)BulletinDao.getInstance().bulletin_getData(kinds, num).getName();
+	String name2 = (String)BulletinDao.getInstance().bulletin_getData(kinds, num).getName();
 
 
 
@@ -47,7 +49,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/make.css" />
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="${pageContext.request.contextPath }/js/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
@@ -86,7 +88,7 @@
          </thead>
          <tbody>
             <tr>
-               <th>작성자 : <%=dto.getName() %></td>
+               <th>작성자 : <%=dto.getName() %>
                </th>
             </tr>
             <tr>
@@ -103,7 +105,7 @@
       
 	<%
 		try{
-			if(name.equals(nick)||nick.equals("admin")){%>
+			if(name2.equals(nick)||nick.equals("admin")){%>
 		      <a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&kinds=<%=kinds %>&url=<%=url%>"><button class="btn btn-primary">수정</button></a>
 		      <a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-danger">삭제</button></a>
 			<%} %>
@@ -111,6 +113,23 @@
 			e.printStackTrace();
 		}
 	%>
+   
+   
+  	
+  	
+  	<form action="writecomment.jsp" method="post" id="myForm">
+	  	<input type="hidden" name="num" id="num" 
+					value="<%=num%>"/>
+		<input type="hidden" name="name" id="name" 
+					value="<%=name%>"/>
+	  	<div class="form-group">
+	    <label for="comment">댓글</label>
+	    <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+	  	</div>
+	  	<button type="submit" class="btn btn-success" id="writecomment" >글쓰기</button>
+	  	<button class="btn btn-danger" type="reset">취소</button>
+  	</form>
+   
    </div>
 
 </body>
@@ -125,8 +144,28 @@
          location.href="${pageContext.request.contextPath }/writepage/delete.jsp?num="+num+"&url=<%=url%>";
       }
    }
+   
+  
+   
+   $("#myForm").on("submit",function(){
+	 
+		var content=$("#content").val();
+		
+		$.ajax({
+			method:"post",
+			url:"writecomment.jsp",
+			data:{content:content, name:"<%=name%>",num:<%=num%>},
+			success:function(data){
+				console.log(data);
+			}
+			
+		});
+		
+		return false;
+   });
+  
 </script>
-</div>
+
   <jsp:include page="/include/footer.jsp">
    <jsp:param value="index" name="thisPage"/>
   </jsp:include>
