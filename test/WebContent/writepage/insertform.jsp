@@ -42,7 +42,7 @@
 	<hr style="clear:left;"/>
 
 	<form action="insert.jsp?url=<%=url %>" method="post">	
-	<input type="hidden"  name ="name" value =" <%=name %>"/>
+	<input type="hidden"  name ="name" value ="<%=name %>"/>
 <div class="form-inline">
 	<select class="form-control" name='kinds' >
 	  <option <%if(kinds.equals("funny")){ %>selected <%} %> value='funny'>유머</option>

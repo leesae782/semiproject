@@ -12,6 +12,8 @@ CREATE TABLE member
     nick       VARCHAR2(100)    NOT NULL, 
     email      VARCHAR2(100)    NOT NULL, 
     profile    VARCHAR2(100)    NULL, 
-    regdate    DATE             NOT NULL, 
+    regdate    DATE             NOT NULL,
+    quiznum    NUMBER
+    quiz       VARCHAR2(100)    NOT NULL,
     CONSTRAINT MEMBER_PK PRIMARY KEY (id, nick, email)
 )

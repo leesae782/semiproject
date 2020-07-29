@@ -29,7 +29,13 @@
     String url = request.getParameter("url");
      BulletinDao.getInstance().addViewCount(num);
      
-    
+    String id = (String)session.getAttribute("id");
+	
+    String nick = (String)MemberDao.getInstance().getData(id).getNick();
+	String name = (String)BulletinDao.getInstance().bulletin_getData(kinds, num).getName();
+
+
+
     
 %>    
 <!DOCTYPE html>
@@ -94,9 +100,17 @@
             </tr>
          </tbody>
       </table>
-		
-      <a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&kinds=<%=kinds %>&url=<%=url%>"><button class="btn btn-primary">수정</button></a>
-      <a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-danger">삭제</button></a>
+      
+	<%
+		try{
+			if(name.equals(nick)||nick.equals("admin")){%>
+		      <a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&kinds=<%=kinds %>&url=<%=url%>"><button class="btn btn-primary">수정</button></a>
+		      <a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-danger">삭제</button></a>
+			<%} %>
+		<%}catch(Exception e){
+			e.printStackTrace();
+		}
+	%>
    </div>
 
 </body>
