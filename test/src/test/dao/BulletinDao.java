@@ -194,7 +194,7 @@ public class BulletinDao {
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고
 			pstmt.setString(1, dto.getKinds());
-			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getName());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//결과 값 추출하기 

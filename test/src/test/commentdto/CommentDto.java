@@ -7,11 +7,11 @@ public class CommentDto {
 	private String name;
 	private String content;
 	private String regdate;
-	private String boardnum;
+	private int boardnum;
 	
 	public CommentDto() {}
 
-	public CommentDto(int num, String name, String content, String regdate, String boardnum) {
+	public CommentDto(int num, String name, String content, String regdate, int boardnum) {
 		super();
 		this.num = num;
 		this.name = name;
@@ -52,12 +52,14 @@ public class CommentDto {
 		this.regdate = regdate;
 	}
 
-	public String getBoardnum() {
+	public int getBoardnum() {
 		return boardnum;
 	}
 
-	public void setBoardnum(String boardnum) {
+	public void setBoardnum(int boardnum) {
 		this.boardnum = boardnum;
 	}
+
 	
+
 }

@@ -33,15 +33,20 @@ public class CommentDao {
 			//Connection 객체의 참조값 얻어오기 
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
-			String sql = "";
+			String sql = "select * from board_comment where boardnum= ?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-
+			pstmt.setInt(1, dto.getNum());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
 			while (rs.next()) {
-
+				CommentDto tmp = new CommentDto();
+				tmp.setNum(rs.getInt("num"));
+				tmp.setName(rs.getString("name"));
+				tmp.setContent(rs.getNString("content"));
+				tmp.setRegdate(rs.getString("regdate"));
+				tmp.setBoardnum(rs.getInt("boardnum"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,7 +76,7 @@ public class CommentDao {
 			//? 에 바인딩 할 값이 있으면 바인딩한다.
 			pstmt.setString(1, dto.getName());
 			pstmt.setString(2, dto.getContent());
-			pstmt.setString(3, dto.getBoardnum());
+			pstmt.setInt(3, dto.getBoardnum());
 			// sql문 수행하고 update or insert or delete 된 row 의 개수 리턴받기
 			flag = pstmt.executeUpdate();
 		} catch (Exception e) {
