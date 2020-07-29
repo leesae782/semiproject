@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="test.commentdto.CommentDto"%>
+<%@page import="test.commentdao.CommentDao"%>
 <%@page import="test.memberdao.MemberDao"%>
 <%@page import="test.memberdto.MemberDto"%>
 <%@page import="test.dao.BulletinDao"%>
@@ -127,9 +130,29 @@
 	    <textarea class="form-control" name="content" id="content" rows="3"></textarea>
 	  	</div>
 	  	<button type="submit" class="btn btn-success" id="writecomment" >글쓰기</button>
-	  	<button class="btn btn-danger" type="reset">취소</button>
+	  	<button type="reset" class="btn btn-danger" type="reset">취소</button>
   	</form>
    
+<%
+	 CommentDto comdto = new CommentDto();
+	  comdto.setBoardnum(num);
+	 CommentDao comdao = CommentDao.getInstance();
+	 List<CommentDto> list = comdao.getList(comdto);
+%>
+   
+   <table>
+   <%try { %>
+   <%for(CommentDto tmp : list){ %>
+   	<tr>
+   		<th>닉네임 :<%=tmp.getName() %></th>
+   		<td><%=tmp.getContent() %></td>
+   	</tr>
+   
+   <%} %>
+   <%} catch(Exception e ){} %>
+   
+   
+   </table>
    </div>
 
 </body>

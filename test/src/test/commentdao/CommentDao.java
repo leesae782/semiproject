@@ -24,7 +24,7 @@ public class CommentDao {
 	
 	
 	public List<CommentDto> getList(CommentDto dto){
-		List<CommentDto> list =null;
+		List<CommentDto> list =new ArrayList<>();
 		//필요한 객체의 참조값을 담을 지역변수 만들기 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -33,10 +33,11 @@ public class CommentDao {
 			//Connection 객체의 참조값 얻어오기 
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
-			String sql = "select * from board_comment where boardnum= ?";
+			String sql = "select * from board_comment where boardnum= ?"
+					+ " order by num desc";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
-			pstmt.setInt(1, dto.getNum());
+			pstmt.setInt(1, dto.getBoardnum());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
@@ -47,6 +48,7 @@ public class CommentDao {
 				tmp.setContent(rs.getNString("content"));
 				tmp.setRegdate(rs.getString("regdate"));
 				tmp.setBoardnum(rs.getInt("boardnum"));
+				list.add(tmp);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

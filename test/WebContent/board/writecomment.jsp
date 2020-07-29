@@ -5,7 +5,7 @@
 <%
 String content = request.getParameter("content");
 String name = request.getParameter("name");
-String boardnum= request.getParameter("num");
+int boardnum= Integer.parseInt(request.getParameter("num"));
 
 CommentDao dao = CommentDao.getInstance();
 CommentDto dto  = new CommentDto();
