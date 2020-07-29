@@ -51,7 +51,7 @@
   		</div>	
 	  -->
 	<h1 class="">Join</h1>
-    <form action="signup.jsp" method="post" id ="myForm">
+    <form action="signup.jsp" method="post">
     <input type="hidden" name="profile" id="profile" 
 				value="/images/rlqhs.png"/>
         <table class="table table-boardered">
@@ -110,7 +110,7 @@
             
             <tr>
                 <td class="text-center"colspan="3">
-                <input type="submit" class="btn btn-outline-primary" value="가입">
+                <input type="submit" class="btn btn-outline-primary" id ="myForm" value="가입">
                 <input type="reset" class="btn btn-outline-danger" value="취소">
                 </td>
                 <td></td>
@@ -155,8 +155,8 @@ $("#profileLink").on("click", function(){
 	
 	//아이디 중복확인을 통과 했는지 여부
 	var canUseId=false;
-	var canUsenNick = false;
-	var canUsenEmail = false;
+	var canUseNick = false;
+	var canUseEmail = false;
 	//중복 확인 버튼을 눌렀을때 실행할 함수 등록
 	
 	$("#pwd").on("input",function(){
@@ -258,7 +258,7 @@ $("#profileLink").on("click", function(){
 		return false;
 	});
 	//폼에 submit 이벤트가 일어났을때 호출될 함수 등록 
-	$("#myForm").on("submit", function(){
+	$("#myForm").on("click", function(){
 		
 		if(!canUseId){//사용 불가한 아이디 이면 
 			alert("아이디 중복을 확인 하세요");
