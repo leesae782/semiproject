@@ -30,6 +30,8 @@
 <title>member/login.jsp</title>
 </head>
 <body>
+
+<%if((MemberDao.getInstance().getisStop(id).getIsStop()==0)){ %>
 	<%if(isValid){
 		//로그인처리를한다 세션에다 id라는 키값에 id를 저장함
 		session.setAttribute("id",id);
@@ -44,9 +46,13 @@
 			alert("아이디 혹은 패스워드를 확인하세요.");
 			location.href = "login_form.jsp?url=<%=encodedUrl %>";
 		</script>
-		
-	
-	<%} %>
+	<%}%>
+<%}else if((MemberDao.getInstance().getisStop(id).getIsStop()==1)){ %>
+	<script>
+		alert("'<%=id%>' 이 계정은 정지된 상태입니다. ");
+		location.href = "${pageContext.request.contextPath}/";
+	</script>
+<%} %>
 	
 </body>
 </html>
