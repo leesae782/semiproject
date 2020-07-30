@@ -177,12 +177,23 @@
 					value="<%=kinds%>"/>
 		<input type="hidden" name="allpage" id="allpage" 
 					value="<%=allpage%>"/>
+	  	
+	  	
+	  	<%if(id!= null) {%>
 	  	<div class="form-group">
 	    <label for="comment">댓글</label>
-	    <textarea class="form-control" name="content" id="content" rows="3"></textarea>
+	    <textarea class="form-control" name="content" id="content" rows="3" placeholder="로그인후 사용가능합니다."></textarea>
 	  	</div>
-	  	<button type="submit" class="btn btn-outline-info" id="writecomment" >글쓰기</button>
+	  	<button type="submit"   class="btn btn-outline-info" id="writecomment" >글쓰기</button>
 	  	<button type="reset" class="btn btn-outline-info" type="reset">취소</button>
+	  	<%}else{  String message = "로그인후 이용가능합니다.";%>
+	  	<div class="form-group">
+	    <label for="comment">댓글</label>
+	    <textarea disabled class="form-control" name="content" id="content" rows="3" placeholder="로그인후 사용가능합니다."></textarea>
+	  	</div>
+	  	<button disabled type="submit"  onclick="alert('<%=message%>')"class="btn btn-outline-info" id="writecomment" >글쓰기</button>
+	  	<button disabled type="reset" class="btn btn-outline-info" type="reset">취소</button>
+	  	<%} %>
   	</form>
   	
    
