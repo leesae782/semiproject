@@ -13,7 +13,7 @@
 		condition="";
 	}
 	//인코딩된 키워드를 미리 만들어 둔다. 
-	String encodedK=URLEncoder.encode(keyword);
+	
 	
 	//검색 키워드와 startRowNum, endRowNum 을 담을 bulletin_dto 객체 생성
 	
@@ -55,7 +55,7 @@
 	<h1>관리자 페이지 입니다</h1>
 	<form action="admin_page.jsp" method="get">
 		<label for="keyword">닉네임 :</label>
-		<input value="<%=keyword %>" type="text" name="keyword" placeholder="검색어..."/>
+		<input value="<%=keyword%>" type="text" name="keyword" placeholder="검색어..."/>
 		<button type="submit">검색</button>
 	</form>
 	<table class="table table-bordered table-hover">

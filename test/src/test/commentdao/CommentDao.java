@@ -23,6 +23,39 @@ public class CommentDao {
 	
 	
 	
+	public boolean delete(CommentDto dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			conn = new DbcpBean().getConn();
+			//실행할 sql문 준비하기
+			String sql = "DELETE FROM board_comment where num=? and name =?";
+			pstmt = conn.prepareStatement(sql);
+			//? 에 바인딩 할 값이 있으면 바인딩한다.
+			pstmt.setInt(1, dto.getNum());
+			pstmt.setString(2, dto.getName());
+			// sql문 수행하고 update or insert or delete 된 row 의 개수 리턴받기
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					pstmt.close();
+			} catch (Exception e) {
+			}
+
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public List<CommentDto> getList(CommentDto dto){
 		List<CommentDto> list =new ArrayList<>();
 		//필요한 객체의 참조값을 담을 지역변수 만들기 

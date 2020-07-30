@@ -38,7 +38,7 @@
     }
     String url = request.getParameter("url");
 	BulletinDao.getInstance().addViewCount(num);
-	String nick =null;
+	String nick ="";
 	try{
      nick = (String)MemberDao.getInstance().getData(id).getNick();
 	}catch (Exception e){}
@@ -70,10 +70,10 @@
    <%if(dto.getPrevNum() != 0){ %>
  	
      	<a class="btn btn-outline-info" href="${pageContext.request.contextPath }/board/detail.jsp?num=<%=dto.getPrevNum()%>&kinds=<%=kinds %>&url=<%=url%>&allpage=<%=allpage%>">
-     
+     이전글
          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
            <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
-         </svg>이전글</a>
+         </svg></a>
    <%} %>
   
    <%if(dto.getNextNum() != 0){ %>
@@ -114,8 +114,8 @@
 	<%
 		try{
 			if(name2.equals(nick)||nick.equals("admin")){%>
-		      <a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&kinds=<%=kinds %>&url=<%=url%>"><button class="btn btn-primary">수정</button></a>
-		      <a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-danger">삭제</button></a>
+		      <a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&kinds=<%=kinds %>&url=<%=url%>"><button class="btn btn-outline-info">수정</button></a>
+		      <a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-outline-info">삭제</button></a>
 			<%} %>
 		<%}catch(Exception e){
 			e.printStackTrace();
@@ -125,17 +125,23 @@
    
   	
   	
-  	<form action="writecomment.jsp" method="post" id="myForm">
+  	<form action="private/writecontent.jsp" method="post" id="myForm">
 	  	<input type="hidden" name="num" id="num" 
 					value="<%=num%>"/>
 		<input type="hidden" name="name" id="name" 
 					value="<%=name%>"/>
+		<input type="hidden" name="url" id="url" 
+					value="<%=url%>"/>
+		<input type="hidden" name="kinds" id="kinds" 
+					value="<%=kinds%>"/>
+		<input type="hidden" name="allpage" id="allpage" 
+					value="<%=allpage%>"/>
 	  	<div class="form-group">
 	    <label for="comment">댓글</label>
 	    <textarea class="form-control" name="content" id="content" rows="3"></textarea>
 	  	</div>
-	  	<button type="submit" class="btn btn-success" id="writecomment" >글쓰기</button>
-	  	<button type="reset" class="btn btn-danger" type="reset">취소</button>
+	  	<button type="submit" class="btn btn-outline-info" id="writecomment" >글쓰기</button>
+	  	<button type="reset" class="btn btn-outline-info" type="reset">취소</button>
   	</form>
   	
    
@@ -145,13 +151,18 @@
 	 CommentDao comdao = CommentDao.getInstance();
 	 List<CommentDto> list = comdao.getList(comdto);
 %>
-   
-   <table>
+   <br />
+   <table class="table">
    <%try { %>
    <%for(CommentDto tmp : list){ %>
    	<tr>
+   		<td>번호 : <%=tmp.getNum() %></td>
    		<th>닉네임 :<%=tmp.getName() %></th>
-   		<td><%=tmp.getContent() %></td>
+   		<td ><%=tmp.getContent() %></td>
+   		<td><%=tmp.getRegdate() %></td>
+   		<%if(tmp.getName().equals(name)){ %>
+   		<td><a href="private/delete.jsp?num=<%=tmp.getNum()%>&name=<%=tmp.getName()%>&url=<%=url%>&kinds=<%=kinds%>&allpage=<%=allpage%>&boardnum=<%=num%>">삭제</a></td>
+   		<%} %>
    	</tr>
    
    <%} %>
@@ -175,23 +186,8 @@
    }
    
   
-   
-   $("#myForm").on("submit",function(){
-	 
-		var content=$("#content").val();
-		
-		$.ajax({
-			method:"post",
-			url:"writecomment.jsp",
-			data:{content:content, name:"<%=name%>",num:<%=num%>},
-			success:function(data){
-				console.log(data);
-			}
-			
-		});
-		
-		return false;
-   });
+
+
   
 </script>
 

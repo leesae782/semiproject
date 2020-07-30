@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="test.memberdao.MemberDao"%>
 <%@page import="test.memberdto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,7 +6,7 @@
 <%
 	String id = request.getParameter("data");
 	String select = request.getParameter("select");
-	String keyword = request.getParameter("keyword");
+	String keyword = URLEncoder.encode(request.getParameter("keyword"));
 	if(select.equals("정지")){
 		MemberDto dto = MemberDao.getInstance().getisStop(id);
 		int num = dto.getIsStop();

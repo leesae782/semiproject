@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
 String content = request.getParameter("content");
 String name = request.getParameter("name");
 int boardnum= Integer.parseInt(request.getParameter("num"));
