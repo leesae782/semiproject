@@ -52,12 +52,12 @@
                    		 8글자 이상 입력하세요
                 	</div>
             		</div>
-           			 <button type="submit" class="btn btn-outline-primary">가입</button>
+           			 <button type="submit" class="btn btn-outline-primary">수정</button>
        			 </form>
     		</div>
 			
     		<div class="col-sm-3">
- 				값 넣기
+ 				
     		</div>
   	</div>	
 	

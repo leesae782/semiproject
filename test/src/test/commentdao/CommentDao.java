@@ -55,7 +55,47 @@ public class CommentDao {
 			return false;
 		}
 	}
+
 	
+	public int getCount(int boardnum) {
+		//전체 row  의 갯수를 담을 지역 변수 
+		int count=0;
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//ROWNUM 중에서 가장 큰 숫자를 얻어오면 전체 row  의 갯수가 된다. 
+			//혹시 row 가 하나도 없으면 null 이 얻어와 지기때문에  null 인 경우 0 으로 
+			//바꿔 줘야 한다.
+			String sql = "SELECT NVL(MAX(ROWNUM), 0) AS num"
+					+ " FROM board_comment where boardnum=?";
+			pstmt = conn.prepareStatement(sql);
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+			pstmt.setInt(1, boardnum);
+			//select 문 수행하고 결과 받아오기 
+			rs = pstmt.executeQuery();
+			//결과 값 추출하기 
+			if (rs.next()) {
+				count=rs.getInt("num");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return count;
+	}
 	public List<CommentDto> getList(CommentDto dto){
 		List<CommentDto> list =new ArrayList<>();
 		//필요한 객체의 참조값을 담을 지역변수 만들기 
@@ -66,11 +106,18 @@ public class CommentDao {
 			//Connection 객체의 참조값 얻어오기 
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문 준비하기
-			String sql = "select * from board_comment where boardnum= ?"
-					+ " order by num desc";
+			String sql = "SELECT *"
+					+ " FROM"
+					+ "     (SELECT result1.*, ROWNUM AS rnum"
+					+ "      FROM (SELECT *"
+					+ "            FROM board_comment WHERE boardnum=?"
+					+ "            ORDER BY num DESC) result1)"
+					+ "   where rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
 			pstmt.setInt(1, dto.getBoardnum());
+			pstmt.setInt(2, dto.getStartRowNum());
+			pstmt.setInt(3, dto.getEndRowNum());
 			//select 문 수행하고 결과 받아오기 
 			rs = pstmt.executeQuery();
 			//반복문 돌면서 결과 값 추출하기 
@@ -81,6 +128,7 @@ public class CommentDao {
 				tmp.setContent(rs.getNString("content"));
 				tmp.setRegdate(rs.getString("regdate"));
 				tmp.setBoardnum(rs.getInt("boardnum"));
+				
 				list.add(tmp);
 			}
 		} catch (Exception e) {

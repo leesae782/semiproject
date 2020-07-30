@@ -8,31 +8,32 @@
     pageEncoding="UTF-8"%>
     
 <%
-	String id = (String)session.getAttribute("id");
-	MemberDao dao = MemberDao.getInstance();
-	MemberDto dto = dao.getData(id);
-	List<BulletinDto> list=BulletinDao.getInstance().getLine2();
-	List<BulletinDto> lookuplist=BulletinDao.getInstance().getLine3();
-	List<BulletinDto> funnylist=BulletinDao.getInstance().getLine("funny");
-	List<BulletinDto> issuelist=BulletinDao.getInstance().getLine("issue");
-	List<BulletinDto> inforlist=BulletinDao.getInstance().getLine("infor");
-	List<BulletinDto> soccerlist=BulletinDao.getInstance().getLine("soccer");
-	List<BulletinDto> baseballlist=BulletinDao.getInstance().getLine("baseball");
-	List<BulletinDto> basketballlist=BulletinDao.getInstance().getLine("basketball");
-	List<BulletinDto> lollist=BulletinDao.getInstance().getLine("lol");
-	List<BulletinDto> baglist=BulletinDao.getInstance().getLine("bag");
-	List<BulletinDto> fifalist=BulletinDao.getInstance().getLine("fifa");
-	List<BulletinDto> freelist=BulletinDao.getInstance().getLine("free");
-	List<BulletinDto> questionlist=BulletinDao.getInstance().getLine("question");
+   String id = (String)session.getAttribute("id");
+   MemberDao dao = MemberDao.getInstance();
+   MemberDto dto = dao.getData(id);
+   List<BulletinDto> list=BulletinDao.getInstance().getLine2();
+   List<BulletinDto> lookuplist=BulletinDao.getInstance().getLine3();
+   List<BulletinDto> funnylist=BulletinDao.getInstance().getLine("funny");
+   List<BulletinDto> issuelist=BulletinDao.getInstance().getLine("issue");
+   List<BulletinDto> inforlist=BulletinDao.getInstance().getLine("infor");
+   List<BulletinDto> soccerlist=BulletinDao.getInstance().getLine("soccer");
+   List<BulletinDto> baseballlist=BulletinDao.getInstance().getLine("baseball");
+   List<BulletinDto> basketballlist=BulletinDao.getInstance().getLine("basketball");
+   List<BulletinDto> lollist=BulletinDao.getInstance().getLine("lol");
+   List<BulletinDto> baglist=BulletinDao.getInstance().getLine("bag");
+   List<BulletinDto> fifalist=BulletinDao.getInstance().getLine("fifa");
+   List<BulletinDto> freelist=BulletinDao.getInstance().getLine("free");
+   List<BulletinDto> questionlist=BulletinDao.getInstance().getLine("question");
 
-	
-	String url= request.getRequestURI() ; // 현재 url 을  저장함
+   
+   String url= request.getRequestURI() ; // 현재 url 을  저장함
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>index.jsp</title>
+
 
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.css" />
@@ -49,7 +50,7 @@
 
 
 <jsp:include page="include/navbar.jsp">
-	<jsp:param value="index" name="thisPage"/>
+   <jsp:param value="index" name="thisPage"/>
 </jsp:include>
 
 
@@ -58,80 +59,79 @@
  
 
 <div class="container">
-	<!--  콘테이너안에  div 9-3 으로 나눈 양식 입니다. 들여쓰기 해주세요
-		
-		
-		
-		<div class="row">
-    		<div class="col-sm-9">
-    		  	값 넣기
-    		</div>
-			
-    		<div class="col-sm-3">
- 				값 넣기
-    		</div>
-  		</div>	
-	  -->
-	
-	<div class="row">
-    		<div class="col-sm-9">
-    		  	<div class="row">
-   					 <div class="col-sm">
-    					  <div class="card" >
- 						 	<div class="card-header">
-  								 <span style="color:red;"><strong >최신</strong></span> 게시글 순위
- 			 				</div>
- 							<ul class="list-group">
-							 	<% try {%>
-							 	<%for(int i=0; i<list.size(); i++) {
-							 		BulletinDto tmp = list.get(i);
-							 		%>
-							 		<%if(i < 9) { %>
-								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&allpage=all"><%=tmp.getTitle() %></a>
-									<div>
-									<span class="badge badge-primary badge-pill">15</span>
-									<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-									</div>
-									
-								</li>
-									<%} %>	
-								<%} %>
-								<%} catch(Exception e){ %>
-								<% } %>
-							</ul>
-						</div>
-    				</div>
-    				<div class="col-sm">
-    					  <div class="card" >
- 						 	<div class="card-header">
-  								 <span style="color:red;"><string >HOT</string></span> 게시글 순위
- 			 				</div>
- 							<ul class="list-group">
-  								<% try {%>
-							 	<%for(int i=0; i<lookuplist.size(); i++) {
-							 		BulletinDto tmp = lookuplist.get(i);
-							 		%>
-							 		<%if(i < 9) { %>
-								<li class="list-group-item d-flex justify-content-between align-items-center">
-									<a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&allpage=lookup"><%=tmp.getTitle() %></a>
-									<div>
-									<span class="badge badge-primary badge-pill">15</span>
-									<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-									</div>
-									
-								</li>
-									<%} %>	
-								<%} %>
-								<%} catch(Exception e){ %>
-								<% } %>
-								</ul>
-						</div>
-   				 	</div>
- 				 </div>
- 				 
- 				 
-              <nav>
+   <!--  콘테이너안에  div 9-3 으로 나눈 양식 입니다. 들여쓰기 해주세요
+      
+      
+      
+      <div class="row">
+          <div class="col-sm-9">
+               값 넣기
+          </div>
+         
+          <div class="col-sm-3">
+             값 넣기
+          </div>
+        </div>   
+     -->
+   <div class="row">
+          <div class="col-sm-9">
+               <div class="row">
+                   <div class="col-sm">
+                     <div class="card" style="border-color: white" >
+                       <div class="card-header">
+                           <span style="color:red;"><strong >최신</strong></span> 게시글 순위
+                       </div>
+                      <ul class="list-group">
+                         <% try {%>
+                         <%for(int i=0; i<list.size(); i++) {
+                            BulletinDto tmp = list.get(i);
+                            %>
+                            <%if(i < 9) { %>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                           <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&allpage=all"><%=tmp.getTitle() %></a>
+                           <div>
+                           <span class="badge badge-primary badge-pill">15</span>
+                           <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                           </div>
+                           
+                        </li>
+                           <%} %>   
+                        <%} %>
+                        <%} catch(Exception e){ %>
+                        <% } %>
+                     </ul>
+                  </div>
+                </div>
+                <div class="col-sm">
+                     <div class="card" style="border-color: white" >
+                       <div class="card-header">
+                           <span style="color:red;"><string >HOT</string></span> 게시글 순위
+                       </div>
+                      <ul class="list-group">
+                          <% try {%>
+                         <%for(int i=0; i<lookuplist.size(); i++) {
+                            BulletinDto tmp = lookuplist.get(i);
+                            %>
+                            <%if(i < 9) { %>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                           <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&allpage=lookup"><%=tmp.getTitle() %></a>
+                           <div>
+                           <span class="badge badge-primary badge-pill">15</span>
+                           <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                           </div>
+                           
+                        </li>
+                           <%} %>   
+                        <%} %>
+                        <%} catch(Exception e){ %>
+                        <% } %>
+                        </ul>
+                  </div>
+                   </div>
+              </div>
+              
+<hr style="clear:left; border-color: black"/>
+<nav>
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-funny-tab" data-toggle="tab" href="#nav-funny" role="tab" aria-controls="nav-funny" aria-selected="true">축구</a>
     <a class="nav-item nav-link" id="nav-baseball-tab" data-toggle="tab" href="#nav-baseball" role="tab" aria-controls="nav-baseball" aria-selected="false">야구</a>
@@ -153,9 +153,9 @@
                    <a class="f-color" href="/test/board/detail.jsp?num=<%=soccerlist.get(0).getNum() %>&url=<%=url%>&kinds=<%=soccerlist.get(0).getKinds()%>"><%=soccerlist.get(0).getTitle() %></a>
                     
                       <div>
-						<span class="badge badge-primary badge-pill">15</span>
-						<span class="badge badge-danger badge-pill"><%=soccerlist.get(0).getLookup() %></span>
-					</div>
+                  <span class="badge badge-primary badge-pill">15</span>
+                  <span class="badge badge-danger badge-pill"><%=soccerlist.get(0).getLookup() %></span>
+               </div>
                    <%}catch(Exception e){} %>    
                       
                  </li>
@@ -163,7 +163,7 @@
          </div>
        </div>
        <div class="col-8">
- 				<div class="card" id ="card1" >
+             <div class="card" id ="card1" >
                       <ul class="list-group">
                       <%try { %>
                           <%for(int i=1; i<soccerlist.size(); i++) {
@@ -173,9 +173,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-							<span class="badge badge-primary badge-pill">15</span>
-							<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-							</div>
+                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                     </div>
                         </li>
                         <%} %>   
                         <%} %>   
@@ -197,10 +197,10 @@
                    <a class="f-color" href="/test/board/detail.jsp?num=<%=baseballlist.get(0).getNum() %>&url=<%=url%>&kinds=<%=baseballlist.get(0).getKinds()%>"><%=baseballlist.get(0).getTitle() %></a>
                      
                       <div>
-						<span class="badge badge-primary badge-pill">15</span>
-						<span class="badge badge-danger badge-pill"><%=baseballlist.get(0).getLookup() %></span>
-					</div>
-					<%}catch(Exception e){} %>
+                  <span class="badge badge-primary badge-pill">15</span>
+                  <span class="badge badge-danger badge-pill"><%=baseballlist.get(0).getLookup() %></span>
+               </div>
+               <%}catch(Exception e){} %>
                  </li>
               </ul>
          </div>
@@ -216,9 +216,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-							<span class="badge badge-primary badge-pill">15</span>
-							<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-							</div>
+                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                     </div>
                         </li>
                         <%} %>   
                         <%} %>   
@@ -239,10 +239,10 @@
                    <a class="f-color" href="/test/board/detail.jsp?num=<%=basketballlist.get(0).getNum() %>&url=<%=url%>&kinds=<%=basketballlist.get(0).getKinds()%>"><%=basketballlist.get(0).getTitle() %></a>
                      
                       <div>
-						<span class="badge badge-primary badge-pill">15</span>
-						<span class="badge badge-danger badge-pill"><%=basketballlist.get(0).getLookup() %></span>
-					</div>
-					<%}catch(Exception e){} %>
+                  <span class="badge badge-primary badge-pill">15</span>
+                  <span class="badge badge-danger badge-pill"><%=basketballlist.get(0).getLookup() %></span>
+               </div>
+               <%}catch(Exception e){} %>
                  </li>
               </ul>
          </div>
@@ -258,9 +258,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-							<span class="badge badge-primary badge-pill">15</span>
-							<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-							</div>
+                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                     </div>
                         </li>
                         <%} %>   
                         <%} %>      
@@ -281,10 +281,10 @@
                    <a class="f-color" href="/test/board/detail.jsp?num=<%=lollist.get(0).getNum() %>&url=<%=url%>&kinds=<%=lollist.get(0).getKinds()%>"><%=lollist.get(0).getTitle() %></a>
                      
                       <div>
-						<span class="badge badge-primary badge-pill">15</span>
-						<span class="badge badge-danger badge-pill"><%=lollist.get(0).getLookup() %></span>
-					</div>
-					<%}catch(Exception e){} %>
+                  <span class="badge badge-primary badge-pill">15</span>
+                  <span class="badge badge-danger badge-pill"><%=lollist.get(0).getLookup() %></span>
+               </div>
+               <%}catch(Exception e){} %>
                  </li>
               </ul>
          </div>
@@ -300,9 +300,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-							<span class="badge badge-primary badge-pill">15</span>
-							<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-							</div>
+                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                     </div>
                         </li>
                         <%} %>   
                         <%} %>      
@@ -323,10 +323,10 @@
                    <a class="f-color" href="/test/board/detail.jsp?num=<%=baglist.get(0).getNum() %>&url=<%=url%>&kinds=<%=baglist.get(0).getKinds()%>"><%=baglist.get(0).getTitle() %></a>
                      
                       <div>
-						<span class="badge badge-primary badge-pill">15</span>
-						<span class="badge badge-danger badge-pill"><%=baglist.get(0).getLookup() %></span>
-					</div>
-					<%}catch(Exception e){} %>
+                  <span class="badge badge-primary badge-pill">15</span>
+                  <span class="badge badge-danger badge-pill"><%=baglist.get(0).getLookup() %></span>
+               </div>
+               <%}catch(Exception e){} %>
                  </li>
               </ul>
          </div>
@@ -342,9 +342,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-							<span class="badge badge-primary badge-pill">15</span>
-							<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-							</div>
+                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                     </div>
                         </li>
                         <%} %>   
                         <%} %>      
@@ -365,10 +365,10 @@
                    <a class="f-color" href="/test/board/detail.jsp?num=<%=fifalist.get(0).getNum() %>&url=<%=url%>&kinds=<%=fifalist.get(0).getKinds()%>"><%=fifalist.get(0).getTitle() %></a>
                      
                       <div>
-						<span class="badge badge-primary badge-pill">15</span>
-						<span class="badge badge-danger badge-pill"><%=fifalist.get(0).getLookup() %></span>
-					</div>
-					<%}catch(Exception e){} %>
+                  <span class="badge badge-primary badge-pill">15</span>
+                  <span class="badge badge-danger badge-pill"><%=fifalist.get(0).getLookup() %></span>
+               </div>
+               <%}catch(Exception e){} %>
                  </li>
               </ul>
          </div>
@@ -384,9 +384,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-							<span class="badge badge-primary badge-pill">15</span>
-							<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-							</div>
+                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                     </div>
                         </li>
                         <%} %>   
                         <%} %>      
@@ -397,9 +397,10 @@
       </div>         
   </div>
 </div>
+         <hr style="clear:left; border-color: black"/>
               <div class="row">
              <div class="col-sm">
-                <div class="card" >
+                <div class="card" style="border-color: white" >
                        <div class="card-header">
                            <span style="color:red;"><strong >유머</strong></span> 게시판
                        </div>
@@ -412,9 +413,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-							<span class="badge badge-primary badge-pill">15</span>
-							<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-							</div>
+                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                     </div>
                         </li>
                            <%} %>   
                         <%} %>
@@ -424,7 +425,7 @@
              
              </div>
              <div class="col-sm">
-                <div class="card" >
+                <div class="card" style="border-color: white" >
                        <div class="card-header">
                            <span style="color:red;"><string >이슈</string></span> 게시판
                        </div>
@@ -437,9 +438,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-							<span class="badge badge-primary badge-pill">15</span>
-							<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-							</div>
+                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                     </div>
                         </li>
                         <%} %>   
                         <%} %>
@@ -449,7 +450,7 @@
           
              </div>
                 <div class="col-sm">
-                <div class="card" >
+                <div class="card" style="border-color: white" >
                        <div class="card-header">
 
                           <span style="color:red;"><string >정보</string></span> 게시판
@@ -463,9 +464,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-							<span class="badge badge-primary badge-pill">15</span>
-							<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-							</div>
+                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                     </div>
                         </li>
                         <%} %>   
                         <%} %>   
@@ -478,9 +479,10 @@
              </div>
              
            </div> 
+           <hr style="clear:left; border-color: black"/>
             <div class="row">
              <div class="col-sm">
-                <div class="card" >
+                <div class="card" style="border-color: white" >
                        <div class="card-header">
                            <span style="color:red;"><strong >자유</strong></span> 게시판
                        </div>
@@ -493,9 +495,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-							<span class="badge badge-primary badge-pill">15</span>
-							<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-							</div>
+                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                     </div>
                         </li>
                            <%} %>   
                         <%} %>
@@ -505,7 +507,7 @@
              
              </div>
              <div class="col-sm">
-                <div class="card" >
+                <div class="card" style="border-color: white" >
                        <div class="card-header">
                            <span style="color:red;"><string >Q&A</string></span> 게시판
                        </div>
@@ -518,9 +520,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-							<span class="badge badge-primary badge-pill">15</span>
-							<span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
-							</div>
+                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
+                     </div>
                         </li>
                         <%} %>   
                         <%} %>
@@ -569,8 +571,9 @@
             </div>
             
       
-        
+           
           </div>
+          
      </div>
 
      

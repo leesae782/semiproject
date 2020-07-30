@@ -46,8 +46,49 @@
 
 
 
-    
-%>    
+	//한 페이지에 나타낼 row 의 갯수
+	final int PAGE_ROW_COUNT=5;
+	//하단 디스플레이 페이지 갯수
+	final int PAGE_DISPLAY_COUNT=5;
+	//보여줄 페이지의 번호
+	int pageNum=1;
+	//보여줄 페이지의 번호가 파라미터로 전달되는지 읽어와 본다.   
+	String strPageNum=request.getParameter("pageNum");
+	if(strPageNum != null){//페이지 번호가 파라미터로 넘어온다면
+	   //페이지 번호를 설정한다.
+	   pageNum=Integer.parseInt(strPageNum);
+	}
+	//보여줄 페이지 데이터의 시작 ResultSet row 번호
+	int startRowNum=1+(pageNum-1)*PAGE_ROW_COUNT;
+	//보여줄 페이지 데이터의 끝 ResultSet row 번호
+	int endRowNum=pageNum*PAGE_ROW_COUNT;
+	/*
+	   검색 키워드에 관련된 처리 
+	*/
+
+
+
+	//전체 row 의 갯수를 담을 변수 
+	int totalRow=0; 
+	   totalRow=CommentDao.getInstance().getCount(num);
+  
+	//전체 페이지의 갯수 구하기
+	int totalPageCount=
+	      (int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+	//시작 페이지 번호
+	int startPageNum=1+((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
+	//끝 페이지 번호
+	int endPageNum=startPageNum+PAGE_DISPLAY_COUNT-1;
+	//끝 페이지 번호가 잘못된 값이라면 
+	if(totalPageCount < endPageNum){
+	   endPageNum=totalPageCount; //보정해준다. 
+	}
+	%>
+
+	
+
+       
+	   
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,9 +187,12 @@
   	
    
 <%
+
 	 CommentDto comdto = new CommentDto();
 	  comdto.setBoardnum(num);
-	 CommentDao comdao = CommentDao.getInstance();
+	  comdto.setStartRowNum(startRowNum);
+	  comdto.setEndRowNum(endRowNum);
+	  CommentDao comdao = CommentDao.getInstance();
 	 List<CommentDto> list = comdao.getList(comdto);
 %>
    <br />
@@ -170,6 +214,27 @@
    
    
    </table>
+   
+   	         <div class="page-display text-align: center;  float: left width: 100%">
+	            <div display: inline-block>
+	            <ul class="pagination pagination-sm">
+	            <%if(startPageNum != 1){ %>
+	               <li class="page-item"><a class="page-link" href="detail.jsp?pageNum=<%=startPageNum-1 %>&num=<%=num%>&url=<%=url%>&kinds=<%=kinds%>&allpage=<%=allpage%>">Prev</a></li>
+	            <%} %>
+	            <%for(int i=startPageNum; i<=endPageNum; i++){ %>
+	               <%if(i==pageNum){ %>
+	                  <li class="page-item active "><a class="page-link"  href="detail.jsp?pageNum=<%=i %>&num=<%=num%>&url=<%=url%>&kinds=<%=kinds%>&allpage=<%=allpage%>"><%=i %></a></li>
+	               <%}else{%>
+	                  <li class="page-item"><a class="page-link" href="detail.jsp?pageNum=<%=i %>&num=<%=num%>&url=<%=url%>&kinds=<%=kinds%>&allpage=<%=allpage%>"><%=i %></a></li>
+	               <%} %>
+	            <%} %>   
+	            <%if(endPageNum < totalPageCount){ %>
+	               <li class="page-item"><a class="page-link" href="detail.jsp?pageNum=<%=endPageNum+1 %>&num=<%=num%>&url=<%=url%>&kinds=<%=kinds%>&allpage=<%=allpage%>">Next</a></li>
+	            <%} %>
+	            </ul>
+	            </div>
+	         </div>
+	         
    </div>
 
 </body>
