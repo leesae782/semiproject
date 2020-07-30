@@ -44,7 +44,7 @@ public class CommentDao {
 				if (pstmt != null)
 					pstmt.close();
 				if (conn != null)
-					pstmt.close();
+					conn.close();
 			} catch (Exception e) {
 			}
 
@@ -169,7 +169,7 @@ public class CommentDao {
 				if (pstmt != null)
 					pstmt.close();
 				if (conn != null)
-					pstmt.close();
+					conn.close();
 			} catch (Exception e) {
 			}
 

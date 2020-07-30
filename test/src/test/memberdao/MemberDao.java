@@ -158,7 +158,7 @@ public class MemberDao {
 				if (pstmt != null)
 					pstmt.close();
 				if (conn != null)
-					pstmt.close();
+					conn.close();
 			} catch (Exception e) {
 			}
 
@@ -190,7 +190,7 @@ public class MemberDao {
 				if (pstmt != null)
 					pstmt.close();
 				if (conn != null)
-					pstmt.close();
+					conn.close();
 			} catch (Exception e) {
 			}
 
@@ -226,7 +226,7 @@ public class MemberDao {
 				if (pstmt != null)
 					pstmt.close();
 				if (conn != null)
-					pstmt.close();
+					conn.close();
 			} catch (Exception e) {
 			}
 
@@ -261,7 +261,7 @@ public class MemberDao {
 				if (pstmt != null)
 					pstmt.close();
 				if (conn != null)
-					pstmt.close();
+					conn.close();
 			} catch (Exception e) {
 			}
 
@@ -505,7 +505,7 @@ public class MemberDao {
 				if (pstmt != null)
 					pstmt.close();
 				if (conn != null)
-					pstmt.close();
+					conn.close();
 			} catch (Exception e) {
 			}
 

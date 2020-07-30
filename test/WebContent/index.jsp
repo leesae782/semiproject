@@ -183,7 +183,7 @@
   <div class="row">
        <div class="col-4">
           <div class="card" id = "card1-img">
-              <img src="${pageContext.request.contextPath}/images/soccer2.jpg" class="card-img-size" alt="무슨파일인지설명">
+              <img src="${pageContext.request.contextPath}/images/baseball3.jpg" class="card-img-size" alt="무슨파일인지설명">
               
          </div>
        </div>
@@ -214,7 +214,7 @@
   <div class="row">
        <div class="col-4">
           <div class="card" id = "card1-img">
-              <img src="${pageContext.request.contextPath}/images/soccer2.jpg" class="card-img-size" alt="무슨파일인지설명">
+              <img src="${pageContext.request.contextPath}/images/basketball3.jpg" class="card-img-size" alt="무슨파일인지설명">
               
          </div>
        </div>
@@ -245,7 +245,7 @@
   <div class="row">
        <div class="col-4">
           <div class="card" id = "card1-img">
-              <img src="${pageContext.request.contextPath}/images/soccer2.jpg" class="card-img-size" alt="무슨파일인지설명">
+              <img src="${pageContext.request.contextPath}/images/lol3.jpg" class="card-img-size" alt="무슨파일인지설명">
               
          </div>
        </div>
@@ -276,7 +276,7 @@
   <div class="row">
        <div class="col-4">
           <div class="card" id = "card1-img">
-              <img src="${pageContext.request.contextPath}/images/soccer2.jpg" class="card-img-size" alt="무슨파일인지설명">
+              <img src="${pageContext.request.contextPath}/images/bag3.jpg" class="card-img-size" alt="무슨파일인지설명">
              
          </div>
        </div>
@@ -307,7 +307,7 @@
   <div class="row">
        <div class="col-4">
           <div class="card" id = "card1-img">
-              <img src="${pageContext.request.contextPath}/images/soccer2.jpg" class="card-img-size" alt="무슨파일인지설명">
+              <img src="${pageContext.request.contextPath}/images/soccer3.jpg" class="card-img-size" alt="무슨파일인지설명">
               
          </div>
        </div>

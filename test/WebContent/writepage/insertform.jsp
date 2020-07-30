@@ -38,7 +38,7 @@
 	<jsp:param value="<%=kinds %>" name="thisPage"/>
 </jsp:include>
 <div class="container">
-	<h1>작성글 페이지.</h1>
+	<h2>게시글 작성</h2>
 	<hr style="clear:left;"/>
 
 	<form action="insert.jsp?url=<%=url %>" method="post">	
