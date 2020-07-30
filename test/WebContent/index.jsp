@@ -1,3 +1,5 @@
+<%@page import="test.commentdto.CommentDto"%>
+<%@page import="test.commentdao.CommentDao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="test.dao.BulletinDao"%>
 <%@page import="test.dto.BulletinDto"%>
@@ -27,6 +29,9 @@
 
    
    String url= request.getRequestURI() ; // 현재 url 을  저장함
+   
+   CommentDao comdao2 = CommentDao.getInstance();
+   
 %>
 <!DOCTYPE html>
 <html>
@@ -90,7 +95,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&allpage=all"><%=tmp.getTitle() %></a>
                            <div>
-                           <span class="badge badge-primary badge-pill">15</span>
+                           <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                            <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                            </div>
                            
@@ -116,7 +121,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&allpage=lookup"><%=tmp.getTitle() %></a>
                            <div>
-                           <span class="badge badge-primary badge-pill">15</span>
+                           <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                            <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                            </div>
                            
@@ -146,34 +151,22 @@
     <div class="row">
        <div class="col-4">
           <div class="card" id = "card1-img">
-              <img src="${pageContext.request.contextPath}/images/colon.png" class="card-img-top" alt="무슨파일인지설명">
-              <ul class="list-group">
-                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                   <%try{ %>
-                   <a class="f-color" href="/test/board/detail.jsp?num=<%=soccerlist.get(0).getNum() %>&url=<%=url%>&kinds=<%=soccerlist.get(0).getKinds()%>"><%=soccerlist.get(0).getTitle() %></a>
-                    
-                      <div>
-                  <span class="badge badge-primary badge-pill">15</span>
-                  <span class="badge badge-danger badge-pill"><%=soccerlist.get(0).getLookup() %></span>
-               </div>
-                   <%}catch(Exception e){} %>    
-                      
-                 </li>
-              </ul>
+              <img src="${pageContext.request.contextPath}/images/soccer2.jpg" class="card-img-size" alt="무슨파일인지설명">
+              
          </div>
        </div>
        <div class="col-8">
              <div class="card" id ="card1" >
                       <ul class="list-group">
                       <%try { %>
-                          <%for(int i=1; i<soccerlist.size(); i++) {
+                          <%for(int i=0; i<soccerlist.size(); i++) {
                          BulletinDto tmp = soccerlist.get(i);
                          %>
                          <%if(i < 9) { %>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                      <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                      </div>
                         </li>
@@ -190,33 +183,22 @@
   <div class="row">
        <div class="col-4">
           <div class="card" id = "card1-img">
-              <img src="${pageContext.request.contextPath}/images/colon.png" class="card-img-top" alt="무슨파일인지설명">
-              <ul class="list-group">
-                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                   <%try{ %>
-                   <a class="f-color" href="/test/board/detail.jsp?num=<%=baseballlist.get(0).getNum() %>&url=<%=url%>&kinds=<%=baseballlist.get(0).getKinds()%>"><%=baseballlist.get(0).getTitle() %></a>
-                     
-                      <div>
-                  <span class="badge badge-primary badge-pill">15</span>
-                  <span class="badge badge-danger badge-pill"><%=baseballlist.get(0).getLookup() %></span>
-               </div>
-               <%}catch(Exception e){} %>
-                 </li>
-              </ul>
+              <img src="${pageContext.request.contextPath}/images/soccer2.jpg" class="card-img-size" alt="무슨파일인지설명">
+              
          </div>
        </div>
        <div class="col-8">
   <div class="card"id ="card2" >
                       <ul class="list-group">
                       <%try{ %>
-                          <%for(int i=1; i<baseballlist.size(); i++) {
+                          <%for(int i=0; i<baseballlist.size(); i++) {
                          BulletinDto tmp = baseballlist.get(i);
                          %>
                          <%if(i < 9) { %>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                      <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                      </div>
                         </li>
@@ -232,33 +214,22 @@
   <div class="row">
        <div class="col-4">
           <div class="card" id = "card1-img">
-              <img src="${pageContext.request.contextPath}/images/colon.png" class="card-img-top" alt="무슨파일인지설명">
-              <ul class="list-group">
-                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                   <%try{ %>
-                   <a class="f-color" href="/test/board/detail.jsp?num=<%=basketballlist.get(0).getNum() %>&url=<%=url%>&kinds=<%=basketballlist.get(0).getKinds()%>"><%=basketballlist.get(0).getTitle() %></a>
-                     
-                      <div>
-                  <span class="badge badge-primary badge-pill">15</span>
-                  <span class="badge badge-danger badge-pill"><%=basketballlist.get(0).getLookup() %></span>
-               </div>
-               <%}catch(Exception e){} %>
-                 </li>
-              </ul>
+              <img src="${pageContext.request.contextPath}/images/soccer2.jpg" class="card-img-size" alt="무슨파일인지설명">
+              
          </div>
        </div>
        <div class="col-8">
   <div class="card" id ="card3" >
                       <ul class="list-group">
                       <%try { %>
-                          <%for(int i=1; i<basketballlist.size(); i++) {
+                          <%for(int i=0; i<basketballlist.size(); i++) {
                          BulletinDto tmp = basketballlist.get(i);
                          %>
                          <%if(i < 9) { %>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                      <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                      </div>
                         </li>
@@ -274,33 +245,22 @@
   <div class="row">
        <div class="col-4">
           <div class="card" id = "card1-img">
-              <img src="${pageContext.request.contextPath}/images/colon.png" class="card-img-top" alt="무슨파일인지설명">
-              <ul class="list-group">
-                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                   <%try{ %>
-                   <a class="f-color" href="/test/board/detail.jsp?num=<%=lollist.get(0).getNum() %>&url=<%=url%>&kinds=<%=lollist.get(0).getKinds()%>"><%=lollist.get(0).getTitle() %></a>
-                     
-                      <div>
-                  <span class="badge badge-primary badge-pill">15</span>
-                  <span class="badge badge-danger badge-pill"><%=lollist.get(0).getLookup() %></span>
-               </div>
-               <%}catch(Exception e){} %>
-                 </li>
-              </ul>
+              <img src="${pageContext.request.contextPath}/images/soccer2.jpg" class="card-img-size" alt="무슨파일인지설명">
+              
          </div>
        </div>
        <div class="col-8">
   <div class="card" id ="card3" >             
                       <ul class="list-group">
                       <%try{ %>
-                          <%for(int i=1; i<lollist.size(); i++) {
+                          <%for(int i=0; i<lollist.size(); i++) {
                          BulletinDto tmp = lollist.get(i);
                          %>
                          <%if(i < 9) { %>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                      <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                      </div>
                         </li>
@@ -316,33 +276,22 @@
   <div class="row">
        <div class="col-4">
           <div class="card" id = "card1-img">
-              <img src="${pageContext.request.contextPath}/images/colon.png" class="card-img-top" alt="무슨파일인지설명">
-              <ul class="list-group">
-                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                   <%try{ %>
-                   <a class="f-color" href="/test/board/detail.jsp?num=<%=baglist.get(0).getNum() %>&url=<%=url%>&kinds=<%=baglist.get(0).getKinds()%>"><%=baglist.get(0).getTitle() %></a>
-                     
-                      <div>
-                  <span class="badge badge-primary badge-pill">15</span>
-                  <span class="badge badge-danger badge-pill"><%=baglist.get(0).getLookup() %></span>
-               </div>
-               <%}catch(Exception e){} %>
-                 </li>
-              </ul>
+              <img src="${pageContext.request.contextPath}/images/soccer2.jpg" class="card-img-size" alt="무슨파일인지설명">
+             
          </div>
        </div>
        <div class="col-8">
   <div class="card" id ="card3" >             
                       <ul class="list-group">
                       <%try{ %>
-                          <%for(int i=1; i<baglist.size(); i++) {
+                          <%for(int i=0; i<baglist.size(); i++) {
                          BulletinDto tmp = baglist.get(i);
                          %>
                          <%if(i < 9) { %>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                      <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                      </div>
                         </li>
@@ -358,33 +307,22 @@
   <div class="row">
        <div class="col-4">
           <div class="card" id = "card1-img">
-              <img src="${pageContext.request.contextPath}/images/colon.png" class="card-img-top" alt="무슨파일인지설명">
-              <ul class="list-group">
-                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                   <%try{ %>
-                   <a class="f-color" href="/test/board/detail.jsp?num=<%=fifalist.get(0).getNum() %>&url=<%=url%>&kinds=<%=fifalist.get(0).getKinds()%>"><%=fifalist.get(0).getTitle() %></a>
-                     
-                      <div>
-                  <span class="badge badge-primary badge-pill">15</span>
-                  <span class="badge badge-danger badge-pill"><%=fifalist.get(0).getLookup() %></span>
-               </div>
-               <%}catch(Exception e){} %>
-                 </li>
-              </ul>
+              <img src="${pageContext.request.contextPath}/images/soccer2.jpg" class="card-img-size" alt="무슨파일인지설명">
+              
          </div>
        </div>
        <div class="col-8">
   <div class="card" id ="card3" >             
                       <ul class="list-group">
                       <%try{ %>
-                          <%for(int i=1; i<fifalist.size(); i++) {
+                          <%for(int i=0; i<fifalist.size(); i++) {
                          BulletinDto tmp = fifalist.get(i);
                          %>
                          <%if(i < 9) { %>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                      <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                      </div>
                         </li>
@@ -413,7 +351,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                      <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                      </div>
                         </li>
@@ -438,7 +376,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                      <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                      </div>
                         </li>
@@ -464,7 +402,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                      <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                      </div>
                         </li>
@@ -495,7 +433,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                      <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                      </div>
                         </li>
@@ -520,7 +458,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                            <a class="f-color" href="/test/board/detail.jsp?num=<%=tmp.getNum() %>&url=<%=url%>&kinds=<%=tmp.getKinds()%>"><%=tmp.getTitle() %></a>
                            <div>
-                     <span class="badge badge-primary badge-pill">15</span>
+                     <span class="badge badge-primary badge-pill"><%=comdao2.getCount(tmp.getNum())%></span>
                      <span class="badge badge-danger badge-pill"><%=tmp.getLookup() %></span>
                      </div>
                         </li>
