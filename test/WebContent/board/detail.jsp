@@ -19,8 +19,11 @@
          
     String id  =(String)session.getAttribute("id");
     MemberDao dao = MemberDao.getInstance();
+    String name =null;
+   if(id!= null){
     MemberDto dto3  =dao.getData(id);
-	String name =dto3.getNick();    
+    name =dto3.getNick();
+   }
 
     BulletinDto dto = null ;
     if(allpage==null){
@@ -35,8 +38,10 @@
     }
     String url = request.getParameter("url");
 	BulletinDao.getInstance().addViewCount(num);
-	
-    String nick = (String)MemberDao.getInstance().getData(id).getNick();
+	String nick =null;
+	try{
+     nick = (String)MemberDao.getInstance().getData(id).getNick();
+	}catch (Exception e){}
 	String name2 = (String)BulletinDao.getInstance().bulletin_getData(kinds, num).getName();
 
 
@@ -132,6 +137,7 @@
 	  	<button type="submit" class="btn btn-success" id="writecomment" >글쓰기</button>
 	  	<button type="reset" class="btn btn-danger" type="reset">취소</button>
   	</form>
+  	
    
 <%
 	 CommentDto comdto = new CommentDto();
