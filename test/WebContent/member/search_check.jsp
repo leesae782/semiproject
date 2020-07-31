@@ -3,14 +3,71 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	
-	String userId = request.getParameter("id");
+	int IdPwd = Integer.parseInt(request.getParameter("IdPwd"));
+	String userId = request.getParameter("userid");
 	String userNick = request.getParameter("nick");
+	int quiz = Integer.parseInt(request.getParameter("quiz"));
+	String quizcheck = request.getParameter("quizcheck");
+	boolean isExistId=false;
+	boolean isExistPwd=false;
+	String exId="";
+	String exPwd="";
 	
-	boolean booleanId = MemberDao.getInstance().isExist(userId);
-	boolean booleanNick = MemberDao.getInstance().isnickExist(userNick);
+	try{
+	MemberDto dto = new MemberDto();
+	dto.setId(userId);
+	dto.setNick(userNick);
+	dto.setQuiz(quiz);
+	dto.setQuizcheck(quizcheck);
 	
-	MemberDto dto = MemberDao.getInstance().getData(userId);
+	if(userNick.equals("0")){
+		exPwd = MemberDao.getInstance().getDataPwd(dto).getPwd();
+		isExistPwd = MemberDao.getInstance().existencePwd(dto);
+	}else{
+		exId = MemberDao.getInstance().getDataId(dto).getId();	
+		isExistId = MemberDao.getInstance().existenceId(dto);
+	}
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	
+	
+	
+	/*MemberDto dto =null;
+	
+	MemberDto tmp=null;
+	boolean isExistId=false;
+	
+	if(userId == null){
+		dto = new MemberDto();
+		dto.setNick(userNick);
+		dto.setQuiz(quiz);
+		dto.setQuizcheck(quizcheck);
+		isExistId = MemberDao.getInstance().existenceId(dto);
+		tmp = MemberDao.getInstance().getDataId(dto);
+		System.out.print(isExistId);
+	}else{
+		dto = new MemberDto();
+		dto.setId(userId);
+		dto.setQuiz(quiz);
+		dto.setQuizcheck(quizcheck);
+		isExistId = MemberDao.getInstance().existencePwd(dto);
+		tmp = MemberDao.getInstance().getDataPwd(dto);
+		System.out.print(isExistId);
+		System.out.print(tmp.getPwd());
+	}
+	
+	*/
+	
+	
+	
+	
+	
+
+
+	
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -38,18 +95,34 @@
 
 
 <div class="container">
+<%if(IdPwd==1){ %>
 	<h1>패스워드 찾기</h1>
-	<%if(booleanId && booleanNick){%>
+	<%if(isExistPwd){%>
 		<div class="alert alert-primary" role="alert">
-			<span>비밀번호 : <strong><%=dto.getPwd() %></strong></span>
+			<span>비밀번호 : <strong><%=exPwd %></strong></span>
 		</div>
 		<a href="${pageContext.request.contextPath}/member/login_form.jsp"><button type="submit" class="btn btn-primary">로그인 하러 가기</button></a>
 	<%}else{ %>
 		<div class="alert alert-danger" role="alert">
-			ID 또는 닉네임이 일치하지 않습니다
+			'ID' 또는 '답변'이 일치하지 않습니다
 		</div>
-		<a href="user_search_form.jsp"><button type="submit" class="btn btn-primary">재입력</button></a>
+		<a href="user_search_form.jsp?isSearch=1"><button type="submit" class="btn btn-primary">재입력</button></a>
 	<%} %>
+<%}else{%>
+	<h1>아이디 찾기</h1>
+	<%if(isExistId){%>
+		<div class="alert alert-primary" role="alert">
+		<span>아이디 : <strong><%=exId %></strong></span>
+	</div>
+	<a href="${pageContext.request.contextPath}/member/login_form.jsp"><button type="submit" class="btn btn-primary">로그인 하러 가기</button></a>
+	<%}else{ %>
+		<div class="alert alert-danger" role="alert">
+			'닉네임' 또는 '답변'이 일치하지 않습니다
+		</div>
+		<a href="user_search_form.jsp?isSearch=0"><button type="submit" class="btn btn-primary">재입력</button></a>
+	<%}%>
+<%} %>
+
 </div>
 
 

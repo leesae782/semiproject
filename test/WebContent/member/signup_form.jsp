@@ -80,6 +80,32 @@
                 </td>        
                 <td></td>
             </tr>
+            
+            <%-- 아이디 비밀번호 찾기시 이용할 질문글 작성 코드(시작) --%>
+            <tr>
+            	<th class="text-center"><label for="quiz">질문 글</label></th>
+            	<td>
+					<div class="form-inline">
+						<select class="form-control" name="quiz">
+							<option selected value='1'>나의 보물 1호는 ?</option>
+							<option value='2'>좋아하는 음식은 ?</option>
+							<option value='3'>초등학교 이름은 ?</option>
+							<option value='4'>가장 친한 친구 이름은 ?</option>
+							<option value='5'>좋아하는 동물은 ?</option>
+						</select>
+					</div>
+				</td>
+            </tr>
+            <tr>
+                <th class="text-center"><label for="quizcheck">질문 답변</label></th>
+                <td><input type="text" class="form-control" id="quizcheck" name="quizcheck"placeholder="아이디 비밀번호 찾기시 이용됩니다">
+                	<span class="font-size"></span>
+                </td>        
+                <td></td>
+            </tr>
+            
+            <%-- 아이디 비밀번호 찾기시 이용할 질문글 작성 코드(끝) --%>
+            
             <tr>
                 <th rowspan="2"class="text-center"><label for="pwd1">프로필 사진</label></th>
                 <td ><img class="text-center" id="info-image" 
@@ -272,6 +298,12 @@ $("#profileLink").on("click", function(){
 			alert("이메일 중복을 확인 하세요");
 			return false; //폼 제출 막기 
 		}
+		var quizcheck = $("#quizcheck").val();
+		if(quizcheck==""){
+			alert("답변을 입력해주세요");
+			return false;
+		}
+		
 		
 		var pwd = $("#pwd").val();
 		var pwd1 = $("#pwd1").val();

@@ -352,7 +352,159 @@ public class MemberDao {
 	}
 	
 	
+	public boolean existenceId(MemberDto dto) {
+		boolean isExist=false;
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 준비하기
+			String sql = "SELECT id"
+					+ " FROM member"
+					+ " WHERE nick=? AND quiz=? AND quizcheck=?";
+			pstmt = conn.prepareStatement(sql);
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+			pstmt.setString(1, dto.getNick());
+			pstmt.setInt(2, dto.getQuiz());
+			pstmt.setString(3, dto.getQuizcheck());
+			//select 문 수행하고 결과 받아오기 
+			rs = pstmt.executeQuery();
+			//반복문 돌면서 결과 값 추출하기 
+			while (rs.next()) {
+				isExist=true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return isExist;
+	};
 	
+	public boolean existencePwd(MemberDto dto) {
+		boolean isExist=false;
+		//필요한 객체의 참조값을 담을 지역변수 만들기 
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문 준비하기
+			String sql = "SELECT pwd"
+					+ " FROM member"
+					+ " WHERE id=? AND quiz=? AND quizcheck=?";
+			pstmt = conn.prepareStatement(sql);
+			//sql 문에 ? 에 바인딩할 값이 있으면 바인딩하고 
+			pstmt.setString(1, dto.getId());
+			pstmt.setInt(2, dto.getQuiz());
+			pstmt.setString(3, dto.getQuizcheck());
+			//select 문 수행하고 결과 받아오기 
+			rs = pstmt.executeQuery();
+			//반복문 돌면서 결과 값 추출하기 
+			while (rs.next()) {
+				isExist=true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		return isExist;
+	};
+	
+	public MemberDto getDataId(MemberDto dto) {
+		MemberDto tmp =null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "SELECT *"
+					+ " FROM member"
+					+ " WHERE nick=? AND quiz=? AND quizcheck=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getNick());
+			pstmt.setInt(2, dto.getQuiz());
+			pstmt.setString(3, dto.getQuizcheck());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				tmp = new MemberDto();
+				tmp.setId(rs.getString("id"));
+				tmp.setPwd(rs.getString("pwd"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		
+		return tmp;
+	};
+	
+	
+	public MemberDto getDataPwd(MemberDto dto) {
+		MemberDto tmp =null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = new DbcpBean().getConn();
+			String sql = "SELECT *"
+					+ " FROM member"
+					+ " WHERE id=? AND quiz=? AND quizcheck=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			pstmt.setInt(2, dto.getQuiz());
+			pstmt.setString(3, dto.getQuizcheck());
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				tmp = new MemberDto();
+				tmp.setPwd(rs.getString("pwd"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+			}
+		}
+		
+		return tmp;
+	};
 	
 	
 	
@@ -398,6 +550,8 @@ public class MemberDao {
 		
 		return dto;
 	}
+
+	
 	
 	public List<MemberDto> getList() {
 		List<MemberDto> list = new ArrayList<>();
@@ -486,8 +640,8 @@ public class MemberDao {
 		try {
 			conn = new DbcpBean().getConn();
 			//실행할 sql문 준비하기
-			String sql = "INSERT INTO MEMBER(id,pwd,nick,email,profile,regdate)"
-					+" VALUES(?,?,?,?,?,SYSDATE)";
+			String sql = "INSERT INTO MEMBER(id,pwd,nick,email,profile,regdate,isStop,quiz,quizcheck)"
+					+" VALUES(?,?,?,?,?,SYSDATE,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			//? 에 바인딩 할 값이 있으면 바인딩한다.
 			pstmt.setString(1, dto.getId());
@@ -495,6 +649,9 @@ public class MemberDao {
 			pstmt.setString(3, dto.getNick());
 			pstmt.setString(4, dto.getEmail());
 			pstmt.setString(5, dto.getProfile());
+			pstmt.setInt(6, dto.getIsStop());
+			pstmt.setInt(7, dto.getQuiz());
+			pstmt.setString(8, dto.getQuizcheck());
 			
 			// sql문 수행하고 update or insert or delete 된 row 의 개수 리턴받기
 			flag = pstmt.executeUpdate();

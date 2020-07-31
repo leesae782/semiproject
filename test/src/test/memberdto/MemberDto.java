@@ -9,9 +9,11 @@ public class MemberDto {
 	private String profile;
 	private String newPwd;
 	private int isStop;
+	private int quiz;
+	private String quizcheck;
 	public MemberDto() {}
-
-	public MemberDto(String id, String pwd, String nick, String email, String regdate, String profile, String newPwd, int isStop) {
+	public MemberDto(String id, String pwd, String nick, String email, String regdate, String profile, String newPwd,
+			int isStop, int quiz, String quizcheck) {
 		super();
 		this.id = id;
 		this.pwd = pwd;
@@ -21,6 +23,8 @@ public class MemberDto {
 		this.profile = profile;
 		this.newPwd = newPwd;
 		this.isStop = isStop;
+		this.quiz = quiz;
+		this.quizcheck = quizcheck;
 	}
 	public String getId() {
 		return id;
@@ -70,7 +74,18 @@ public class MemberDto {
 	public void setIsStop(int isStop) {
 		this.isStop = isStop;
 	}
-	
+	public int getQuiz() {
+		return quiz;
+	}
+	public void setQuiz(int quiz) {
+		this.quiz = quiz;
+	}
+	public String getQuizcheck() {
+		return quizcheck;
+	}
+	public void setQuizcheck(String quizcheck) {
+		this.quizcheck = quizcheck;
+	}
 	
 	
 }

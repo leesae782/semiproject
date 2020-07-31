@@ -38,68 +38,100 @@
 <div class="container">
 <%if(isSearch==1){ %>
 	<h1>패스워드 찾기</h1>
-    <form action="search_check.jsp" method="post" id ="myForm">
+	<form action="search_check.jsp" method="post" >
+	<input type="hidden" name="nick" value="0" />
+	<input type="hidden" name="IdPwd" value="1" />
         <table class="table table-boardered">
             <tr>
-                <th class="text-center"><label for="id">아이디</label></th>            
+                <th class="text-center"><label for="userid">아이디</label></th>            
                 <td>
-                <input type="text" class="form-control" name="id"  id="id" placeholder="아이디 입력...">
+                <input type="text" class="form-control" name="userid"  id="userid" placeholder="아이디 입력...">
                 </td>   
             </tr>
-            <tr>
-                <th class="text-center"><label for="nick">닉네임</label></th>
-                <td><input type="text" class="form-control" id="nick"name="nick" placeholder="닉네임 임력...">
-                </td>
-                
+                        <tr>
+                <th class="text-center"><label for="quiz">질문 글</label></th>
+            	<td>
+					<div class="form-inline">
+						<select class="form-control" name="quiz">
+							<option selected value='1'>나의 보물 1호는 ?</option>
+							<option value='2'>좋아하는 음식은 ?</option>
+							<option value='3'>초등학교 이름은 ?</option>
+							<option value='4'>가장 친한 친구 이름은 ?</option>
+							<option value='5'>좋아하는 동물은 ?</option>
+						</select>
+					</div>
+				</td>
             </tr>
-             
-            
+            <tr>
+                <th class="text-center"><label for="quizcheck">질문 답변</label></th>
+                <td>
+                	<input type="text" class="form-control" id="quizcheck" name="quizcheck" placeholder="">
+                </td>
+            </tr>
             <tr>
                 <td class="text-center"colspan="3">
-	                <input type="submit" id="idSearch"class="btn btn-outline-primary" value="아이디 찾기">
+	                <input type="submit" class="btn btn-outline-primary" value="확인">
 	                <input type="reset" class="btn btn-outline-danger" value="취소">
                 </td>
                 <td></td>
             </tr>
         </table>
     </form>
-<%}else{ %>
+     	<div style="float:right;">
+        	<a class="btn btn-primary" href="${pageContext.request.contextPath }/member/user_search_form.jsp?isSearch=0">아이디 찾기</a>
+        </div>
+<%}else if(isSearch==0){ %>
 	<h1>아이디 찾기</h1>
-    <form action="search_check.jsp" method="post" id ="myForm">
+    <form action="search_check.jsp" method="post">
+    	<input type="hidden" name="userid" value="0" />
+    	<input type="hidden" name="IdPwd" value="0" />
         <table class="table table-boardered">
             <tr>
-                <th class="text-center"><label for="id">아이디</label></th>            
+                <th class="text-center"><label for="nick">닉네임</label></th>
                 <td>
-                <input type="text" class="form-control" name="id"  id="id" placeholder="아이디 입력...">
-                </td>   
+                	<input type="text" class="form-control" id="nick"name="nick" placeholder="닉네임 임력...">
+                </td>
             </tr>
             <tr>
-                <th class="text-center"><label for="nick">닉네임</label></th>
-                <td><input type="text" class="form-control" id="nick"name="nick" placeholder="닉네임 임력...">
-                </td>
-                
+                <th class="text-center"><label for="quiz">질문 글</label></th>
+            	<td>
+					<div class="form-inline">
+						<select class="form-control" name="quiz">
+							<option selected value='1'>나의 보물 1호는 ?</option>
+							<option value='2'>좋아하는 음식은 ?</option>
+							<option value='3'>초등학교 이름은 ?</option>
+							<option value='4'>가장 친한 친구 이름은 ?</option>
+							<option value='5'>좋아하는 동물은 ?</option>
+						</select>
+					</div>
+				</td>
             </tr>
-             
-            
+            <tr>
+                <th class="text-center"><label for="quizcheck">질문 답변</label></th>
+                <td>
+                	<input type="text" class="form-control" id="quizcheck" name="quizcheck" placeholder="">
+                </td>
+            </tr>
             <tr>
                 <td class="text-center"colspan="3">
-	                <input type="submit" id="idSearch"class="btn btn-outline-primary" value="아이디 찾기">
+	                <input type="submit" class="btn btn-outline-primary" value="확인">
 	                <input type="reset" class="btn btn-outline-danger" value="취소">
+	                
                 </td>
                 <td></td>
             </tr>
         </table>
+        
     </form>
+    	<div style="float:right;">
+        	<a class="btn btn-primary" href="${pageContext.request.contextPath }/member/user_search_form.jsp?isSearch=1">비밀번호 찾기</a>
+        </div>
 <%} %>
 </div>
-
-
 
 <jsp:include page="/include/footer.jsp">
 	<jsp:param value="index" name="thisPage"/>
 </jsp:include>
-
-
 
 </body>
 </html>
