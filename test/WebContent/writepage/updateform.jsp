@@ -36,7 +36,7 @@
 	<jsp:param value="<%=kinds %>" name="thisPage"/>
 </jsp:include>
 <div class="container">
-	<h1>수정 글 페이지.</h1>
+	<h2 style="background-color: #fbf2ffc4;">게시글 수정</h1>
 	<hr style="clear:left;"/>
 		<form action="update.jsp?url=<%=url %>" method="post">
 	<div class="form-inline">

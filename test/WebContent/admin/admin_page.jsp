@@ -17,17 +17,21 @@
 	
 	//검색 키워드와 startRowNum, endRowNum 을 담을 bulletin_dto 객체 생성
 	
-	MemberDto dto=new MemberDto();
-	dto.setId(condition);
-	dto.setNick(keyword);
-	List<MemberDto> list=null;
-	
-	if(!keyword.equals("")){  
-		dto.setNick(keyword);
-		list=MemberDao.getInstance().getListnick(dto);
-	}else{
-		list=MemberDao.getInstance().getListnick(dto);
-	}	
+	   MemberDto dto=new MemberDto();
+   		dto.setId(condition);
+   		dto.setNick(keyword);
+  	 List<MemberDto> list=null;
+  	 
+   if(keyword.equals("userAllCheck")){
+      list=MemberDao.getInstance().getList();
+   }else{
+      if(!keyword.equals("")){  
+         dto.setNick(keyword);
+         list=MemberDao.getInstance().getListnick(dto);
+      }else{
+         list=MemberDao.getInstance().getListnick(dto);
+      }   
+   }
 
 %>
 <!DOCTYPE html>

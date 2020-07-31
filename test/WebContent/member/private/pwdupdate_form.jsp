@@ -24,8 +24,8 @@
 <div class="container">
 	<div class="row">
     		<div class="col-sm-9">
-    		  <h1>비밀번호 수정 폼</h1>
-				
+    		  <h2 style="background-color: #fbf2ffc4;">password</h2>
+				<br />
 				
 				<form action="pwdupdate.jsp" method="post"class="needs-validation" id="myForm">
           			 <div class="form-group">

@@ -47,7 +47,7 @@
 
 
 	//한 페이지에 나타낼 row 의 갯수
-	final int PAGE_ROW_COUNT=5;
+	final int PAGE_ROW_COUNT=10;
 	//하단 디스플레이 페이지 갯수
 	final int PAGE_DISPLAY_COUNT=5;
 	//보여줄 페이지의 번호
@@ -156,7 +156,7 @@
 		try{
 			if(name2.equals(nick)||nick.equals("admin")){%>
 		      <a href="${pageContext.request.contextPath }/writepage/updateform.jsp?num=<%=dto.getNum() %>&kinds=<%=kinds %>&url=<%=url%>"><button class="btn btn-outline-info">수정</button></a>
-		      <a href="javascript:deleteConfirm(<%=dto.getNum()%>) "><button class="btn btn-outline-info">삭제</button></a>
+		      <a href="javascript:deleteConfirm(<%=num%>) "><button class="btn btn-outline-info">삭제</button></a>
 			<%} %>
 		<%}catch(Exception e){
 			e.printStackTrace();
@@ -211,8 +211,8 @@
    <%try { %>
    <%for(CommentDto tmp : list){ %>
    	<tr>
-   		<td>번호 : <%=tmp.getNum() %></td>
-   		<th>닉네임 :<%=tmp.getName() %></th>
+   		
+   		<th>닉네임 : <%=tmp.getName() %></th>
    		<td ><%=tmp.getContent() %></td>
    		<td><%=tmp.getRegdate() %></td>
    		<%if(tmp.getName().equals(name)){ %>
